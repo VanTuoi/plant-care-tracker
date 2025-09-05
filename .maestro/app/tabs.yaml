@@ -1,0 +1,11 @@
+appId: ${APP_ID}
+env:
+  EMAIL: 'admin@example.com'
+  PASSWORD: '123456'
+---
+- launchApp
+- assertVisible: 'Search'
+- tapOn:
+    id: 'settings-tab'
+- assertVisible: 'Settings'
+- assertVisible: 'Logout'

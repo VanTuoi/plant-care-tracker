@@ -1,0 +1,113 @@
+{
+  "common": {
+    "error_load": "خطأ عند تحميل البيانات",
+    "no_data": "عذرًا! لا يوجد بيانات",
+    "save": "حفظ"
+  },
+  "detail_user": {
+    "delete_user": {
+      "alert": {
+        "body": "هل أنت متأكد أنك تريد حذف هذا المستخدم؟",
+        "cancel": "إلغاء",
+        "delete": "حذف",
+        "title": "حذف المستخدم"
+      },
+      "button_label": "حذف المستخدم"
+    },
+    "email": "البريد الإلكتروني",
+    "full_name": "الاسم الكامل",
+    "gender": "الجنس",
+    "id": "المعرف",
+    "phone": "الهاتف",
+    "select_status": {
+      "active": "نشط",
+      "block": "محظور",
+      "graduated": "تخرج"
+    },
+    "status": "الحالة",
+    "title": "تفاصيل المستخدم"
+  },
+  "edit_user": {
+    "back": "رجوع",
+    "message": {
+      "edit_fail": "فشل تعديل المستخدم!",
+      "edit_success": "تم تعديل المستخدم بنجاح!"
+    },
+    "title": "تعديل معلومات المستخدم"
+  },
+  "layout": {
+    "settings_tab": "الإعدادات",
+    "user_tab": "المستخدم"
+  },
+  "login": {
+    "button": "تسجيل الدخول",
+    "demo_email": "البريد الإلكتروني التجريبي هو admin@example.com",
+    "demo_message": "مرحبًا! 👋 هذه شاشة تسجيل دخول تجريبية!",
+    "demo_password": "كلمة المرور التجريبية هي 123456",
+    "errors": {
+      "email_invalid": "صيغة البريد الإلكتروني غير صالحة",
+      "email_required": "البريد الإلكتروني مطلوب",
+      "password_min": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+      "password_required": "كلمة المرور مطلوبة"
+    },
+    "form": {
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور"
+    },
+    "title": "تسجيل الدخول"
+  },
+  "new_user": {
+    "back": "المستخدمون",
+    "form": {
+      "create": "إنشاء مستخدم",
+      "email": "البريد الإلكتروني",
+      "gender": "الجنس",
+      "gender_placeholder": "اختر الجنس",
+      "id": "المعرف",
+      "name": "الاسم الكامل",
+      "phone": "رقم الهاتف"
+    },
+    "gender": {
+      "female": "أنثى",
+      "male": "ذكر",
+      "other": "أخرى"
+    },
+    "message": {
+      "create_fail": "فشل إنشاء المستخدم!",
+      "create_success": "تم إنشاء المستخدم بنجاح!"
+    },
+    "title": "إضافة مستخدم",
+    "validate": {
+      "email_invalid": "بريد إلكتروني غير صالح",
+      "phone_min": "يجب أن يتكون رقم الهاتف من 6 أحرف على الأقل",
+      "required": "مطلوب"
+    }
+  },
+  "settings": {
+    "about": "حول",
+    "app_name": "اسم التطبيق",
+    "arabic": "العربية",
+    "english": "الإنجليزية",
+    "generale": "عام",
+    "language": "اللغة",
+    "logout": "تسجيل الخروج",
+    "theme": {
+      "dark": "داكن",
+      "light": "فاتح",
+      "system": "النظام",
+      "title": "المظهر"
+    },
+    "title": "الإعدادات",
+    "version": "الإصدار",
+    "vietnamese": "الفيتنامية"
+  },
+  "users": {
+    "button_apply_filter": "تطبيق",
+    "button_reset_filter": "إعادة تعيين التصفية",
+    "filter": "تصفية",
+    "order": "الترتيب",
+    "placeholder_search": "بحث",
+    "search_by": "البحث بواسطة",
+    "sort_by": "الترتيب حسب"
+  }
+}

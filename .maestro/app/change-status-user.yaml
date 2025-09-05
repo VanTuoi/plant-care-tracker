@@ -1,0 +1,14 @@
+appId: ${APP_ID}
+env:
+  Id: 'B1234561'
+  Email: 'nguyenvana@example.com'
+---
+- clearState
+- launchApp
+
+- runFlow: ../utils/login.yaml
+
+- tapOn:
+    id: 'User-${Id}-status-trigger'
+- tapOn:
+    id: 'User-${Id}-status-item-block'

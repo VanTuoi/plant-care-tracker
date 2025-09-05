@@ -1,0 +1,113 @@
+{
+  "common": {
+    "error_load": "Lỗi khi tải dữ liệu",
+    "no_data": "Rất tiếc! Không tìm thấy dữ liệu",
+    "save": "Lưu"
+  },
+  "detail_user": {
+    "delete_user": {
+      "alert": {
+        "body": "Bạn có chắc chắn muốn xóa người dùng này không?",
+        "cancel": "Hủy",
+        "delete": "Xóa",
+        "title": "Xóa người dùng"
+      },
+      "button_label": "Xóa người dùng"
+    },
+    "email": "Email",
+    "full_name": "Họ và tên",
+    "gender": "Giới tính",
+    "id": "ID",
+    "phone": "Số điện thoại",
+    "select_status": {
+      "active": "Đang hoạt động",
+      "block": "Bị chặn",
+      "graduated": "Đã tốt nghiệp"
+    },
+    "status": "Trạng thái",
+    "title": "Thông tin người dùng"
+  },
+  "edit_user": {
+    "back": "Quay lại",
+    "message": {
+      "edit_fail": "Tạo người dùng thất bại!",
+      "edit_success": "Tạo người dùng thành công!"
+    },
+    "title": "Sửa thông tin người dùng"
+  },
+  "layout": {
+    "settings_tab": "Cài đặt",
+    "user_tab": "Người dùng"
+  },
+  "login": {
+    "button": "Đăng nhập",
+    "demo_email": "Email demo là admin@example.com",
+    "demo_message": "Chào mừng! 👋 Đây là màn hình đăng nhập demo!",
+    "demo_password": "Mật khẩu demo là 123456",
+    "errors": {
+      "email_invalid": "Định dạng email không hợp lệ",
+      "email_required": "Email là bắt buộc",
+      "password_min": "Mật khẩu phải có ít nhất 6 ký tự",
+      "password_required": "Mật khẩu là bắt buộc"
+    },
+    "form": {
+      "email": "Email",
+      "password": "Mật khẩu"
+    },
+    "title": "Đăng nhập"
+  },
+  "new_user": {
+    "back": "Người dùng",
+    "form": {
+      "create": "Tạo người dùng",
+      "email": "Email",
+      "gender": "Giới tính",
+      "gender_placeholder": "Chọn giới tính",
+      "id": "Id",
+      "name": "Họ và tên",
+      "phone": "Số điện thoại"
+    },
+    "gender": {
+      "female": "Nữ",
+      "male": "Nam",
+      "other": "Khác"
+    },
+    "message": {
+      "create_fail": "Tạo người dùng thất bại!",
+      "create_success": "Tạo người dùng thành công!"
+    },
+    "title": "Thêm người dùng",
+    "validate": {
+      "email_invalid": "Email không hợp lệ",
+      "phone_min": "Số điện thoại phải từ 6 ký tự",
+      "required": "là bắt buộc"
+    }
+  },
+  "settings": {
+    "about": "Giới thiệu",
+    "app_name": "Tên ứng dụng",
+    "arabic": "Tiếng Ả Rập",
+    "english": "Tiếng Anh",
+    "generale": "Chung",
+    "language": "Ngôn ngữ",
+    "logout": "Đăng xuất",
+    "theme": {
+      "dark": "Tối",
+      "light": "Sáng",
+      "system": "Hệ thống",
+      "title": "Chủ đề"
+    },
+    "title": "Cài đặt",
+    "version": "Phiên bản",
+    "vietnamese": "Tiếng Việt"
+  },
+  "users": {
+    "button_apply_filter": "Áp dụng",
+    "button_reset_filter": "Đặt lại bộ lọc",
+    "filter": "Lọc",
+    "order": "Thư tự",
+    "placeholder_search": "Tìm kiếm",
+    "search_by": "Tìm kiếm theo",
+    "sort_by": "Sắp xếp theo"
+  }
+}

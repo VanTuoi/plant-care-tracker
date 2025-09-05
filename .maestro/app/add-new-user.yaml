@@ -1,0 +1,35 @@
+appId: ${APP_ID}
+env:
+  Id: 'B1234560'
+  Name: 'Nguyen Van An'
+  Email: 'nguyenvanan@example.com'
+  Phone: '0334431420'
+  Gender: 'Other'
+  Status: 'Active'
+---
+- launchApp
+
+- tapOn:
+    id: 'add-new-user'
+- tapOn:
+    id: 'input-name'
+- inputText: ${Name}
+- tapOn:
+    id: 'input-email'
+- inputText: ${Email}
+- tapOn:
+    id: 'input-phone'
+- inputText: ${Phone}
+- runFlow: ../utils/hide-keyboard.yaml
+- tapOn:
+    id: 'select-gender-trigger'
+- tapOn:
+    id: 'select-gender-item-${Gender}'
+
+- tapOn:
+    id: 'add-new-user'
+# - assertVisible:
+#     text: ${Name}
+
+- assertVisible:
+    text: 'Search'

@@ -1,0 +1,18 @@
+appId: ${APP_ID}
+env:
+  TestEmail: 'tranthib@example.com'
+---
+- clearState
+- launchApp
+
+- runFlow: ../utils/login.yaml
+
+- tapOn:
+    text: ${TestEmail}
+- tapOn:
+    id: 'delete-user'
+- tapOn:
+    text: 'Delete'
+
+- assertNotVisible:
+    text: ${TestEmail}
