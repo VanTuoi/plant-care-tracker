@@ -1,17 +1,27 @@
-import type { AxiosError } from 'axios';
+import { type AxiosError } from 'axios';
 import { createMutation } from 'react-query-kit';
 
-import { type ResponseData } from '../types';
-import { loginMock } from './auth-mock';
+import { client } from '../common';
+import { type ErrorResponse } from '../types';
 import { type LoginResponse } from './type';
 
 type Variables = { email: string; password: string };
-type Response = ResponseData<LoginResponse>;
+
+const loginApi = async ({
+  email,
+  password,
+}: Variables): Promise<LoginResponse> => {
+  const res = await client.post<LoginResponse>('/auth/email/login', {
+    email,
+    password,
+  });
+  return res.data;
+};
 
 export const useLogin = createMutation<
-  Response,
+  LoginResponse,
   Variables,
-  AxiosError<ResponseData<null>>
+  AxiosError<ErrorResponse>
 >({
-  mutationFn: loginMock,
+  mutationFn: loginApi,
 });

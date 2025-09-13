@@ -4,15 +4,21 @@ export type PaginateQuery<T> = {
   next: string | null;
   previous: string | null;
 };
-
-export interface Errors {
-  [field: string]: string[];
-}
+export type InfinityPaginationResponse<T> = {
+  data: T[];
+  hasNextPage: boolean;
+};
 
 export interface ResponseData<T> {
-  message: string;
-  success: boolean;
-  meta?: any;
-  data: T | null;
-  errors?: Errors;
+  data?: T | null;
+}
+
+export interface ErrorResponse {
+  status: number;
+  message?: string;
+  errors?: {
+    email?: 'notFound';
+    password?: 'incorrectPassword';
+    [key: string]: string | undefined;
+  };
 }

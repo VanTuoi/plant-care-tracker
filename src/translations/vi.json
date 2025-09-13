@@ -1,39 +1,8 @@
 {
   "common": {
     "error_load": "Lỗi khi tải dữ liệu",
-    "no_data": "Rất tiếc! Không tìm thấy dữ liệu",
+    "no_data": "Xin lỗi! Không tìm thấy dữ liệu",
     "save": "Lưu"
-  },
-  "detail_user": {
-    "delete_user": {
-      "alert": {
-        "body": "Bạn có chắc chắn muốn xóa người dùng này không?",
-        "cancel": "Hủy",
-        "delete": "Xóa",
-        "title": "Xóa người dùng"
-      },
-      "button_label": "Xóa người dùng"
-    },
-    "email": "Email",
-    "full_name": "Họ và tên",
-    "gender": "Giới tính",
-    "id": "ID",
-    "phone": "Số điện thoại",
-    "select_status": {
-      "active": "Đang hoạt động",
-      "block": "Bị chặn",
-      "graduated": "Đã tốt nghiệp"
-    },
-    "status": "Trạng thái",
-    "title": "Thông tin người dùng"
-  },
-  "edit_user": {
-    "back": "Quay lại",
-    "message": {
-      "edit_fail": "Tạo người dùng thất bại!",
-      "edit_success": "Tạo người dùng thành công!"
-    },
-    "title": "Sửa thông tin người dùng"
   },
   "layout": {
     "settings_tab": "Cài đặt",
@@ -46,42 +15,18 @@
     "demo_password": "Mật khẩu demo là 123456",
     "errors": {
       "email_invalid": "Định dạng email không hợp lệ",
-      "email_required": "Email là bắt buộc",
+      "email_notfound": "Không tìm thấy email",
+      "email_required": "Yêu cầu email",
+      "incorrect_password": "Mật khẩu không chính xác",
       "password_min": "Mật khẩu phải có ít nhất 6 ký tự",
-      "password_required": "Mật khẩu là bắt buộc"
+      "password_required": "Bắt buộc phải nhập mật khẩu",
+      "server": "Lỗi máy chủ"
     },
     "form": {
       "email": "Email",
       "password": "Mật khẩu"
     },
     "title": "Đăng nhập"
-  },
-  "new_user": {
-    "back": "Người dùng",
-    "form": {
-      "create": "Tạo người dùng",
-      "email": "Email",
-      "gender": "Giới tính",
-      "gender_placeholder": "Chọn giới tính",
-      "id": "Id",
-      "name": "Họ và tên",
-      "phone": "Số điện thoại"
-    },
-    "gender": {
-      "female": "Nữ",
-      "male": "Nam",
-      "other": "Khác"
-    },
-    "message": {
-      "create_fail": "Tạo người dùng thất bại!",
-      "create_success": "Tạo người dùng thành công!"
-    },
-    "title": "Thêm người dùng",
-    "validate": {
-      "email_invalid": "Email không hợp lệ",
-      "phone_min": "Số điện thoại phải từ 6 ký tự",
-      "required": "là bắt buộc"
-    }
   },
   "settings": {
     "about": "Giới thiệu",
@@ -95,17 +40,103 @@
       "dark": "Tối",
       "light": "Sáng",
       "system": "Hệ thống",
-      "title": "Chủ đề"
+      "title": "Giao diện"
     },
     "title": "Cài đặt",
     "version": "Phiên bản",
     "vietnamese": "Tiếng Việt"
   },
+  "species": {
+    "add_plant": "Thêm cây",
+    "button_apply_filter": "Áp dụng bộ lọc",
+    "button_reset_filter": "Đặt lại",
+    "care": {
+      "fertilizing": {
+        "amount": "Số lượng: {{amount}} g",
+        "fertilizer_type": {
+          "ammonium_sulfate": "Phân bón amoni sulfat",
+          "bloodmeal": "Bloodmeal",
+          "bonemeal": "Bonemeal",
+          "compost": "Phân trộn",
+          "green_manure": "Phân xanh",
+          "inorganic": "Phân vô cơ",
+          "liquid": "Phân lỏng",
+          "manure": "Phân chuồng",
+          "micro_nutrient": "Phân bón vi lượng",
+          "npk": "Phân NPK",
+          "organic": "Phân hữu cơ",
+          "other": "Khác",
+          "urea": "Phân urê"
+        },
+
+        "fertilizing_method": {
+          "foliar_feed": "Phun lá",
+          "liquid_feed": "Tưới phân",
+          "other": "Khác",
+          "soil_mixing": "Trộn vào đất",
+          "surface_spread": "Rải trên bề mặt"
+        },
+
+        "frequency": "Tần suất: {{freq}} ngày/lần",
+        "method": "Phương pháp: {{method}}",
+        "title": "Bón phân",
+        "type": "Loại phân bón: {{type}}"
+      },
+
+      "title": "Chăm sóc",
+      "watering": {
+        "amount": "Cứ mỗi {{amount}} ml/lần",
+        "frequency": "Cứ mỗi {{freq}} ngày/lần",
+        "method": "Phương pháp: {{method}}",
+        "title": "Tưới nước",
+        "watering_method": {
+          "drip": "Tưới nhỏ giọt",
+          "immersion": "Chậu ngâm",
+          "other": "Khác",
+          "overhead": "Tưới từ trên cao",
+          "root": "Tưới rễ",
+          "self_watering": "Tự giữ ẩm",
+          "spray": "Sương mù",
+          "wick": "Tưới bằng bấc"
+        }
+      }
+    },
+    "difficulty": {
+      "easy": "Dễ",
+      "hard": "Khó",
+      "moderate": "Trung bình"
+    },
+    "filter": {
+      "name": "Tên cây",
+      "scientificName": "Tên khoa học"
+    },
+    "location_chip": "{{count}} khu vực khả dụng",
+    "search_by": {
+      "title": "Tìm kiếm theo"
+    },
+    "sort_by": {
+      "name": "Tên cây",
+      "scientificName": "Tên khoa học",
+      "title": "Sắp xếp theo"
+    },
+    "sort_order": {
+      "asc": "Tăng dần",
+      "desc": "Giảm dần",
+      "title": "Thứ tự sắp xếp"
+    },
+    "sunlight": {
+      "full_sun": "Nắng đầy đủ",
+      "partial_sun": "Nắng một phần",
+      "shade": "Bóng râm",
+      "unknown": "Không xác định"
+    },
+    "title": "Thông tin cây"
+  },
   "users": {
     "button_apply_filter": "Áp dụng",
-    "button_reset_filter": "Đặt lại bộ lọc",
-    "filter": "Lọc",
-    "order": "Thư tự",
+    "button_reset_filter": "Đặt lại Bộ lọc",
+    "filter": "Bộ lọc",
+    "order": "Thứ tự",
     "placeholder_search": "Tìm kiếm",
     "search_by": "Tìm kiếm theo",
     "sort_by": "Sắp xếp theo"

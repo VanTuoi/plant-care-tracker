@@ -26,14 +26,19 @@ const _useAuth = create<AuthState>((set, get) => ({
   hydrate: () => {
     try {
       const userToken = getToken();
-      if (userToken !== null) {
-        get().signIn(userToken);
+
+      if (userToken) {
+        const now = Date.now();
+        if (userToken.tokenExpires && userToken.tokenExpires > now) {
+          get().signIn(userToken);
+        } else {
+          get().signOut();
+        }
       } else {
         get().signOut();
       }
     } catch (e) {
-      // catch error here
-      // Maybe sign_out user!
+      get().signOut();
     }
   },
 }));

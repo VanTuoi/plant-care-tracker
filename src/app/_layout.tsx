@@ -12,6 +12,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 
 import { APIProvider } from '@/api';
+import { colors } from '@/components/ui';
 import { hydrateAuth, loadSelectedTheme } from '@/lib';
 import { useThemeConfig } from '@/lib/use-theme-config';
 
@@ -34,9 +35,30 @@ SplashScreen.setOptions({
 export default function RootLayout() {
   return (
     <Providers>
-      <Stack>
+      <Stack
+        screenOptions={{
+          headerStyle: { backgroundColor: colors.primary[50] },
+          headerTitleStyle: { fontSize: 16 },
+          headerTintColor: colors.primary[800],
+          headerShadowVisible: false,
+          gestureEnabled: true,
+          animation: 'slide_from_right',
+          animationDuration: 100,
+        }}
+      >
         <Stack.Screen name="(app)" options={{ headerShown: false }} />
+        <Stack.Screen name="sites/[id]" options={{ headerShown: true }} />
+        <Stack.Screen name="species/[id]" />
+        <Stack.Screen name="plant/[id]" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="plant/add-plant/[speciesId]"
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="login" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="notification/index"
+          options={{ headerShown: false }}
+        />
       </Stack>
     </Providers>
   );

@@ -1,11 +1,12 @@
 import * as React from 'react';
 
 import type { OptionType } from '@/components/ui';
-import { Options, useModal } from '@/components/ui';
+import { colors, Options, useModal } from '@/components/ui';
 import { useSelectedLanguage } from '@/lib';
 import { translate } from '@/lib';
-import type { Language } from '@/lib/i18n/resources';
+import { type Language } from '@/lib/i18n/resources';
 
+import { Language as LanguageIcon } from '../ui/icons';
 import { Item } from './item';
 
 export const LanguageItem = () => {
@@ -36,9 +37,11 @@ export const LanguageItem = () => {
   return (
     <>
       <Item
-        text="settings.language"
+        tx="settings.language"
         value={selectedLanguage?.label}
         onPress={modal.present}
+        icon={<LanguageIcon size={24} />}
+        iconColor={colors.neutral[200]}
       />
       <Options
         ref={modal.ref}

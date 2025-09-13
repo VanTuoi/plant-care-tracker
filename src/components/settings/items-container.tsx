@@ -3,20 +3,28 @@ import React from 'react';
 import { Text, View } from '@/components/ui';
 import type { TxKeyPath } from '@/lib';
 
-type Props = {
+type ItemsContainerProps = {
+  title?: string;
+  tx?: TxKeyPath;
   children: React.ReactNode;
-  title?: TxKeyPath;
 };
 
-export const ItemsContainer = ({ children, title }: Props) => {
+export function ItemsContainer({ title, tx, children }: ItemsContainerProps) {
   return (
-    <>
-      {title && <Text className="pb-1 pt-4 text-lg font-bold" tx={title} />}
-      {
-        <View className="rounded-md border border-neutral-200  dark:border-neutral-700 dark:bg-neutral-800">
-          {children}
-        </View>
-      }
-    </>
+    <View className="mb-6 rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3 dark:border-neutral-700 dark:bg-neutral-800">
+      {tx ? (
+        <Text
+          tx={tx}
+          className="mb-4 text-xl font-bold text-primary-900 dark:text-neutral-100"
+        />
+      ) : (
+        title && (
+          <Text className="mb-4 text-xl font-bold text-primary-900 dark:text-neutral-100">
+            {title}
+          </Text>
+        )
+      )}
+      {children}
+    </View>
   );
-};
+}

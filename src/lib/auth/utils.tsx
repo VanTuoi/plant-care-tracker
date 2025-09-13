@@ -3,8 +3,9 @@ import { getItem, removeItem, setItem } from '@/lib/storage';
 const TOKEN = 'token';
 
 export type TokenType = {
-  access: string;
-  refresh: string;
+  token: string;
+  refreshToken: string;
+  tokenExpires: number;
 };
 
 let sessionToken: TokenType | null = null;

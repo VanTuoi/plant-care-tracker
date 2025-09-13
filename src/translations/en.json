@@ -4,84 +4,29 @@
     "no_data": "Sorry! No data found",
     "save": "Save"
   },
-  "detail_user": {
-    "delete_user": {
-      "alert": {
-        "body": "Are you sure you want to delete this user?",
-        "cancel": "Cancel",
-        "delete": "Delete",
-        "title": "Delete User"
-      },
-      "button_label": "Delete User"
-    },
-    "email": "Email",
-    "full_name": "Full Name",
-    "gender": "Gender",
-    "id": "ID",
-    "phone": "Phone",
-    "select_status": {
-      "active": "Active",
-      "block": "Blocked",
-      "graduated": "Graduated"
-    },
-    "status": "Status",
-    "title": "Detail user"
-  },
-  "edit_user": {
-    "back": "Back",
-    "message": {
-      "edit_fail": "User edition failed!",
-      "edit_success": "User edition successful!"
-    },
-    "title": "Edit user information"
-  },
   "layout": {
     "settings_tab": "Settings",
     "user_tab": "User"
   },
   "login": {
     "button": "Login",
-    "demo_email": "Email demo is admin@example.com",
+    "demo_email": "Demo email is admin@example.com",
     "demo_message": "Welcome! 👋 This is a demo login screen!",
-    "demo_password": "Password demo is 123456",
+    "demo_password": "Demo password is 123456",
     "errors": {
       "email_invalid": "Invalid email format",
+      "email_notfound": "Email not found",
       "email_required": "Email is required",
+      "incorrect_password": "Incorrect Password",
       "password_min": "Password must be at least 6 characters",
-      "password_required": "Password is required"
+      "password_required": "Password is required",
+      "server": "Server error"
     },
     "form": {
       "email": "Email",
       "password": "Password"
     },
     "title": "Sign In"
-  },
-  "new_user": {
-    "back": "Users",
-    "form": {
-      "create": "Create User",
-      "email": "Email",
-      "gender": "Gender",
-      "gender_placeholder": "Select gender",
-      "id": "Id",
-      "name": "Full Name",
-      "phone": "Phone Number"
-    },
-    "gender": {
-      "female": "Female",
-      "male": "Male",
-      "other": "Other"
-    },
-    "message": {
-      "create_fail": "Failed to create user!",
-      "create_success": "User created successfully!"
-    },
-    "title": "Add User",
-    "validate": {
-      "email_invalid": "Invalid email",
-      "phone_min": "Phone number must be at least 6 characters",
-      "required": "is required"
-    }
   },
   "settings": {
     "about": "About",
@@ -100,6 +45,89 @@
     "title": "Settings",
     "version": "Version",
     "vietnamese": "Vietnamese"
+  },
+  "species": {
+    "add_plant": "Add plant",
+    "button_apply_filter": "Apply filter",
+    "button_reset_filter": "Reset",
+    "care": {
+      "fertilizing": {
+        "amount": "Quantity: {{amount}} g",
+        "fertilizer_type": {
+          "ammonium_sulfate": "Ammonium sulfate fertilizer",
+          "bloodmeal": "Bloodmeal",
+          "bonemeal": "Bonemeal",
+          "compost": "Compost",
+          "green_manure": "Green manure",
+          "inorganic": "Inorganic fertilizer",
+          "liquid": "Liquid fertilizer",
+          "manure": "Manure",
+          "micro_nutrient": "Micronutrient fertilizer",
+          "npk": "NPK fertilizer",
+          "organic": "Organic fertilizer",
+          "other": "Other",
+          "urea": "Urea fertilizer"
+        },
+        "fertilizing_method": {
+          "foliar_feed": "Foliar spray",
+          "liquid_feed": "Fertilizer watering",
+          "other": "Other",
+          "soil_mixing": "Mix into soil",
+          "surface_spread": "Spread on surface"
+        },
+        "frequency": "Frequency: {{freq}} days/time",
+        "method": "Method: {{method}}",
+        "title": "Fertilizing",
+        "type": "Fertilizer type: {{type}}"
+      },
+      "title": "Care",
+      "watering": {
+        "amount": "Every {{amount}} ml/time",
+        "frequency": "Every {{freq}} days/time",
+        "method": "Method: {{method}}",
+        "title": "Watering",
+        "watering_method": {
+          "drip": "Drip irrigation",
+          "immersion": "Soaking pots",
+          "other": "Other",
+          "overhead": "Watering from above",
+          "root": "Watering the roots",
+          "self_watering": "Self-moisturizing",
+          "spray": "Mist",
+          "wick": "Watering with a wick"
+        }
+      }
+    },
+    "difficulty": {
+      "easy": "Easy",
+      "hard": "Difficult",
+      "moderate": "Medium"
+    },
+    "filter": {
+      "name": "Plant name",
+      "scientificName": "Scientific name"
+    },
+    "location_chip": "{{count}} available areas",
+    "search_by": {
+      "title": "Search by"
+    },
+    "sort_by": {
+      "name": "Plant name",
+      "scientificName": "Scientific name",
+      "title": "Sort by"
+    },
+    "sort_order": {
+      "asc": "Ascending",
+      "desc": "Descending",
+      "title": "Sort order"
+    },
+    "sunlight": {
+      "full_sun": "Full sun",
+      "partial_sun": "Partial sun",
+      "shade": "Shade",
+      "unknown": "Unknown"
+    },
+    "title": "Tree information"
   },
   "users": {
     "button_apply_filter": "Apply",

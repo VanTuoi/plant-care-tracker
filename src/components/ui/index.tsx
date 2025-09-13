@@ -3,7 +3,10 @@ import Svg from 'react-native-svg';
 
 export * from './button';
 export * from './checkbox';
+export * from './chip';
 export { default as colors } from './colors';
+export * from './date-picker-field';
+export * from './fab-menu';
 export * from './focus-aware-status-bar';
 export * from './image';
 export * from './input';
@@ -11,6 +14,7 @@ export * from './list';
 export * from './modal';
 export * from './progress-bar';
 export * from './select';
+export * from './tab';
 export * from './text';
 export * from './utils';
 

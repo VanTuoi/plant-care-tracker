@@ -1,14 +1,17 @@
 import * as React from 'react';
-import type { SvgProps } from 'react-native-svg';
-import Svg, { Path } from 'react-native-svg';
+import Svg, { Path, type SvgProps } from 'react-native-svg';
 
-export function Home({ color = '#000', ...props }: SvgProps) {
-  return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
-      <Path
-        d="M12.848 2.751a1.2 1.2 0 0 0-1.697 0l-8.4 8.4a1.2 1.2 0 1 0 1.698 1.697l.351-.351V20.4A1.2 1.2 0 0 0 6 21.6h2.4a1.2 1.2 0 0 0 1.2-1.2V18a1.2 1.2 0 0 1 1.2-1.2h2.4a1.2 1.2 0 0 1 1.2 1.2v2.4a1.2 1.2 0 0 0 1.2 1.2H18a1.2 1.2 0 0 0 1.2-1.2v-7.903l.352.351a1.2 1.2 0 1 0 1.697-1.697l-8.4-8.4Z"
-        fill={color}
-      />
-    </Svg>
-  );
-}
+export const Home = ({
+  size = 24,
+  color = '#000',
+  ...props
+}: SvgProps & { size?: number }) => (
+  <Svg width={size} height={size} viewBox="0 -1 22 22" fill="none" {...props}>
+    <Path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M2 11C1.08049 11 0.648384 9.86349 1.33564 9.25259L10.3356 1.25259C10.7145 0.915803 11.2855 0.915803 11.6644 1.25259L20.6644 9.25259C21.3516 9.86349 20.9195 11 20 11H19V18C19 18.5523 18.5523 19 18 19H4C3.44772 19 3 18.5523 3 18V11H2ZM8 17V12C8 11.4477 8.44772 11 9 11H13C13.5523 11 14 11.4477 14 12V17H17V10C17 9.62477 17.2067 9.29781 17.5124 9.12674L11 3.33795L4.48762 9.12674C4.79334 9.29781 5 9.62477 5 10V17H8ZM10 17V13H12V17H10Z"
+      fill={color}
+    />
+  </Svg>
+);

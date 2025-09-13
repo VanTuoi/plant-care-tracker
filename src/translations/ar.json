@@ -1,39 +1,8 @@
 {
   "common": {
-    "error_load": "خطأ عند تحميل البيانات",
-    "no_data": "عذرًا! لا يوجد بيانات",
+    "error_load": "خطأ في تحميل البيانات",
+    "no_data": "عذرًا! لا توجد بيانات",
     "save": "حفظ"
-  },
-  "detail_user": {
-    "delete_user": {
-      "alert": {
-        "body": "هل أنت متأكد أنك تريد حذف هذا المستخدم؟",
-        "cancel": "إلغاء",
-        "delete": "حذف",
-        "title": "حذف المستخدم"
-      },
-      "button_label": "حذف المستخدم"
-    },
-    "email": "البريد الإلكتروني",
-    "full_name": "الاسم الكامل",
-    "gender": "الجنس",
-    "id": "المعرف",
-    "phone": "الهاتف",
-    "select_status": {
-      "active": "نشط",
-      "block": "محظور",
-      "graduated": "تخرج"
-    },
-    "status": "الحالة",
-    "title": "تفاصيل المستخدم"
-  },
-  "edit_user": {
-    "back": "رجوع",
-    "message": {
-      "edit_fail": "فشل تعديل المستخدم!",
-      "edit_success": "تم تعديل المستخدم بنجاح!"
-    },
-    "title": "تعديل معلومات المستخدم"
   },
   "layout": {
     "settings_tab": "الإعدادات",
@@ -46,42 +15,18 @@
     "demo_password": "كلمة المرور التجريبية هي 123456",
     "errors": {
       "email_invalid": "صيغة البريد الإلكتروني غير صالحة",
+      "email_notfound": "البريد الإلكتروني غير موجود",
       "email_required": "البريد الإلكتروني مطلوب",
-      "password_min": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
-      "password_required": "كلمة المرور مطلوبة"
+      "incorrect_password": "كلمة المرور غير صحيحة",
+      "password_min": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
+      "password_required": "كلمة المرور مطلوبة",
+      "server": "خطأ في الخادم"
     },
     "form": {
       "email": "البريد الإلكتروني",
       "password": "كلمة المرور"
     },
     "title": "تسجيل الدخول"
-  },
-  "new_user": {
-    "back": "المستخدمون",
-    "form": {
-      "create": "إنشاء مستخدم",
-      "email": "البريد الإلكتروني",
-      "gender": "الجنس",
-      "gender_placeholder": "اختر الجنس",
-      "id": "المعرف",
-      "name": "الاسم الكامل",
-      "phone": "رقم الهاتف"
-    },
-    "gender": {
-      "female": "أنثى",
-      "male": "ذكر",
-      "other": "أخرى"
-    },
-    "message": {
-      "create_fail": "فشل إنشاء المستخدم!",
-      "create_success": "تم إنشاء المستخدم بنجاح!"
-    },
-    "title": "إضافة مستخدم",
-    "validate": {
-      "email_invalid": "بريد إلكتروني غير صالح",
-      "phone_min": "يجب أن يتكون رقم الهاتف من 6 أحرف على الأقل",
-      "required": "مطلوب"
-    }
   },
   "settings": {
     "about": "حول",
@@ -92,7 +37,7 @@
     "language": "اللغة",
     "logout": "تسجيل الخروج",
     "theme": {
-      "dark": "داكن",
+      "dark": "مظلم",
       "light": "فاتح",
       "system": "النظام",
       "title": "المظهر"
@@ -101,13 +46,96 @@
     "version": "الإصدار",
     "vietnamese": "الفيتنامية"
   },
+  "species": {
+    "add_plant": "إضافة نبات",
+    "button_apply_filter": "تطبيق الفلتر",
+    "button_reset_filter": "إعادة تعيين",
+    "care": {
+      "fertilizing": {
+        "amount": "الكمية: {{amount}} غرام",
+        "fertilizer_type": {
+          "ammonium_sulfate": "سماد كبريتات الأمونيوم",
+          "bloodmeal": "وجبة الدم",
+          "bonemeal": "وجبة العظام",
+          "compost": "سماد",
+          "green_manure": "سماد أخضر",
+          "inorganic": "سماد غير عضوي",
+          "liquid": "سماد سائل",
+          "manure": "روث",
+          "micro_nutrient": "سماد المغذيات الدقيقة",
+          "npk": "سماد NPK",
+          "organic": "سماد عضوي",
+          "other": "أخرى",
+          "urea": "سماد اليوريا"
+        },
+        "fertilizing_method": {
+          "foliar_feed": "الرش الورقي",
+          "liquid_feed": "الري بالسماد",
+          "other": "أخرى",
+          "soil_mixing": "خلط مع التربة",
+          "surface_spread": "نشر على السطح"
+        },
+        "frequency": "التكرار: كل {{freq}} يوم/مرة",
+        "method": "الطريقة: {{method}}",
+        "title": "التسميد",
+        "type": "نوع السماد: {{type}}"
+      },
+      "title": "العناية",
+      "watering": {
+        "amount": "{{amount}} مل/مرة",
+        "frequency": "كل {{freq}} يوم/مرة",
+        "method": "الطريقة: {{method}}",
+        "title": "الري",
+        "watering_method": {
+          "drip": "الري بالتنقيط",
+          "immersion": "نقع الأصص",
+          "other": "أخرى",
+          "overhead": "الري من الأعلى",
+          "root": "ري الجذور",
+          "self_watering": "الري الذاتي",
+          "spray": "الضباب",
+          "wick": "الري باستخدام الفتيل"
+        }
+      }
+    },
+    "difficulty": {
+      "easy": "سهل",
+      "hard": "صعب",
+      "moderate": "متوسط"
+    },
+    "filter": {
+      "name": "اسم النبات",
+      "scientificName": "الاسم العلمي"
+    },
+    "location_chip": "{{count}} مناطق متاحة",
+    "search_by": {
+      "title": "البحث بواسطة"
+    },
+    "sort_by": {
+      "name": "اسم النبات",
+      "scientificName": "الاسم العلمي",
+      "title": "ترتيب حسب"
+    },
+    "sort_order": {
+      "asc": "تصاعدي",
+      "desc": "تنازلي",
+      "title": "ترتيب الفرز"
+    },
+    "sunlight": {
+      "full_sun": "شمس كاملة",
+      "partial_sun": "شمس جزئية",
+      "shade": "ظل",
+      "unknown": "غير معروف"
+    },
+    "title": "معلومات الشجرة"
+  },
   "users": {
     "button_apply_filter": "تطبيق",
-    "button_reset_filter": "إعادة تعيين التصفية",
-    "filter": "تصفية",
-    "order": "الترتيب",
+    "button_reset_filter": "إعادة تعيين الفلتر",
+    "filter": "فلتر",
+    "order": "ترتيب",
     "placeholder_search": "بحث",
     "search_by": "البحث بواسطة",
-    "sort_by": "الترتيب حسب"
+    "sort_by": "ترتيب حسب"
   }
 }

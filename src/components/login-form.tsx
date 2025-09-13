@@ -39,8 +39,8 @@ export const LoginForm = ({
   const { handleSubmit, control } = useForm<FormType>({
     resolver: zodResolver(schema),
     defaultValues: {
-      email: Env.APP_ENV === 'development' ? 'admin@example.com' : '',
-      password: Env.APP_ENV === 'development' ? '123456' : '',
+      email: Env.APP_ENV === 'development' ? 'john.doe@example.com' : '',
+      password: Env.APP_ENV === 'development' ? 'secret' : '',
     },
   });
 
@@ -52,29 +52,16 @@ export const LoginForm = ({
     >
       <View className="flex-1 justify-center p-4">
         <View className="mb-6 items-center justify-center">
+          <Text className="mb-5 w-full text-center text-6xl font-bold text-green-700 dark:text-green-700">
+            Panda
+          </Text>
           <Text className="pb-6 text-center text-4xl font-bold">
             {translate('login.title')}
           </Text>
           <Image
-            source={require('@/assets/online.png')}
+            source={require('@/assets/strelitzia plant.png')}
             style={{ width: 250, height: 250 }}
           />
-
-          {Env.APP_ENV === 'development' && (
-            <>
-              <Text className="w-full text-start text-gray-500">
-                {translate('login.demo_message')}
-              </Text>
-              <View className="w-full items-start">
-                <Text className="text-left text-gray-500">
-                  {translate('login.demo_email')}
-                </Text>
-                <Text className="text-left text-gray-500">
-                  {translate('login.demo_password')}
-                </Text>
-              </View>
-            </>
-          )}
         </View>
 
         <ControlledInput
@@ -95,6 +82,7 @@ export const LoginForm = ({
           <Text className="mb-4 text-left text-red-500">{errorMessage}</Text>
         )}
         <Button
+          variant="secondary"
           loading={isLoading}
           size="lg"
           className="mt-8 bg-primary-500"

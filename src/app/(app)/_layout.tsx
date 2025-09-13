@@ -1,16 +1,18 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable react/no-unstable-nested-components */
 import { Redirect, SplashScreen, Tabs } from 'expo-router';
 import React, { useCallback, useEffect } from 'react';
 
-import {
-  Feed as FeedIcon,
-  Settings as SettingsIcon,
-} from '@/components/ui/icons';
+import { colors } from '@/components/ui';
+import { Home, Settings as SettingsIcon } from '@/components/ui/icons';
+import { Plant } from '@/components/ui/icons/plant';
+import { Search2 } from '@/components/ui/icons/search-2';
 import { useAuth } from '@/lib';
-import { translate } from '@/lib/i18n';
+import { useThemeConfig } from '@/lib/use-theme-config';
 
 export default function TabLayout() {
   const status = useAuth.use.status();
+  const theme = useThemeConfig();
 
   const hideSplash = useCallback(async () => {
     await SplashScreen.hideAsync();
@@ -29,23 +31,54 @@ export default function TabLayout() {
   }
 
   return (
-    <Tabs>
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarShowLabel: false,
+        lazy: true,
+        tabBarStyle: {
+          height: 50,
+          backgroundColor: theme.dark
+            ? colors.neutral[800]
+            : colors.primary[200],
+        },
+        tabBarIconStyle: {
+          marginTop: 5,
+        },
+        tabBarActiveTintColor: colors.primary[700],
+        tabBarInactiveTintColor: colors.primary[400],
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          headerShown: false,
-          title: translate('layout.user_tab'),
-          tabBarIcon: ({ color }) => <FeedIcon color={color} />,
-          tabBarButtonTestID: 'user-tab',
+          tabBarIcon: ({ color }) => (
+            <Home color={color} width={24} height={24} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="my-plant"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Plant color={color} width={24} height={24} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="find-species"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Search2 color={color} width={24} height={24} />
+          ),
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
-          headerShown: false,
-          title: translate('layout.settings_tab'),
-          tabBarIcon: ({ color }) => <SettingsIcon color={color} />,
-          tabBarButtonTestID: 'settings-tab',
+          tabBarIcon: ({ color }) => (
+            <SettingsIcon color={color} width={24} height={24} />
+          ),
         }}
       />
     </Tabs>

@@ -23,8 +23,8 @@ const LightTheme: Theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: colors.primary[400],
-    background: colors.white,
+    primary: colors.primary[500],
+    background: colors.primary[50],
   },
 };
 

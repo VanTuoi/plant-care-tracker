@@ -20,3 +20,18 @@ export const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
 
   return store;
 };
+
+export const cn = (...inputs: (string | undefined | null | false)[]) => {
+  return inputs.filter(Boolean).join(' ');
+};
+
+export const cleanFilters = (
+  current: Record<string, any> | null | undefined = {},
+  updates: Record<string, any>
+) => {
+  return Object.fromEntries(
+    Object.entries({ ...(current ?? {}), ...updates }).filter(
+      ([_, v]) => v !== undefined && v !== ''
+    )
+  );
+};

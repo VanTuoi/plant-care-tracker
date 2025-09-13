@@ -1,10 +1,11 @@
 import React from 'react';
 
 import type { OptionType } from '@/components/ui';
-import { Options, useModal } from '@/components/ui';
+import { colors, Options, useModal } from '@/components/ui';
 import type { ColorSchemeType } from '@/lib';
 import { translate, useSelectedTheme } from '@/lib';
 
+import { Theme } from '../ui/icons';
 import { Item } from './item';
 
 export const ThemeItem = () => {
@@ -45,9 +46,11 @@ export const ThemeItem = () => {
   return (
     <>
       <Item
-        text="settings.theme.title"
+        tx="settings.theme.title"
         value={theme?.label}
         onPress={modal.present}
+        icon={<Theme size={24} />}
+        iconColor={colors.neutral[200]}
       />
 
       <Options

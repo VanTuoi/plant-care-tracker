@@ -5,7 +5,8 @@ import { useLogin } from '@/api';
 import type { LoginFormProps } from '@/components/login-form';
 import { LoginForm } from '@/components/login-form';
 import { FocusAwareStatusBar } from '@/components/ui';
-import { useAuth } from '@/lib';
+import { type TxKeyPath, useAuth } from '@/lib';
+import { translate } from '@/lib';
 
 export default function Login() {
   const router = useRouter();
@@ -22,16 +23,23 @@ export default function Login() {
     setErrorMsg(null);
     loginMutation.mutate(data, {
       onSuccess: (res) => {
-        if (res.success && res.data) {
-          signIn(res.data);
-          router.push('/');
-        } else {
-          setErrorMsg(res.message || 'Login error');
-        }
+        signIn(res);
+        router.push('/');
       },
       onError: (error) => {
-        const msg = error.response?.data?.message || 'Login error';
-        setErrorMsg(msg);
+        let key: TxKeyPath = 'login.errors.server';
+
+        const res = error.response?.data;
+
+        if (res?.status === 422) {
+          if (res.errors?.email === 'notFound') {
+            key = 'login.errors.email_notfound';
+          } else if (res.errors?.password === 'incorrectPassword') {
+            key = 'login.errors.incorrect_password';
+          }
+        }
+
+        setErrorMsg(translate(key));
       },
     });
   };

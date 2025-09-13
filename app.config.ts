@@ -69,7 +69,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     [
       'expo-font',
       {
-        fonts: ['./assets/fonts/Inter.ttf'],
+        fonts: ['./assets/fonts/Inter.ttf', './assets/fonts/Signika-Bold.ttf'],
       },
     ],
     'expo-localization',

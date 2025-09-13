@@ -1,7 +1,8 @@
 import React from 'react';
 import { TextInput, type TextInputProps, View } from 'react-native';
 
-import { Search } from '../ui/icons';
+import colors from './colors';
+import { Search2 } from './icons/search-2';
 
 type Props = {
   value: string;
@@ -17,16 +18,16 @@ export const SearchInput = ({
 }: Props) => {
   return (
     <View className="relative w-full justify-center">
-      <View className="absolute left-2 z-10">
-        <Search width={24} height={24} color="#999" />
+      <View className="absolute left-4 z-10" pointerEvents="none">
+        <Search2 width={20} height={20} color={colors.primary[500]} />
       </View>
 
       <TextInput
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
-        placeholderTextColor="#999"
-        className="h-12 w-full rounded-3xl border border-gray-300 pl-9 pr-2 text-black dark:border-gray-500 dark:text-white"
+        placeholderTextColor={colors.primary[500]}
+        className="h-12 w-full rounded-3xl border border-primary-200 bg-primary-100 pl-11 pr-2  dark:border-neutral-500 dark:bg-neutral-500 dark:text-white"
         {...props}
       />
     </View>
