@@ -177,9 +177,6 @@ importers:
       '@types/lodash.memoize':
         specifier: ^4.1.9
         version: 4.1.9
-      '@types/qs':
-        specifier: ^6.14.0
-        version: 6.14.0
       '@types/react':
         specifier: ~18.3.12
         version: 18.3.12
@@ -1919,9 +1916,6 @@ packages:
 
   '@types/prop-types@15.7.13':
     resolution: {integrity: sha512-hCZTSvwbzWGvhqxp/RqVqwU999pBf2vp7hzIjiYOsl8wqOmUxkQ6ddw1cV3l8811+kdUFus/q4d1Y3E3SyEifA==}
-
-  '@types/qs@6.14.0':
-    resolution: {integrity: sha512-eOunJqu0K1923aExK6y8p6fsihYEn/BYuQ4g0CxAAgFc4b/ZLN4CrsRZ55srTdqoiLzU2B2evC+apEIxprEzkQ==}
 
   '@types/react@18.3.12':
     resolution: {integrity: sha512-D2wOSq/d6Agt28q7rSI3jhU7G6aiuzljDGZ2hTZHIkrTLUI+AF3WMeKkEZ9nN2fkBAlcktT6vcZjDFiIhMYEQw==}
@@ -9918,8 +9912,6 @@ snapshots:
   '@types/normalize-package-data@2.4.4': {}
 
   '@types/prop-types@15.7.13': {}
-
-  '@types/qs@6.14.0': {}
 
   '@types/react@18.3.12':
     dependencies:

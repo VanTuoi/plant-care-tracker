@@ -2,9 +2,16 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
 
-import { type Plant, usePlant } from '@/api';
+import { type Plant, usePlants } from '@/api';
 import { type QuerySites, type Site, useSites } from '@/api/sites';
-import { Image, Pressable, Text, View } from '@/components/ui';
+import {
+  ActivityIndicator,
+  colors,
+  Image,
+  Pressable,
+  Text,
+  View,
+} from '@/components/ui';
 import { translate, useQueryParams } from '@/lib';
 
 const defaultFilter: QuerySites = {
@@ -22,14 +29,14 @@ export const SiteList = () => {
     variables: queryParams,
   });
 
-  const { data: plantsData } = usePlant({
+  const { data: plantsData } = usePlants({
     variables: {},
   });
 
   if (isPending) {
     return (
-      <View className="flex-1 items-center justify-center pt-5">
-        <Text className="text-primary-500">Loading...</Text>
+      <View className="items-center justify-center pt-10">
+        <ActivityIndicator size="large" color={colors.primary[500]} />
       </View>
     );
   }
@@ -57,8 +64,8 @@ export const SiteList = () => {
                   className="min-h-[200px] flex-1 bg-primary-200"
                   style={{
                     aspectRatio: 0.5,
-                    borderTopLeftRadius: '"12"',
-                    borderBottomLeftRadius: '12',
+                    borderTopLeftRadius: 12,
+                    borderBottomLeftRadius: 12,
                   }}
                 />
 
@@ -80,8 +87,8 @@ export const SiteList = () => {
                   className="min-h-[200px] flex-1 bg-primary-200"
                   style={{
                     aspectRatio: 0.5,
-                    borderTopRightRadius: '12',
-                    borderBottomRightRadius: '12',
+                    borderTopRightRadius: 12,
+                    borderBottomRightRadius: 12,
                   }}
                 />
               </View>

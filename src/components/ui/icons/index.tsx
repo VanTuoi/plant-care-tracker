@@ -13,6 +13,7 @@ export * from './filter';
 export * from './github';
 export * from './heart';
 export * from './home';
+export * from './image';
 export * from './language';
 export * from './logout';
 export * from './mail';

@@ -48,6 +48,10 @@ export default function RootLayout() {
       >
         <Stack.Screen name="(app)" options={{ headerShown: false }} />
         <Stack.Screen name="sites/[id]" options={{ headerShown: true }} />
+        <Stack.Screen
+          name="sites/add-site/index"
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="species/[id]" />
         <Stack.Screen name="plant/[id]" options={{ headerShown: false }} />
         <Stack.Screen
@@ -76,7 +80,11 @@ function Providers({ children }: { children: React.ReactNode }) {
           <APIProvider>
             <BottomSheetModalProvider>
               {children}
-              <FlashMessage position="top" />
+              <FlashMessage
+                position="top"
+                titleStyle={{ fontSize: 16, fontWeight: 'bold' }}
+                textStyle={{ fontSize: 16 }}
+              />
             </BottomSheetModalProvider>
           </APIProvider>
         </ThemeProvider>

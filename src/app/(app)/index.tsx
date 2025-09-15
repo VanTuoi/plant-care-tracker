@@ -27,7 +27,7 @@ export default function Home() {
               {
                 icon: <Window size={20} color={colors.primary[50]} />,
                 label: 'Thêm khu vực',
-                onPress: () => {},
+                onPress: () => router.push(`/sites/add-site`),
               },
               {
                 icon: <Plant size={20} color={colors.primary[50]} />,

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { usePlant } from '@/api';
+import { usePlants } from '@/api';
 import { useSites } from '@/api/sites';
 import { colors, Text, View } from '@/components/ui';
 import { translate } from '@/lib';
@@ -20,7 +20,7 @@ export function OverView() {
     data: plantsData,
     isPending: isPlantsPending,
     isError: isPlantsError,
-  } = usePlant({
+  } = usePlants({
     variables: {},
   });
 

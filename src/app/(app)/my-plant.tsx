@@ -24,7 +24,7 @@ export default function MyPlant() {
       {
         icon: <Window size={20} color={colors.primary[50]} />,
         label: 'Thêm khu vực',
-        onPress: () => router.push('/add-new-site'),
+        onPress: () => router.push('/sites/add-site'),
       },
     ],
     plant: [
@@ -41,8 +41,8 @@ export default function MyPlant() {
     <>
       <FocusAwareStatusBar />
       <View className="flex-1">
-        <ScrollView>
-          <View className="flex-col gap-4 p-4 pt-10">
+        <ScrollView className="flex-1">
+          <View className="flex-1 flex-col gap-4 p-4 pt-10">
             <OverView />
             <Tabs
               value={activeTab}

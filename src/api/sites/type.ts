@@ -1,4 +1,6 @@
-import { type LightType, type SoilType, type Sunlight } from '../template-site';
+import { z } from 'zod';
+
+import { type LightType, type SoilType, Sunlight } from '../template-site';
 
 export type Site = {
   id: string;
@@ -46,3 +48,11 @@ export type QuerySites = {
   filters?: FilterSites | null;
   sort?: SortSite[] | null;
 };
+
+export const siteFormSchema = z.object({
+  name: z.string().optional(),
+  sunlight: z.nativeEnum(Sunlight),
+  templateSiteId: z.string(),
+});
+
+export type SiteFormValues = z.infer<typeof siteFormSchema>;
