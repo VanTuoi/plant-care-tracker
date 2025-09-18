@@ -9,7 +9,7 @@ type Response = Plant;
 
 export const useCreatePlant = createMutation<Response, Variables, AxiosError>({
   mutationFn: async (variables) => {
-    const res = await client.post<Response>('/plants', variables);
+    const res = await client.post<Response>('/api/v1/plants', variables);
     return res.data;
   },
 });

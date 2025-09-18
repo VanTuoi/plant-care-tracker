@@ -2,7 +2,7 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
 
-import { type Plant, usePlants } from '@/api';
+import { type Plant, type PlantImage, usePlants } from '@/api';
 import { type QuerySites, type Site, useSites } from '@/api/sites';
 import {
   ActivityIndicator,
@@ -12,7 +12,7 @@ import {
   Text,
   View,
 } from '@/components/ui';
-import { translate, useQueryParams } from '@/lib';
+import { getFileUrl, translate, useQueryParams } from '@/lib';
 
 const defaultFilter: QuerySites = {
   page: 1,
@@ -32,6 +32,12 @@ export const SiteList = () => {
   const { data: plantsData } = usePlants({
     variables: {},
   });
+
+  const getPlantImage = (images?: PlantImage[], index: number = 0) => {
+    return images && images[index]?.filePath
+      ? { uri: getFileUrl(images[index].filePath) }
+      : require('@/assets/cactus flower-cuate.png');
+  };
 
   if (isPending) {
     return (
@@ -60,7 +66,7 @@ export const SiteList = () => {
             >
               <View className="w-full flex-row gap-1">
                 <Image
-                  source={require('@/assets/cactus flower-cuate.png')}
+                  source={getPlantImage(plantsData?.data[0]?.images, 0)}
                   className="min-h-[200px] flex-1 bg-primary-200"
                   style={{
                     aspectRatio: 0.5,
@@ -71,19 +77,19 @@ export const SiteList = () => {
 
                 <View className="flex-1 flex-col gap-1">
                   <Image
-                    source={require('@/assets/cactus flower-cuate.png')}
+                    source={getPlantImage(plantsData?.data[0]?.images, 1)}
                     className="min-h-[50px] flex-1 bg-primary-200"
                     resizeMode="cover"
                   />
                   <Image
-                    source={require('@/assets/cactus flower-cuate.png')}
+                    source={getPlantImage(plantsData?.data[0]?.images, 2)}
                     className="min-h-[50px] flex-1 bg-primary-200"
                     resizeMode="cover"
                   />
                 </View>
 
                 <Image
-                  source={require('@/assets/cactus flower-cuate.png')}
+                  source={getPlantImage(plantsData?.data[0]?.images, 3)}
                   className="min-h-[200px] flex-1 bg-primary-200"
                   style={{
                     aspectRatio: 0.5,

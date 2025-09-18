@@ -69,7 +69,7 @@ export const plantFormSchema = z.object({
   inGround: z.boolean(),
   lastWateredAt: z.date().optional(),
   lastFertilizedAt: z.date().optional(),
-  plantImageld: z.string().optional(),
+  plantImageUri: z.string().optional(),
   name: z.string().optional(),
   size: z.nativeEnum(PlantSizeEnum),
   siteId: z.string(),

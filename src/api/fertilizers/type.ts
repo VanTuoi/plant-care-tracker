@@ -21,3 +21,14 @@ export enum FertilizerTypeEnum {
   MICRO_NUTRIENT = 'micro_nutrient',
   OTHER = 'other',
 }
+
+export type Fertilizer = {
+  id: string;
+  note?: string;
+  amount: number;
+  method: FertilizerMethodEnum;
+  fertilizerType: FertilizerTypeEnum;
+  createdAt: Date;
+  updatedAt: Date;
+  plantId: string;
+};

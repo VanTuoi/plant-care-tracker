@@ -92,33 +92,59 @@ export function FabMenu({
     ],
   }));
 
+  const overlayStyle = useAnimatedStyle(() => ({
+    opacity: progress.value * 0.25,
+  }));
+
   const iconStyle = useAnimatedStyle(() => ({
     transform: [{ rotate: `${progress.value * 135}deg` }],
   }));
 
   return (
-    <View
-      style={[{ position: 'absolute' }, getPositionStyle()]}
-      className="items-end"
-    >
-      <Animated.View
-        style={menuStyle}
-        className="mb-3 flex-col items-end gap-3 self-end"
-      >
-        {items.map(renderFabItem)}
-      </Animated.View>
-
-      <Pressable
-        className={`size-16 items-center justify-center self-end rounded-full shadow-md ${open ? 'bg-primary-200' : 'bg-primary-800'}`}
-        onPress={toggle}
-      >
-        <Animated.View style={iconStyle}>
-          <Plus
-            size={32}
-            color={open ? colors.primary[800] : colors.primary[100]}
-          />
+    <>
+      {open && (
+        <Animated.View
+          pointerEvents="auto"
+          style={[
+            {
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'white',
+            },
+            overlayStyle,
+          ]}
+        >
+          <Pressable style={{ flex: 1 }} onPress={toggle} />
         </Animated.View>
-      </Pressable>
-    </View>
+      )}
+
+      <View
+        style={[{ position: 'absolute' }, getPositionStyle()]}
+        className="items-end"
+      >
+        <Animated.View
+          style={menuStyle}
+          className="mb-3 flex-col items-end gap-3 self-end"
+          pointerEvents={open ? 'auto' : 'none'}
+        >
+          {items.map(renderFabItem)}
+        </Animated.View>
+
+        <Pressable
+          className={`size-16 items-center justify-center self-end rounded-full shadow-md ${open ? 'bg-primary-200' : 'bg-primary-800'}`}
+          onPress={toggle}
+        >
+          <Animated.View style={iconStyle}>
+            <Plus
+              size={32}
+              color={open ? colors.primary[800] : colors.primary[100]}
+            />
+          </Animated.View>
+        </Pressable>
+      </View>
+    </>
   );
 }

@@ -11,7 +11,9 @@ type Response = InfinityPaginationResponse<Plant>;
 export const usePlants = createQuery<Response, Variables, AxiosError>({
   queryKey: ['plants'],
   fetcher: async (variables) => {
-    const res = await client.get<Response>('/plants', { params: variables });
+    const res = await client.get<Response>('/api/v1/plants', {
+      params: variables,
+    });
     return res.data;
   },
 });

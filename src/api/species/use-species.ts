@@ -1,17 +1,37 @@
-import type { AxiosError } from 'axios';
-import { createQuery } from 'react-query-kit';
+import { type AxiosError } from 'axios';
+import { createInfiniteQuery } from 'react-query-kit';
 
 import { client } from '../common';
 import { type InfinityPaginationResponse } from '../types';
 import type { QuerySpecies, Species } from './type';
 
-type Variables = QuerySpecies;
 type Response = InfinityPaginationResponse<Species>;
+type Variables = QuerySpecies;
 
-export const useSpecies = createQuery<Response, Variables, AxiosError>({
+export const useSpecies = createInfiniteQuery<
+  Response,
+  Variables,
+  AxiosError,
+  number
+>({
   queryKey: ['species'],
-  fetcher: async (variables) => {
-    const res = await client.get<Response>('/species', { params: variables });
+
+  initialPageParam: 1,
+
+  fetcher: async (
+    variables: Variables,
+    { pageParam = 1 }: { pageParam?: number }
+  ) => {
+    const res = await client.get<Response>('/api/v1/species', {
+      params: {
+        ...variables,
+        page: pageParam,
+      },
+    });
+
     return res.data;
   },
+
+  getNextPageParam: (lastPage, allPages) =>
+    lastPage.hasNextPage ? allPages.length + 1 : undefined,
 });

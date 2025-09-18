@@ -8,6 +8,8 @@ import {
   plantFormSchema,
   type PlantFormValues,
   PlantSizeEnum,
+  useCreatePlantImage,
+  useFileUpload,
   useSites,
 } from '@/api';
 import { useCreatePlant } from '@/api/plants/use-create-plant';
@@ -15,6 +17,7 @@ import {
   colors,
   DatePickerField,
   Image,
+  ImagePickerField,
   Input,
   showErrorMessage,
   Text,
@@ -209,8 +212,9 @@ const getPlantSteps = (props: AddPlantScreenProps): WizardStep[] => {
       },
     },
     {
-      key: 'images',
+      key: 'plantImageUri',
       title: 'Thêm ảnh cây của bạn',
+      optional: true,
       image: (
         <Image
           source={require('@/assets/cactus flower-cuate.png')}
@@ -218,10 +222,12 @@ const getPlantSteps = (props: AddPlantScreenProps): WizardStep[] => {
           resizeMode="cover"
         />
       ),
-      optional: true,
-      render: () => {
-        return <Text>Pick Image UI</Text>;
-      },
+      render: ({ setValue, watch }) => (
+        <ImagePickerField
+          value={watch('plantImageUri')}
+          onChange={(uri) => setValue('plantImageUri', uri)}
+        />
+      ),
     },
     {
       key: 'name',
@@ -266,28 +272,39 @@ export default function AddPlantScreen(props: AddPlantScreenProps) {
       ([_, v]) => v !== undefined && v !== null && v !== '' && v !== 'undefined'
     )
   );
+
   const router = useRouter();
-  const createPlant = useCreatePlant();
+
+  const { mutateAsync: createPlant } = useCreatePlant();
+  const { mutateAsync: uploadFile } = useFileUpload();
+  const { mutateAsync: createPlantImage } = useCreatePlantImage();
 
   return (
     <WizardForm<PlantFormValues>
       steps={getPlantSteps(props)}
       formSchema={plantFormSchema}
       defaultValues={cleanDefaults}
-      onSubmit={(data) => {
-        createPlant.mutate(data, {
-          onSuccess: (_) => {
-            if (props.siteId && props.siteId !== 'undefined') {
-              router.push(`/sites/${props.siteId}`);
-            } else {
-              router.push('/my-plant');
-            }
-          },
-          onError: (err) => {
-            showErrorMessage('Tạo cây thất bại');
-            console.error(err);
-          },
-        });
+      onSubmit={async (data) => {
+        try {
+          const dataSuccess = await createPlant(data);
+
+          if (data.plantImageUri) {
+            const res = await uploadFile({ fileUri: data.plantImageUri });
+            await createPlantImage({
+              plantId: dataSuccess.id,
+              fileId: res.file.id,
+            });
+          }
+
+          if (props.siteId && props.siteId !== 'undefined') {
+            router.push(`/sites/${props.siteId}`);
+          } else {
+            router.push('/my-plant');
+          }
+        } catch (err) {
+          showErrorMessage('Tạo cây thất bại');
+          console.error(err);
+        }
       }}
     />
   );

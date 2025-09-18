@@ -1,6 +1,7 @@
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 
+import { ImageList } from '@/components/my-plant/image-list';
 import { OverView } from '@/components/my-plant/overview';
 import { PlantList } from '@/components/my-plant/plant-list';
 import { SiteList } from '@/components/my-plant/site-list';
@@ -10,7 +11,6 @@ import {
   FocusAwareStatusBar,
   ScrollView,
   Tabs,
-  Text,
   View,
 } from '@/components/ui';
 import { Plant as PlantIcon, Window } from '@/components/ui/icons';
@@ -18,7 +18,6 @@ import { Plant as PlantIcon, Window } from '@/components/ui/icons';
 export default function MyPlant() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState('site');
-
   const fabMenuMap: Record<string, any[]> = {
     site: [
       {
@@ -50,7 +49,7 @@ export default function MyPlant() {
               tabs={[
                 { label: 'Khu vực', value: 'site', content: <SiteList /> },
                 { label: 'Cây trồng', value: 'plant', content: <PlantList /> },
-                { label: 'Ảnh', value: 'images', content: <Text>Ảnh</Text> },
+                { label: 'Ảnh', value: 'images', content: <ImageList /> },
               ]}
             />
           </View>

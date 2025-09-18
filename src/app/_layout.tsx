@@ -53,7 +53,15 @@ export default function RootLayout() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="species/[id]" />
-        <Stack.Screen name="plant/[id]" options={{ headerShown: false }} />
+        <Stack.Screen name="plant/[id]" options={{ headerShown: true }} />
+        <Stack.Screen
+          name="plant/[id]/edit/index"
+          options={{ headerShown: true }}
+        />
+        <Stack.Screen
+          name="plant/[id]/growth-diaries/index"
+          options={{ headerShown: true }}
+        />
         <Stack.Screen
           name="plant/add-plant/[speciesId]"
           options={{ headerShown: false }}

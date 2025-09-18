@@ -18,8 +18,8 @@ export const SearchInput = ({
 }: Props) => {
   return (
     <View className="relative w-full justify-center">
-      <View className="absolute left-4 z-10" pointerEvents="none">
-        <Search2 width={20} height={20} color={colors.primary[500]} />
+      <View className="absolute left-5 z-10" pointerEvents="none">
+        <Search2 width={18} height={18} color={colors.primary[500]} />
       </View>
 
       <TextInput
@@ -27,7 +27,7 @@ export const SearchInput = ({
         onChangeText={onChangeText}
         placeholder={placeholder}
         placeholderTextColor={colors.primary[500]}
-        className="h-12 w-full rounded-3xl border border-primary-200 bg-primary-100 pl-11 pr-2  dark:border-neutral-500 dark:bg-neutral-500 dark:text-white"
+        className="h-12 w-full rounded-full border border-primary-100 bg-primary-100 pl-11 pr-2  dark:border-neutral-500 dark:bg-neutral-500 dark:text-white"
         {...props}
       />
     </View>

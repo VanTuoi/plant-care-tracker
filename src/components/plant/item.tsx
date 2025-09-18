@@ -9,6 +9,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { type Plant } from '@/api/plants/type';
+import { getFileUrl } from '@/lib';
 
 import { colors, Image } from '../ui';
 import { CaretDown } from '../ui/icons';
@@ -50,7 +51,7 @@ export const PlantItem = ({ item }: { item: Plant }) => {
             <View className="size-[75px] items-center justify-center overflow-hidden rounded-full bg-primary-200 p-2">
               {item.images && item.images.length > 0 ? (
                 <Image
-                  source={{ uri: item.images[0].filePath }}
+                  source={{ uri: getFileUrl(item.images[0].filePath) }}
                   className="size-[100px]"
                   resizeMode="cover"
                 />

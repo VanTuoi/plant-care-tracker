@@ -1,34 +1,29 @@
 /* eslint-disable max-lines-per-function */
 import { useRouter } from 'expo-router';
-import React, { useState } from 'react';
+import React from 'react';
 import { Pressable, Text, View } from 'react-native';
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
 
 import { type DifficultyLevelEnum, type Species } from '@/api/species/type';
-import { cn } from '@/lib';
+import { type SunlightNeedEnum } from '@/api/species/type';
 
 import { colors, Image } from '../ui';
-import { CaretDown } from '../ui/icons';
+import { Cloud, PartialSun, Sun } from '../ui/icons';
 
 const difficultyColors: Record<
   DifficultyLevelEnum,
   { bg: string; text: string }
 > = {
   easy: {
-    bg: 'bg-green-100 dark:bg-green-900',
-    text: 'text-green-800 dark:text-green-200',
+    bg: 'bg-primary-100 dark:bg-primary-900',
+    text: 'text-primary-800 dark:text-primary-200',
   },
   moderate: {
-    bg: 'bg-yellow-100 dark:bg-yellow-800',
-    text: 'text-yellow-800 dark:text-yellow-200',
+    bg: 'bg-warning-200 dark:bg-warning-800',
+    text: 'text-warning-800 dark:text-warning-200',
   },
   hard: {
-    bg: 'bg-red-100 dark:bg-red-900',
-    text: 'text-red-800 dark:text-red-200',
+    bg: 'bg-red-200 dark:bg-red-900',
+    text: 'text-red-900 dark:text-red-200',
   },
 };
 
@@ -42,7 +37,7 @@ const Chip = ({
   textColor?: string;
 }) => (
   <View
-    className={`rounded-full px-3 py-1 ${bg ?? 'bg-gray-200'} `}
+    className={`rounded-full px-3 py-[5px] ${bg ?? 'bg-gray-200'} `}
     style={{ alignSelf: 'flex-start' }}
   >
     <Text className={`text-sm ${textColor ?? 'text-black'}`}>{label}</Text>
@@ -61,99 +56,70 @@ function renderDifficultyChip(level: DifficultyLevelEnum) {
   return <Chip label={label} bg={color.bg} textColor={color.text} />;
 }
 
+function renderSunlightChip(level: SunlightNeedEnum) {
+  let Icon: React.ComponentType<{ size?: number; color?: string }> | null =
+    null;
+
+  switch (level) {
+    case 'full_sun':
+      Icon = Sun;
+      break;
+    case 'partial_sun':
+      Icon = PartialSun;
+      break;
+    case 'shade':
+      Icon = Cloud;
+      break;
+    case 'unknown':
+      Icon = null;
+      break;
+  }
+
+  return (
+    <View className={` rounded-full bg-primary-100 px-3 py-[5px]`}>
+      {Icon && <Icon size={18} color={colors.primary[800]} />}
+    </View>
+  );
+}
+
 type SpeciesItemProps = {
   item: Species;
   siteId?: string;
 };
 
 export const SpeciesItem = ({ item, siteId }: SpeciesItemProps) => {
-  const [showDetail, setShowDetail] = useState(false);
-  const rotate = useSharedValue(0);
-  const detailOpacity = useSharedValue(0);
-  const detailScale = useSharedValue(0.95);
   const router = useRouter();
 
-  const iconAnimatedStyle = useAnimatedStyle(() => ({
-    paddingHorizontal: 4,
-    transform: [{ rotate: `${rotate.value}deg` }],
-  }));
-
-  const detailAnimatedStyle = useAnimatedStyle(() => ({
-    opacity: detailOpacity.value,
-    transform: [{ scaleY: detailScale.value }],
-  }));
-
-  const toggle = () => {
-    const next = !showDetail;
-    setShowDetail(next);
-
-    rotate.value = withTiming(next ? 90 : 0, { duration: 250 });
-    detailOpacity.value = withTiming(next ? 1 : 0, { duration: 250 });
-    detailScale.value = withTiming(next ? 1 : 0.95, { duration: 250 });
-  };
-
   return (
-    <View className="rounded-xl py-1">
+    <View className="rounded-xl px-3 py-1">
       <View className="flex-row items-center justify-between">
         <Pressable
           className="flex-1"
           onPress={() => router.push(`/species/${item.id}?siteId=${siteId}`)}
         >
-          <View
-            className={cn(
-              'flex flex-row justify-start gap-2',
-              showDetail ? 'items-start' : 'items-center'
-            )}
-          >
+          <View className={'flex flex-row items-center justify-start gap-4'}>
             <View className="size-[75px] items-center justify-center overflow-hidden rounded-full bg-primary-200 p-2">
               <Image
                 source={require('@/assets/cactus flower-cuate.png')}
-                style={{ width: 50, height: 50 }}
+                style={{ width: 60, height: 60 }}
               />
             </View>
-            <View>
-              <View className="space-y-1">
-                <Text className="text-lg text-primary-800 dark:text-gray-400">
-                  {`${item.name ?? 'Unnamed'}`}
+            <View className="space-y-1">
+              <Text className="font-base text-lg text-primary-800 dark:text-gray-400">
+                {`${item.name ?? 'Unnamed'}`}
+              </Text>
+              {item.scientificName && (
+                <Text className="pb-1 text-lg text-primary-300 dark:text-gray-400">
+                  {'(' + item.scientificName + ')'}
                 </Text>
-                {item.scientificName && (
-                  <Text className="text-md italic text-black dark:text-gray-400">
-                    {'(' + item.scientificName + ')'}
-                  </Text>
-                )}
+              )}
+              <View className="flex-row gap-2">
                 {item.difficultyLevel &&
                   renderDifficultyChip(item.difficultyLevel)}
+                {item.sunlightNeed && renderSunlightChip(item.sunlightNeed)}
               </View>
-              {showDetail && (
-                <Animated.View
-                  style={[detailAnimatedStyle]}
-                  className="mt-1 flex-col flex-wrap gap-1"
-                >
-                  {item.wateringFrequency && (
-                    <Text className="text-sm text-black dark:text-gray-400">
-                      Tưới {item.wateringFrequency} ngày/lần
-                    </Text>
-                  )}
-                  {item.fertilizingFrequency && (
-                    <Text className="text-sm text-black dark:text-gray-400">
-                      Bón phân {item.fertilizingFrequency} ngày/lần
-                    </Text>
-                  )}
-                  {item.sunlightNeed && (
-                    <Text className="text-sm text-black dark:text-gray-400">
-                      Ánh sáng: {item.sunlightNeed}
-                    </Text>
-                  )}
-                </Animated.View>
-              )}
             </View>
           </View>
-        </Pressable>
-
-        <Pressable onPress={toggle} hitSlop={10}>
-          <Animated.View style={iconAnimatedStyle}>
-            <CaretDown width={14} height={14} color={colors.neutral[600]} />
-          </Animated.View>
         </Pressable>
       </View>
     </View>

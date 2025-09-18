@@ -10,7 +10,7 @@ type Response = Plant;
 export const usePlant = createQuery<Response, Variables, AxiosError>({
   queryKey: ['plants'],
   fetcher: async ({ id }) => {
-    const res = await client.get<Response>(`/plants/${id}`);
+    const res = await client.get<Response>(`/api/v1/plants/${id}`);
     return res.data;
   },
 });

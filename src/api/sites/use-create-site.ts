@@ -9,7 +9,7 @@ type Response = Site;
 
 export const useCreateSite = createMutation<Response, Variables, AxiosError>({
   mutationFn: async (variables) => {
-    const res = await client.post<Response>('/sites', variables);
+    const res = await client.post<Response>('/api/v1/sites', variables);
     return res.data;
   },
 });

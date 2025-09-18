@@ -8,7 +8,7 @@ type Response = { success: boolean };
 
 export const useDeletePlant = createMutation<Response, Variables, AxiosError>({
   mutationFn: async ({ id }) => {
-    const res = await client.delete<Response>(`/plants/${id}`);
+    const res = await client.delete<Response>(`/api/v1/plants/${id}`);
     return res.data;
   },
 });

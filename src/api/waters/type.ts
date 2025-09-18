@@ -8,3 +8,13 @@ export enum WaterEnum {
   OVERHEAD = 'overhead',
   OTHER = 'other',
 }
+
+export type Water = {
+  id: string;
+  note?: string;
+  amount: number;
+  method: WaterEnum;
+  createdAt: Date;
+  updatedAt: Date;
+  plantId: string;
+};

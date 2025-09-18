@@ -5,7 +5,7 @@ import { Text, useColorScheme, View } from 'react-native';
 import type { FilterSpecies, SortSpecies } from '@/api/species/type';
 import { translate } from '@/lib';
 
-import { Button } from '../ui';
+import { Button, colors } from '../ui';
 import { Checkbox, Radio } from '../ui/checkbox';
 import { Modal } from '../ui/modal';
 import BottomSheetKeyboardAwareScrollView from '../ui/modal-keyboard-aware-scroll-view';
@@ -73,7 +73,8 @@ export const SpeciesFilterModal = ({
   };
 
   const colorScheme = useColorScheme();
-  const backgroundColor = colorScheme === 'dark' ? '#262626' : '#ffffff';
+  const backgroundColor =
+    colorScheme === 'dark' ? colors.neutral[200] : colors.primary[50];
 
   return (
     <Modal
@@ -137,10 +138,11 @@ export const SpeciesFilterModal = ({
           <Button
             textClassName="dark:text-white"
             label={translate('species.button_apply_filter')}
-            className="bg-primary-500 dark:bg-primary-600"
+            className="rounded-full bg-primary-500 dark:bg-primary-600"
             onPress={() => onApply(selectedField, selectedOrder, searchFields)}
           />
           <Button
+            className="rounded-full"
             label={translate('species.button_reset_filter')}
             variant="outline"
             onPress={onReset}

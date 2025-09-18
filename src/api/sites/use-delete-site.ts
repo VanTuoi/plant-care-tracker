@@ -8,7 +8,7 @@ type Response = { success: boolean };
 
 export const useDeleteSite = createMutation<Response, Variables, AxiosError>({
   mutationFn: async ({ id }) => {
-    const res = await client.delete<Response>(`/sites/${id}`);
+    const res = await client.delete<Response>(`/api/v1/sites/${id}`);
     return res.data;
   },
 });

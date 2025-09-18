@@ -11,7 +11,7 @@ const loginApi = async ({
   email,
   password,
 }: Variables): Promise<LoginResponse> => {
-  const res = await client.post<LoginResponse>('/auth/email/login', {
+  const res = await client.post<LoginResponse>('/api/v1/auth/email/login', {
     email,
     password,
   });

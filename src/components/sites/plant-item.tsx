@@ -4,6 +4,7 @@ import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 
 import { type Plant } from '@/api/plants/type';
+import { getFileUrl } from '@/lib';
 
 import { Image } from '../ui';
 
@@ -20,7 +21,7 @@ export const PlantItem = ({ item }: { item: Plant }) => {
           <View className="size-[75px] items-center justify-center overflow-hidden rounded-full bg-primary-200 p-2">
             {item.images && item.images.length > 0 ? (
               <Image
-                source={{ uri: item.images[0].filePath }}
+                source={{ uri: getFileUrl(item.images[0].filePath) }}
                 className="size-[100px]"
                 resizeMode="cover"
               />
