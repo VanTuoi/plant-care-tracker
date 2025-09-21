@@ -75,7 +75,7 @@ export const TodayMission = () => {
   };
 
   return (
-    <View className="px-4 py-2">
+    <View className="">
       {missions.map((mission, mi) => (
         <View
           key={mi}

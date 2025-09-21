@@ -1,6 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { Controller, useForm } from 'react-hook-form';
 
 import {
@@ -12,6 +12,7 @@ import {
 } from '@/api';
 import {
   Button,
+  colors,
   ControlledSelect,
   ImagePickerField,
   Input,
@@ -45,6 +46,14 @@ export default function GrowthDiaryForm() {
 
   return (
     <>
+      <Stack.Screen
+        options={{
+          headerTitle: '',
+          headerStyle: {
+            backgroundColor: colors.charcoal[50],
+          },
+        }}
+      />
       <View className="flex-1 bg-charcoal-50 p-4">
         <View className="rounded-xl bg-white p-3 shadow-gray-300">
           <Text className="mb-2 text-lg font-bold text-primary-700">
@@ -103,7 +112,7 @@ export default function GrowthDiaryForm() {
         <Button
           size="lg"
           textClassName="text-primary-800 font-bold"
-          className="rounded-full bg-gray-50 shadow-gray-50"
+          className="rounded-full bg-gray-50 "
           loading={createDiaryMutation.isPending}
           label="Lưu"
           onPress={handleSubmit(onSubmit)}

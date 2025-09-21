@@ -297,9 +297,9 @@ export default function AddPlantScreen(props: AddPlantScreenProps) {
           }
 
           if (props.siteId && props.siteId !== 'undefined') {
-            router.push(`/sites/${props.siteId}`);
+            router.replace(`/sites/${props.siteId}`);
           } else {
-            router.push('/my-plant');
+            router.replace('/my-plant');
           }
         } catch (err) {
           showErrorMessage('Tạo cây thất bại');

@@ -6,7 +6,15 @@ import { ActivityIndicator, SafeAreaView, ScrollView } from 'react-native';
 import { usePlant } from '@/api';
 import { ImageSlider } from '@/components/common/image-slider';
 import { CareInfoPlant } from '@/components/plant/detail/care-info';
+import {
+  FertilizerModal,
+  useFertilizerModal,
+} from '@/components/plant/detail/fertilizer-modal';
 import { TodoPlant } from '@/components/plant/detail/todo';
+import {
+  useWateringModal,
+  WateringModal,
+} from '@/components/plant/detail/watering-modal';
 import {
   Button,
   colors,
@@ -26,12 +34,15 @@ import {
 import { getFileUrl, translate } from '@/lib';
 
 export default function PlantDetail() {
-  const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
+  const { id } = useLocalSearchParams<{ id: string }>();
 
   const { data, isPending, isError } = usePlant({ variables: { id } });
 
   const [activeTab, setActiveTab] = useState('todo');
+
+  const wateringModal = useWateringModal();
+  const fertilizerModal = useFertilizerModal();
 
   if (isPending) {
     return (
@@ -53,7 +64,7 @@ export default function PlantDetail() {
     <>
       <Stack.Screen
         options={{
-          headerTitle: data?.name,
+          headerTitle: data?.name ? data?.name : '',
           headerTitleAlign: 'center',
           headerRight: () => (
             <Button
@@ -71,7 +82,7 @@ export default function PlantDetail() {
       />
       <FocusAwareStatusBar />
       <SafeAreaView className="flex-1 gap-2">
-        <ScrollView>
+        <ScrollView nestedScrollEnabled>
           <ImageSlider
             images={
               data.images && data.images.length > 0
@@ -125,27 +136,41 @@ export default function PlantDetail() {
                   ...
                 </Text>
               ),
+
               label: 'Thêm',
-              onPress: () => {},
-            },
-            {
-              icon: <WateringCan size={20} color={colors.primary[50]} />,
-              label: 'Tưới nước',
-              onPress: () => {},
-            },
-            {
-              icon: <Fertilizer size={20} color={colors.primary[50]} />,
-              label: 'Bón phân',
+              backgroundColor: 'bg-primary-400',
               onPress: () => {},
             },
             {
               icon: <Camera size={20} color={colors.primary[50]} />,
               label: 'Chụp ảnh',
+              backgroundColor: 'bg-primary-400',
               onPress: () => router.push(`/plant/${id}/growth-diaries`),
+            },
+            {
+              icon: <Fertilizer size={20} color={colors.primary[50]} />,
+              label: 'Bón phân',
+              onPress: () => fertilizerModal.present(),
+            },
+            {
+              icon: <WateringCan size={20} color={colors.primary[50]} />,
+              label: 'Tưới nước',
+              onPress: () => wateringModal.present(),
             },
           ]}
         />
       </SafeAreaView>
+
+      <WateringModal
+        refModal={wateringModal.ref}
+        dismiss={wateringModal.dismiss}
+        plant={data}
+      />
+      <FertilizerModal
+        refModal={fertilizerModal.ref}
+        dismiss={fertilizerModal.dismiss}
+        plant={data}
+      />
     </>
   );
 }

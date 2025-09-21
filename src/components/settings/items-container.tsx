@@ -15,11 +15,11 @@ export function ItemsContainer({ title, tx, children }: ItemsContainerProps) {
       {tx ? (
         <Text
           tx={tx}
-          className="mb-4 text-xl font-bold text-primary-900 dark:text-neutral-100"
+          className="py-4 text-xl font-bold text-primary-900 dark:text-neutral-100"
         />
       ) : (
         title && (
-          <Text className="mb-4 text-xl font-bold text-primary-900 dark:text-neutral-100">
+          <Text className="py-4 text-xl font-bold text-primary-900 dark:text-neutral-100">
             {title}
           </Text>
         )

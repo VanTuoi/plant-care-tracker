@@ -22,12 +22,12 @@ export default function Home() {
   return (
     <>
       <FocusAwareStatusBar />
-      <SafeAreaView className="flex-1 gap-2">
-        <ScrollView>
-          <View className="w-full items-end p-2">
+      <SafeAreaView className="flex-1">
+        <ScrollView className="flex-1 gap-2 p-4">
+          <View className="w-full items-end">
             <Bell size={28} color={colors.primary[800]} />
           </View>
-          <View className="flex-col items-start px-2">
+          <View className="flex-col items-start">
             <Text className="py-1 text-center text-4xl font-bold text-primary-800">
               Chào buổi sáng
             </Text>

@@ -56,3 +56,9 @@ export const siteFormSchema = z.object({
 });
 
 export type SiteFormValues = z.infer<typeof siteFormSchema>;
+
+export const siteNameSchema = siteFormSchema.pick({
+  name: true,
+});
+
+export type SiteNameForm = z.infer<typeof siteNameSchema>;

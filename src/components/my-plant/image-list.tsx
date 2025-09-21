@@ -24,15 +24,18 @@ export function ImageList() {
   }
 
   return (
-    <View className="flex-row items-center gap-3">
+    <View className="flex-row items-center gap-3 px-4">
       <View className="w-full flex-col">
         {data?.map((item) => (
           <View
             key={item.id}
-            className="mb-2 flex w-full flex-col items-start justify-center rounded-2xl bg-white"
+            className="mb-2 flex w-full flex-col items-start justify-center rounded-2xl bg-white p-1 px-2"
           >
-            <Text>{item?.note}</Text>
-            <Text>{item?.mood}</Text>
+            {Object.keys(item).map((key) => (
+              <Text key={key}>
+                {key}: {String(item[key as keyof typeof item])}
+              </Text>
+            ))}
           </View>
         ))}
       </View>

@@ -1,13 +1,27 @@
 /* eslint-disable max-lines-per-function */
-import React from 'react';
+import React, { useState } from 'react';
 
 import { type Plant, useFertilizers, useWaters } from '@/api';
-import { colors, Text, View } from '@/components/ui';
-import { Fertilizer, WateringCan } from '@/components/ui/icons';
+import { colors, Text, TouchableOpacity, View } from '@/components/ui';
+import { Check, Fertilizer, WateringCan } from '@/components/ui/icons';
+import { cn } from '@/lib';
+
+import { HistoryWatering } from './history-watering';
 
 type Props = {
   plant: Plant;
 };
+
+interface PlantItem {
+  icon: React.ReactNode;
+  action?: string;
+  overdueText?: string;
+}
+
+interface Mission {
+  label: string;
+  items: PlantItem[];
+}
 
 export function TodoPlant({ plant }: Props) {
   const { data: dataWatering } = useWaters();
@@ -20,6 +34,33 @@ export function TodoPlant({ plant }: Props) {
   const fertilizingOfPlant = dataFertilizing?.filter(
     (item) => item.plantId === plant.id
   );
+
+  const missions: Mission[] = [
+    {
+      label: 'Hôm nay',
+      items: [
+        {
+          icon: <WateringCan size={24} color={colors.white} />,
+          action: 'Tưới nước',
+          overdueText: 'Trễ 2n',
+        },
+      ],
+    },
+  ];
+
+  const [completed, setCompleted] = useState<boolean[][]>(
+    missions.map((m) => Array(m.items.length).fill(false))
+  );
+
+  const toggleComplete = (missionIndex: number, itemIndex: number) => {
+    setCompleted((prev) =>
+      prev.map((mission, mi) =>
+        mi === missionIndex
+          ? mission.map((c, ii) => (ii === itemIndex ? !c : c))
+          : mission
+      )
+    );
+  };
 
   const getDaysAgo = (updatedAt: string | Date): string => {
     const updatedDate = new Date(updatedAt);
@@ -45,7 +86,7 @@ export function TodoPlant({ plant }: Props) {
   };
 
   return (
-    <View className="flex-col px-4">
+    <View className="flex-col justify-center gap-8 px-4">
       <View className="flex-row items-center justify-center gap-16">
         <View className="flex-col items-center justify-center">
           <View className="size-[70] flex-col items-center justify-center rounded-full bg-charcoal-700 p-2">
@@ -59,8 +100,10 @@ export function TodoPlant({ plant }: Props) {
           </Text>
           <Text className="py-1 text-lg text-primary-400">
             Lần cuối:{' '}
-            {wateringOfPlant?.[0]
-              ? getDaysAgo(wateringOfPlant[0].updatedAt)
+            {wateringOfPlant?.[wateringOfPlant.length - 1]
+              ? getDaysAgo(
+                  wateringOfPlant[wateringOfPlant.length - 1].updatedAt
+                )
               : 'Chưa có'}
           </Text>
         </View>
@@ -76,12 +119,69 @@ export function TodoPlant({ plant }: Props) {
           </Text>
           <Text className="py-1 text-lg text-primary-400">
             Lần cuối:{' '}
-            {fertilizingOfPlant?.[0]
-              ? getDaysAgo(fertilizingOfPlant[0].updatedAt)
+            {fertilizingOfPlant?.[fertilizingOfPlant.length - 1]
+              ? getDaysAgo(
+                  fertilizingOfPlant[fertilizingOfPlant.length - 1].updatedAt
+                )
               : 'Chưa có'}
           </Text>
         </View>
       </View>
+      <View className="flex-col items-center justify-center">
+        {missions.map((mission, mi) => (
+          <View
+            key={mi}
+            className="mb-6 flex-col gap-4 rounded-3xl bg-white p-3 px-6 shadow"
+          >
+            <Text className="py-3 text-2xl font-bold text-primary-800">
+              {mission.label}
+            </Text>
+            {mission.items.map((item, ii) => (
+              <View
+                key={ii}
+                className="flex-row items-center justify-start gap-3"
+              >
+                <View className="flex w-full flex-row items-center justify-between">
+                  <View className="flex-row items-center justify-center gap-3">
+                    <View className="size-[60px] items-center justify-center rounded-full bg-neutral-600">
+                      {item.icon}
+                      {item.overdueText && (
+                        <View className="absolute bottom-0 rounded-full bg-danger-200 p-1 px-2">
+                          <Text className="text-xs text-danger-800">
+                            {item.overdueText}
+                          </Text>
+                        </View>
+                      )}
+                    </View>
+                    <View className="flex-col">
+                      {item.action && (
+                        <Text className="text-lg font-medium text-primary-800">
+                          {item.action}
+                        </Text>
+                      )}
+                    </View>
+                  </View>
+                  <TouchableOpacity
+                    onPress={() => toggleComplete(mi, ii)}
+                    className={cn(
+                      'size-9 items-center justify-center rounded-full border border-primary-800',
+                      completed[mi][ii] ? 'bg-primary-800' : ''
+                    )}
+                  >
+                    {completed[mi][ii] && (
+                      <Check size={18} color={colors.white} />
+                    )}
+                  </TouchableOpacity>
+                </View>
+              </View>
+            ))}
+            <Text className="text-md px-5 py-3 text-center text-primary-300">
+              Hoàn thành nhiệm vụ bằng cách nhấn vào chỉ dẫn
+            </Text>
+          </View>
+        ))}
+      </View>
+      <HistoryWatering plant={plant} />
     </View>
   );
 }

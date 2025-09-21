@@ -4,7 +4,9 @@ import {
   FlatList,
   type NativeScrollEvent,
   type NativeSyntheticEvent,
+  Pressable,
 } from 'react-native';
+import ImageViewing from 'react-native-image-viewing';
 
 import { colors, Image, View } from '@/components/ui';
 
@@ -18,6 +20,7 @@ const screenWidth = Dimensions.get('window').width;
 
 export function ImageSlider({ images, height = 330, children }: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [viewerVisible, setViewerVisible] = useState(false);
   const flatListRef = useRef<FlatList>(null);
 
   const handleScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -38,12 +41,19 @@ export function ImageSlider({ images, height = 330, children }: Props) {
           showsHorizontalScrollIndicator={false}
           onScroll={handleScroll}
           scrollEventThrottle={16}
-          renderItem={({ item }) => (
-            <Image
-              source={{ uri: item }}
-              style={{ width: screenWidth, height }}
-              resizeMode="cover"
-            />
+          renderItem={({ item, index }) => (
+            <Pressable
+              onPress={() => {
+                setActiveIndex(index);
+                setViewerVisible(true);
+              }}
+            >
+              <Image
+                source={{ uri: item }}
+                style={{ width: screenWidth, height }}
+                resizeMode="cover"
+              />
+            </Pressable>
           )}
         />
       </View>
@@ -53,15 +63,23 @@ export function ImageSlider({ images, height = 330, children }: Props) {
           <View
             key={idx}
             style={{
-              width: 4,
-              height: 4,
-              borderRadius: 4,
+              width: 6,
+              height: 6,
+              borderRadius: 6,
               backgroundColor:
                 idx === activeIndex ? colors.primary[800] : colors.primary[300],
             }}
           />
         ))}
       </View>
+
+      <ImageViewing
+        images={images.map((uri) => ({ uri }))}
+        imageIndex={activeIndex}
+        visible={viewerVisible}
+        onRequestClose={() => setViewerVisible(false)}
+        // FooterComponent={() => {}}
+      />
       {children}
     </View>
   );

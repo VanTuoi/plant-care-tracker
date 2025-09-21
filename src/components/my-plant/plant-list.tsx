@@ -21,7 +21,7 @@ export function PlantList() {
   }
 
   return (
-    <>
+    <View className="px-4">
       <SearchPlantComponent />
       <FlashList
         data={data?.data}
@@ -33,6 +33,6 @@ export function PlantList() {
         onRefresh={() => refetch()}
         ItemSeparatorComponent={() => <View className="h-1" />}
       />
-    </>
+    </View>
   );
 }

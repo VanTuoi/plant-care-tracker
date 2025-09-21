@@ -1,12 +1,12 @@
 /* eslint-disable max-lines-per-function */
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { Pressable, Text, View } from 'react-native';
 
 import { type DifficultyLevelEnum, type Species } from '@/api/species/type';
 import { type SunlightNeedEnum } from '@/api/species/type';
+import { colors, Pressable, Text, View } from '@/components/ui';
 
-import { colors, Image } from '../ui';
+import { Image } from '../ui';
 import { Cloud, PartialSun, Sun } from '../ui/icons';
 
 const difficultyColors: Record<

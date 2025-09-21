@@ -160,7 +160,7 @@ export default function AddSiteScreen(props: AddSiteScreenProps) {
       onSubmit={(data) => {
         createSite.mutate(data, {
           onSuccess: (_) => {
-            router.push('/my-plant');
+            router.replace('/my-plant');
           },
           onError: (err) => {
             showErrorMessage('Tạo khu vực thất bại');

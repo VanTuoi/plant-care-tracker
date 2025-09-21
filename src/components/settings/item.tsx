@@ -34,7 +34,7 @@ export function Item({
     >
       <View className="flex-row items-center">
         {icon ? (
-          <View className="mr-3 rounded-full bg-primary-500 p-2">
+          <View className="mr-3 rounded-full bg-primary-800 p-2">
             {React.cloneElement(icon, { color: iconColor })}
           </View>
         ) : null}

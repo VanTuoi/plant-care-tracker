@@ -39,26 +39,24 @@ export default function MyPlant() {
   return (
     <>
       <FocusAwareStatusBar />
-      <View className="flex-1">
-        <ScrollView className="flex-1">
-          <View className="flex-1 flex-col gap-4 p-4 pt-10">
-            <OverView />
-            <Tabs
-              value={activeTab}
-              onChange={setActiveTab}
-              tabs={[
-                { label: 'Khu vực', value: 'site', content: <SiteList /> },
-                { label: 'Cây trồng', value: 'plant', content: <PlantList /> },
-                { label: 'Ảnh', value: 'images', content: <ImageList /> },
-              ]}
-            />
-          </View>
-        </ScrollView>
+      <ScrollView className="flex-1">
+        <View className="flex-1 flex-col gap-4 pt-10">
+          <OverView />
+          <Tabs
+            value={activeTab}
+            onChange={setActiveTab}
+            tabs={[
+              { label: 'Khu vực', value: 'site', content: <SiteList /> },
+              { label: 'Cây trồng', value: 'plant', content: <PlantList /> },
+              { label: 'Ảnh', value: 'images', content: <ImageList /> },
+            ]}
+          />
+        </View>
+      </ScrollView>
 
-        {fabMenuMap[activeTab]?.length > 0 && (
-          <FabMenu items={fabMenuMap[activeTab]} position="bottom-right" />
-        )}
-      </View>
+      {fabMenuMap[activeTab]?.length > 0 && (
+        <FabMenu items={fabMenuMap[activeTab]} position="bottom-right" />
+      )}
     </>
   );
 }

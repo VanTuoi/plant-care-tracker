@@ -27,7 +27,7 @@ export const SearchInput = ({
         onChangeText={onChangeText}
         placeholder={placeholder}
         placeholderTextColor={colors.primary[500]}
-        className="h-12 w-full rounded-full border border-primary-100 bg-primary-100 pl-11 pr-2  dark:border-neutral-500 dark:bg-neutral-500 dark:text-white"
+        className="h-12 w-full rounded-full border border-primary-100 bg-primary-100 pl-11 pr-2  dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"
         {...props}
       />
     </View>
