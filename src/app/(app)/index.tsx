@@ -1,42 +1,75 @@
 import { useRouter } from 'expo-router';
-import React from 'react';
+import React, { useState } from 'react';
 
+import { TodayMission } from '@/components/home/today-mission';
+import { UpcomingMission } from '@/components/home/upcomig-mission';
 import {
   colors,
   FabMenu,
   FocusAwareStatusBar,
   SafeAreaView,
+  ScrollView,
+  Tabs,
   Text,
   View,
 } from '@/components/ui';
-import { Plant, Window } from '@/components/ui/icons';
+import { Bell, Plant, Window } from '@/components/ui/icons';
 
 export default function Home() {
   const router = useRouter();
+  const [activeTab, setActiveTab] = useState('today');
+
   return (
     <>
       <FocusAwareStatusBar />
       <SafeAreaView className="flex-1">
-        <View className="flex-1 items-center justify-center px-2">
-          <Text className="text-center text-3xl text-primary-500">
-            Trang chủ
-          </Text>
-          <FabMenu
-            position="bottom-right"
-            items={[
+        <ScrollView className="flex-1 gap-2 p-4">
+          <View className="w-full items-end">
+            <Bell size={28} color={colors.primary[800]} />
+          </View>
+          <View className="flex-col items-start">
+            <Text className="py-1 text-center text-4xl font-bold text-primary-800">
+              Chào buổi sáng
+            </Text>
+            <Text className="text-primary-800">
+              Buổi sáng là thời gian tốt để chăm sóc cây của bạn.
+            </Text>
+            <Text className="text-primary-800">
+              Bạn có 0 nhiệm vụ cần hoàn thành
+            </Text>
+          </View>
+          <Tabs
+            value={activeTab}
+            onChange={setActiveTab}
+            tabs={[
               {
-                icon: <Window size={20} color={colors.primary[50]} />,
-                label: 'Thêm khu vực',
-                onPress: () => {},
+                label: 'Hôm nay',
+                value: 'today',
+                content: <TodayMission />,
               },
               {
-                icon: <Plant size={20} color={colors.primary[50]} />,
-                label: 'Thêm cây trồng',
-                onPress: () => router.push(`/find-species`),
+                label: 'Sắp tới',
+                value: 'upcoming',
+                content: <UpcomingMission />,
               },
             ]}
           />
-        </View>
+        </ScrollView>
+        <FabMenu
+          position="bottom-right"
+          items={[
+            {
+              icon: <Window size={20} color={colors.primary[50]} />,
+              label: 'Thêm khu vực',
+              onPress: () => router.push(`/sites/add-site`),
+            },
+            {
+              icon: <Plant size={20} color={colors.primary[50]} />,
+              label: 'Thêm cây trồng',
+              onPress: () => router.push(`/find-species`),
+            },
+          ]}
+        />
       </SafeAreaView>
     </>
   );

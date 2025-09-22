@@ -1,6 +1,7 @@
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 
+import { ImageList } from '@/components/my-plant/image-list';
 import { OverView } from '@/components/my-plant/overview';
 import { PlantList } from '@/components/my-plant/plant-list';
 import { SiteList } from '@/components/my-plant/site-list';
@@ -10,7 +11,6 @@ import {
   FocusAwareStatusBar,
   ScrollView,
   Tabs,
-  Text,
   View,
 } from '@/components/ui';
 import { Plant as PlantIcon, Window } from '@/components/ui/icons';
@@ -18,13 +18,12 @@ import { Plant as PlantIcon, Window } from '@/components/ui/icons';
 export default function MyPlant() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState('site');
-
   const fabMenuMap: Record<string, any[]> = {
     site: [
       {
         icon: <Window size={20} color={colors.primary[50]} />,
         label: 'Thêm khu vực',
-        onPress: () => router.push('/add-new-site'),
+        onPress: () => router.push('/sites/add-site'),
       },
     ],
     plant: [
@@ -40,26 +39,24 @@ export default function MyPlant() {
   return (
     <>
       <FocusAwareStatusBar />
-      <View className="flex-1">
-        <ScrollView>
-          <View className="flex-col gap-4 p-4 pt-10">
-            <OverView />
-            <Tabs
-              value={activeTab}
-              onChange={setActiveTab}
-              tabs={[
-                { label: 'Khu vực', value: 'site', content: <SiteList /> },
-                { label: 'Cây trồng', value: 'plant', content: <PlantList /> },
-                { label: 'Ảnh', value: 'images', content: <Text>Ảnh</Text> },
-              ]}
-            />
-          </View>
-        </ScrollView>
+      <ScrollView className="flex-1">
+        <View className="flex-1 flex-col gap-4 pt-10">
+          <OverView />
+          <Tabs
+            value={activeTab}
+            onChange={setActiveTab}
+            tabs={[
+              { label: 'Khu vực', value: 'site', content: <SiteList /> },
+              { label: 'Cây trồng', value: 'plant', content: <PlantList /> },
+              { label: 'Ảnh', value: 'images', content: <ImageList /> },
+            ]}
+          />
+        </View>
+      </ScrollView>
 
-        {fabMenuMap[activeTab]?.length > 0 && (
-          <FabMenu items={fabMenuMap[activeTab]} position="bottom-right" />
-        )}
-      </View>
+      {fabMenuMap[activeTab]?.length > 0 && (
+        <FabMenu items={fabMenuMap[activeTab]} position="bottom-right" />
+      )}
     </>
   );
 }

@@ -69,8 +69,23 @@ export const plantFormSchema = z.object({
   inGround: z.boolean(),
   lastWateredAt: z.date().optional(),
   lastFertilizedAt: z.date().optional(),
-  images: z.string().optional(),
+  plantImageUri: z.string().optional(),
   name: z.string().optional(),
+  size: z.nativeEnum(PlantSizeEnum),
+  siteId: z.string(),
+  speciesId: z.string().optional(),
 });
 
 export type PlantFormValues = z.infer<typeof plantFormSchema>;
+
+export const plantNameSchema = plantFormSchema.pick({
+  name: true,
+});
+
+export type PlantNameForm = z.infer<typeof plantNameSchema>;
+
+export const plantSizeSchema = plantFormSchema.pick({
+  size: true,
+});
+
+export type PlantSizeForm = z.infer<typeof plantSizeSchema>;

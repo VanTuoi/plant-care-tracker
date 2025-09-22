@@ -3,7 +3,7 @@ import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import * as React from 'react';
 import { useColorScheme } from 'react-native';
 
-import { type QueryPlant, usePlant, useSite } from '@/api';
+import { type QueryPlant, usePlants, useSite } from '@/api';
 import { PlantItem } from '@/components/sites/plant-item';
 import {
   Button,
@@ -32,7 +32,7 @@ export default function Sites() {
 
   const { queryParams } = useQueryParams<QueryPlant>(defaultFilter);
 
-  const { data: dataPlant } = usePlant({
+  const { data: dataPlant } = usePlants({
     variables: queryParams,
   });
 

@@ -5,8 +5,8 @@ import { colors, Options, useModal } from '@/components/ui';
 import type { ColorSchemeType } from '@/lib';
 import { translate, useSelectedTheme } from '@/lib';
 
+import { Item } from '../common/item';
 import { Theme } from '../ui/icons';
-import { Item } from './item';
 
 export const ThemeItem = () => {
   const { selectedTheme, setSelectedTheme } = useSelectedTheme();

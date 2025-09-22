@@ -3,7 +3,7 @@
 import { useLocalSearchParams } from 'expo-router';
 import * as React from 'react';
 
-import AddItemModule from '@/components/plant/add-plant-step';
+import AddPlantScreen from '@/components/plant/add-plant-step';
 import { FocusAwareStatusBar, ScrollView, View } from '@/components/ui';
 
 export default function AddPlant() {
@@ -21,7 +21,7 @@ export default function AddPlant() {
           className="flex-1 p-2"
           contentContainerStyle={{ paddingBottom: 80 }}
         >
-          <AddItemModule siteId={siteId} speciesId={speciesId} />
+          <AddPlantScreen siteId={siteId} speciesId={speciesId} />
         </ScrollView>
       </View>
     </>

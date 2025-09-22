@@ -7,10 +7,17 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
+import { cn } from '@/lib';
+
 import colors from './colors';
 import { Plus } from './icons';
 
-export type FabItem = { icon: ReactNode; label?: string; onPress?: () => void };
+export type FabItem = {
+  icon: ReactNode;
+  label?: string;
+  backgroundColor?: string;
+  onPress?: () => void;
+};
 
 type FabMenuProps = {
   items: FabItem[];
@@ -67,22 +74,27 @@ export function FabMenu({
     return style;
   };
 
-  const renderFabItem = (item: FabItem, index: number) => (
-    <Pressable
-      key={index}
-      onPress={item.onPress}
-      className="mr-2 flex-row-reverse items-center gap-2"
-    >
-      <View className="size-12 items-center justify-center rounded-full bg-primary-800">
-        {item.icon}
-      </View>
-      {item.label && (
-        <Text className="rounded-full bg-primary-800 px-4 py-3 text-primary-50">
-          {item.label}
-        </Text>
-      )}
-    </Pressable>
-  );
+  const renderFabItem = (item: FabItem, index: number) => {
+    const bg = item.backgroundColor ?? 'bg-primary-800';
+    return (
+      <Pressable
+        key={index}
+        onPress={item.onPress}
+        className="mr-2 flex-row-reverse items-center gap-2"
+      >
+        <View
+          className={cn('size-12 items-center justify-center rounded-full', bg)}
+        >
+          {item.icon}
+        </View>
+        {item.label && (
+          <Text className={cn('rounded-full px-4 py-3 text-primary-50', bg)}>
+            {item.label}
+          </Text>
+        )}
+      </Pressable>
+    );
+  };
 
   const menuStyle = useAnimatedStyle(() => ({
     opacity: progress.value,
@@ -92,33 +104,59 @@ export function FabMenu({
     ],
   }));
 
+  const overlayStyle = useAnimatedStyle(() => ({
+    opacity: progress.value * 0.25,
+  }));
+
   const iconStyle = useAnimatedStyle(() => ({
     transform: [{ rotate: `${progress.value * 135}deg` }],
   }));
 
   return (
-    <View
-      style={[{ position: 'absolute' }, getPositionStyle()]}
-      className="items-end"
-    >
-      <Animated.View
-        style={menuStyle}
-        className="mb-3 flex-col items-end gap-3 self-end"
-      >
-        {items.map(renderFabItem)}
-      </Animated.View>
-
-      <Pressable
-        className={`size-16 items-center justify-center self-end rounded-full shadow-md ${open ? 'bg-primary-200' : 'bg-primary-800'}`}
-        onPress={toggle}
-      >
-        <Animated.View style={iconStyle}>
-          <Plus
-            size={32}
-            color={open ? colors.primary[800] : colors.primary[100]}
-          />
+    <>
+      {open && (
+        <Animated.View
+          pointerEvents="auto"
+          style={[
+            {
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'white',
+            },
+            overlayStyle,
+          ]}
+        >
+          <Pressable style={{ flex: 1 }} onPress={toggle} />
         </Animated.View>
-      </Pressable>
-    </View>
+      )}
+
+      <View
+        style={[{ position: 'absolute' }, getPositionStyle()]}
+        className="items-end"
+      >
+        <Animated.View
+          style={menuStyle}
+          className="mb-3 flex-col items-end gap-3 self-end"
+          pointerEvents={open ? 'auto' : 'none'}
+        >
+          {items.map(renderFabItem)}
+        </Animated.View>
+
+        <Pressable
+          className={`size-16 items-center justify-center self-end rounded-full shadow-md ${open ? 'bg-primary-200' : 'bg-primary-800'}`}
+          onPress={toggle}
+        >
+          <Animated.View style={iconStyle}>
+            <Plus
+              size={32}
+              color={open ? colors.primary[800] : colors.primary[100]}
+            />
+          </Animated.View>
+        </Pressable>
+      </View>
+    </>
   );
 }

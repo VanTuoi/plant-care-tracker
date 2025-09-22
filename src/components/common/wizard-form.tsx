@@ -2,11 +2,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import React, { useState } from 'react';
 import { FormProvider, useForm, type UseFormReturn } from 'react-hook-form';
-import { Animated, Dimensions, ScrollView } from 'react-native';
+import { Animated, ScrollView } from 'react-native';
 
-import { Button, colors, Text, View } from '../ui';
-
-const { height: SCREEN_HEIGHT } = Dimensions.get('window');
+import { Button, colors, showWaningMessage, Text, View } from '../ui';
 
 export type WizardStep = {
   key: string;
@@ -21,65 +19,87 @@ export function WizardForm<T>({
   steps,
   formSchema,
   onSubmit,
+  defaultValues,
 }: {
   steps: WizardStep[];
   formSchema: any;
   onSubmit: (data: T) => void;
+  defaultValues?: Partial<T>;
 }) {
+  const cleanDefaults = Object.fromEntries(
+    Object.entries(defaultValues ?? {}).filter(
+      ([_, v]) => v !== undefined && v !== null && v !== '' && v !== 'undefined'
+    )
+  );
+
   const methods = useForm<any>({
     resolver: zodResolver(formSchema),
-    defaultValues: {} as T,
+    defaultValues: { ...cleanDefaults } as T,
+    mode: 'onChange',
   });
-  const { handleSubmit } = methods;
+  const { handleSubmit, trigger } = methods;
 
   const [activeStep, setActiveStep] = useState(0);
 
-  const next = () => {
+  const step = steps[activeStep];
+
+  const next = async () => {
+    if (!step.optional) {
+      const valid = await trigger(step.key as any);
+      if (!valid) {
+        showWaningMessage('Chọn ít nhất 1 lựa chọn');
+        return;
+      }
+    }
+
     if (activeStep < steps.length - 1) setActiveStep((s) => s + 1);
     else handleSubmit(onSubmit)();
   };
+
   const prev = () => {
     if (activeStep > 0) setActiveStep((s) => s - 1);
   };
 
-  const step = steps[activeStep];
-
   return (
     <FormProvider {...methods}>
-      <View className="flex-1 bg-primary-50">
+      <View className="min-h-screen bg-primary-50">
         <View className="px-4 pb-3 pt-6">
-          <Text className="text-3xl font-bold text-primary-800">
-            {step.title}
-          </Text>
-          <View className="mt-2 h-3 overflow-hidden rounded-full bg-primary-100">
+          <View className="h-2 overflow-hidden rounded-full bg-primary-100">
             <Animated.View
               style={{
                 width: `${((activeStep + 1) / steps.length) * 100}%`,
                 height: '100%',
+                borderRadius: 24,
                 backgroundColor: colors.primary[800],
               }}
             />
           </View>
+          <Text className="mt-4 text-3xl font-bold text-primary-800">
+            {step.title}
+          </Text>
         </View>
 
         <ScrollView
-          scrollEnabled={false}
-          contentContainerStyle={{ height: SCREEN_HEIGHT - 160 }}
+          className="flex-1"
+          contentContainerStyle={{
+            paddingHorizontal: 24,
+            paddingBottom: 140,
+          }}
+          showsVerticalScrollIndicator={false}
         >
-          <View className="flex-1 items-start justify-start px-6">
-            {step.image}
-            <View className="mt-6 w-full">{step.render(methods)}</View>
-          </View>
+          <View>{step.image}</View>
+
+          <View className="mt-6 w-full">{step.render(methods)}</View>
         </ScrollView>
 
-        <View className="flex-row justify-between gap-4 px-6">
+        <View className="absolute inset-x-0 bottom-0 flex-row justify-between gap-4 bg-primary-50 px-6 pb-6">
           <Button
             size="lg"
             disabled={activeStep === 0}
             label="Quay lại"
             onPress={prev}
             variant="default"
-            className=" flex-1 rounded-full bg-primary-200 text-primary-50"
+            className="flex-1 rounded-full bg-primary-200 text-primary-50"
           />
           <Button
             size="lg"

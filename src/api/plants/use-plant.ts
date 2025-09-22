@@ -2,16 +2,15 @@ import type { AxiosError } from 'axios';
 import { createQuery } from 'react-query-kit';
 
 import { client } from '../common';
-import { type InfinityPaginationResponse } from '../types';
-import type { Plant, QueryPlant } from './type';
+import { type Plant } from './type';
 
-type Variables = QueryPlant;
-type Response = InfinityPaginationResponse<Plant>;
+type Variables = { id: string };
+type Response = Plant;
 
 export const usePlant = createQuery<Response, Variables, AxiosError>({
   queryKey: ['plants'],
-  fetcher: async (variables) => {
-    const res = await client.get<Response>('/plants', { params: variables });
+  fetcher: async ({ id }) => {
+    const res = await client.get<Response>(`/api/v1/plants/${id}`);
     return res.data;
   },
 });

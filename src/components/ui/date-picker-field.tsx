@@ -14,10 +14,10 @@ export function DatePickerField({
   const [show, setShow] = useState(false);
 
   const handleChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
-    setShow(false);
-    if (selectedDate) {
+    if (event.type === 'set' && selectedDate) {
       onChange(selectedDate);
     }
+    setShow(false);
   };
 
   return (

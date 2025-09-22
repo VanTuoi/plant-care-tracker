@@ -9,6 +9,7 @@ export * from './date-picker-field';
 export * from './fab-menu';
 export * from './focus-aware-status-bar';
 export * from './image';
+export * from './image-picker-field';
 export * from './input';
 export * from './list';
 export * from './modal';

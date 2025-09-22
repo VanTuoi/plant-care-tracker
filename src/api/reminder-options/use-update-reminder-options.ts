@@ -11,7 +11,7 @@ const updateReminderApi = async (
   variables: Variables
 ): Promise<NotificationResponse> => {
   const res = await client.patch<NotificationResponse>(
-    '/reminder-options',
+    '/api/v1/reminder-options',
     variables
   );
   return res.data;

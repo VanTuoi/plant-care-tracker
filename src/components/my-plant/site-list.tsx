@@ -1,11 +1,19 @@
 /* eslint-disable max-lines-per-function */
 import { useRouter } from 'expo-router';
 import React from 'react';
+import { Dimensions } from 'react-native';
 
-import { type Plant, usePlant } from '@/api';
+import { type Plant, type PlantImage, usePlants } from '@/api';
 import { type QuerySites, type Site, useSites } from '@/api/sites';
-import { Image, Pressable, Text, View } from '@/components/ui';
-import { translate, useQueryParams } from '@/lib';
+import {
+  ActivityIndicator,
+  colors,
+  Image,
+  Pressable,
+  Text,
+  View,
+} from '@/components/ui';
+import { getFileUrl, translate, useQueryParams } from '@/lib';
 
 const defaultFilter: QuerySites = {
   page: 1,
@@ -18,18 +26,27 @@ export const SiteList = () => {
   const router = useRouter();
   const { queryParams } = useQueryParams<QuerySites>(defaultFilter);
 
+  const { width } = Dimensions.get('window');
+  const IMAGE_HEIGHT = 200;
+
   const { data, isPending, isError } = useSites({
     variables: queryParams,
   });
 
-  const { data: plantsData } = usePlant({
+  const { data: plantsData } = usePlants({
     variables: {},
   });
 
+  const getPlantImage = (images?: PlantImage[], index: number = 0) => {
+    return images && images[index]?.filePath
+      ? { uri: getFileUrl(images[index].filePath) }
+      : require('@/assets/cactus flower-cuate.png');
+  };
+
   if (isPending) {
     return (
-      <View className="flex-1 items-center justify-center pt-5">
-        <Text className="text-primary-500">Loading...</Text>
+      <View className="items-center justify-center pt-10">
+        <ActivityIndicator size="large" color={colors.primary[500]} />
       </View>
     );
   }
@@ -50,44 +67,78 @@ export const SiteList = () => {
             <Pressable
               key={site.id}
               onPress={() => router.push(`/sites/${site.id}`)}
+              className="px-4"
             >
               <View className="w-full flex-row gap-1">
                 <Image
-                  source={require('@/assets/cactus flower-cuate.png')}
-                  className="min-h-[200px] flex-1 bg-primary-200"
+                  source={getPlantImage(
+                    plantsData?.data.filter(
+                      (item) => item.siteId === site.id
+                    )[0]?.images,
+                    0
+                  )}
                   style={{
-                    aspectRatio: 0.5,
-                    borderTopLeftRadius: '"12"',
-                    borderBottomLeftRadius: '12',
+                    width: width / 2 - 28,
+                    height: IMAGE_HEIGHT,
+                    borderTopLeftRadius: 32,
+                    borderBottomLeftRadius: 32,
                   }}
+                  className="bg-primary-200"
+                  resizeMode="cover"
                 />
 
-                <View className="flex-1 flex-col gap-1">
-                  <Image
-                    source={require('@/assets/cactus flower-cuate.png')}
-                    className="min-h-[50px] flex-1 bg-primary-200"
-                    resizeMode="cover"
-                  />
-                  <Image
-                    source={require('@/assets/cactus flower-cuate.png')}
-                    className="min-h-[50px] flex-1 bg-primary-200"
-                    resizeMode="cover"
-                  />
+                <View
+                  style={{ width: width / 2 - 4 }}
+                  className="flex-col gap-1"
+                >
+                  <View className="flex-1 flex-row gap-1">
+                    <Image
+                      source={getPlantImage(plantsData?.data[0]?.images, 1)}
+                      style={{
+                        flex: 1,
+                        height: IMAGE_HEIGHT / 2 - 2,
+                      }}
+                      className="bg-primary-200"
+                      resizeMode="cover"
+                    />
+                    <Image
+                      source={getPlantImage(plantsData?.data[0]?.images, 3)}
+                      style={{
+                        flex: 1,
+                        height: IMAGE_HEIGHT / 2 - 2,
+                        borderTopRightRadius: 32,
+                      }}
+                      className="bg-primary-200"
+                      resizeMode="cover"
+                    />
+                  </View>
+
+                  <View className="flex-1 flex-row gap-1">
+                    <Image
+                      source={getPlantImage(plantsData?.data[0]?.images, 2)}
+                      style={{
+                        flex: 1,
+                        height: IMAGE_HEIGHT / 2 - 2,
+                      }}
+                      className="bg-primary-200"
+                      resizeMode="cover"
+                    />
+                    <Image
+                      source={getPlantImage(plantsData?.data[0]?.images, 3)}
+                      style={{
+                        flex: 1,
+                        height: IMAGE_HEIGHT / 2 - 2,
+                        borderBottomRightRadius: 32,
+                      }}
+                      className="bg-primary-200"
+                      resizeMode="cover"
+                    />
+                  </View>
                 </View>
-
-                <Image
-                  source={require('@/assets/cactus flower-cuate.png')}
-                  className="min-h-[200px] flex-1 bg-primary-200"
-                  style={{
-                    aspectRatio: 0.5,
-                    borderTopRightRadius: '12',
-                    borderBottomRightRadius: '12',
-                  }}
-                />
               </View>
 
-              <View className="flex-row items-center justify-between">
-                <View className="flex-col">
+              <View className="flex-row items-start justify-between py-2">
+                <View className="flex-col gap-0">
                   <Text className="text-2xl font-bold text-primary-800">
                     {site.name}
                   </Text>
@@ -100,7 +151,7 @@ export const SiteList = () => {
                     cây
                   </Text>
                 </View>
-                <Text className="rounded-full p-2 font-bold text-danger-600">
+                <Text className="rounded-full bg-danger-200 px-2 py-1 font-bold text-danger-600">
                   {
                     plantsData?.data.filter(
                       (item: Plant) => item.siteId === site.id

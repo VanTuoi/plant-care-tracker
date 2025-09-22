@@ -10,7 +10,7 @@ type Response = Species;
 export const useSpeciesDetail = createQuery<Response, Variables, AxiosError>({
   queryKey: ['species'],
   fetcher: async ({ id }) => {
-    const res = await client.get<Response>(`/species/${id}`);
+    const res = await client.get<Response>(`/api/v1/species/${id}`);
     return res.data;
   },
 });

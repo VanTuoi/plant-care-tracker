@@ -6,7 +6,9 @@ import { type ErrorResponse } from '../types';
 import { type NotificationResponse } from './type';
 
 const getReminderApi = async (): Promise<NotificationResponse> => {
-  const res = await client.get<NotificationResponse[]>('/reminder-options');
+  const res = await client.get<NotificationResponse[]>(
+    '/api/v1/reminder-options'
+  );
   return res.data[0];
 };
 

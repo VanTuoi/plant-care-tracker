@@ -1,14 +1,14 @@
 import { FlashList } from '@shopify/flash-list';
 import React from 'react';
 
-import { usePlant } from '@/api/plants';
+import { usePlants } from '@/api/plants';
 import { PlantItem } from '@/components/plant/item';
 import { SearchPlantComponent } from '@/components/plant/search';
 import { EmptyList, Text, View } from '@/components/ui';
 import { translate } from '@/lib/i18n';
 
 export function PlantList() {
-  const { data, isPending, isError, refetch } = usePlant({
+  const { data, isPending, isError, refetch } = usePlants({
     variables: {},
   });
 
@@ -21,7 +21,7 @@ export function PlantList() {
   }
 
   return (
-    <>
+    <View className="px-4">
       <SearchPlantComponent />
       <FlashList
         data={data?.data}
@@ -33,6 +33,6 @@ export function PlantList() {
         onRefresh={() => refetch()}
         ItemSeparatorComponent={() => <View className="h-1" />}
       />
-    </>
+    </View>
   );
 }

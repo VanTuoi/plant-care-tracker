@@ -1,61 +1,21 @@
 import * as React from 'react';
+import type { SvgProps } from 'react-native-svg';
 import Svg, { Path } from 'react-native-svg';
 
-export const Sun = ({ color = 'black', size = 24, ...props }) => {
-  return (
-    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
-      <Path
-        d="M12 17.75C10.8628 17.75 9.75106 17.4128 8.80547 16.781C7.85989 16.1491 7.1229 15.2511 6.6877 14.2004C6.25249 13.1498 6.13862 11.9936 6.36049 10.8782C6.58235 9.76284 7.12999 8.73829 7.93414 7.93414C8.73829 7.12999 9.76284 6.58235 10.8782 6.36049C11.9936 6.13862 13.1498 6.25249 14.2004 6.6877C15.2511 7.1229 16.1491 7.85989 16.781 8.80547C17.4128 9.75106 17.75 10.8628 17.75 12C17.7474 13.5242 17.1407 14.9852 16.0629 16.0629C14.9852 17.1407 13.5242 17.7474 12 17.75Z"
-        fill={color}
-      />
-      <Path
-        d="M12 5V2.75"
-        stroke={color}
-        strokeWidth={1.5}
-        strokeLinecap="round"
-      />
-      <Path
-        d="M12 22V19.75"
-        stroke={color}
-        strokeWidth={1.5}
-        strokeLinecap="round"
-      />
-      <Path
-        d="M21.25 12H19.75"
-        stroke={color}
-        strokeWidth={1.5}
-        strokeLinecap="round"
-      />
-      <Path
-        d="M4.25 12H2.75"
-        stroke={color}
-        strokeWidth={1.5}
-        strokeLinecap="round"
-      />
-      <Path
-        d="M6 7L5 6"
-        stroke={color}
-        strokeWidth={1.5}
-        strokeLinecap="round"
-      />
-      <Path
-        d="M18 18L19 19"
-        stroke={color}
-        strokeWidth={1.5}
-        strokeLinecap="round"
-      />
-      <Path
-        d="M17 7L18 6"
-        stroke={color}
-        strokeWidth={1.5}
-        strokeLinecap="round"
-      />
-      <Path
-        d="M7 17L6 18"
-        stroke={color}
-        strokeWidth={1.5}
-        strokeLinecap="round"
-      />
-    </Svg>
-  );
-};
+interface SunProps extends SvgProps {
+  size?: number;
+  color?: string;
+}
+
+export const Sun = ({ size = 24, color = '#000', ...props }: SunProps) => (
+  <Svg viewBox="0 0 24 24" width={size} height={size} fill="none" {...props}>
+    <Path
+      fill={color}
+      d="M3 12H5M5.00006 19L7.00006 17M12 19V21M17 17L19 19M5 5L7 7M19 12H21M16.9999 7L18.9999 5M12 3V5M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z"
+      stroke={color}
+      strokeWidth={2.2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);

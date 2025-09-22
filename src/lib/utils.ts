@@ -1,6 +1,8 @@
 import { Linking } from 'react-native';
 import type { StoreApi, UseBoundStore } from 'zustand';
 
+import { Env } from './env';
+
 export function openLinkInBrowser(url: string) {
   Linking.canOpenURL(url).then((canOpen) => canOpen && Linking.openURL(url));
 }
@@ -34,4 +36,8 @@ export const cleanFilters = (
       ([_, v]) => v !== undefined && v !== ''
     )
   );
+};
+
+export const getFileUrl = (filePath?: string) => {
+  return `${Env.API_URL}${filePath}`;
 };

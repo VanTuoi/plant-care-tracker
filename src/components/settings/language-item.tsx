@@ -6,8 +6,8 @@ import { useSelectedLanguage } from '@/lib';
 import { translate } from '@/lib';
 import { type Language } from '@/lib/i18n/resources';
 
+import { Item } from '../common/item';
 import { Language as LanguageIcon } from '../ui/icons';
-import { Item } from './item';
 
 export const LanguageItem = () => {
   const { language, setLanguage } = useSelectedLanguage();

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { usePlant } from '@/api';
+import { usePlants } from '@/api';
 import { useSites } from '@/api/sites';
 import { colors, Text, View } from '@/components/ui';
 import { translate } from '@/lib';
@@ -20,7 +20,7 @@ export function OverView() {
     data: plantsData,
     isPending: isPlantsPending,
     isError: isPlantsError,
-  } = usePlant({
+  } = usePlants({
     variables: {},
   });
 
@@ -32,8 +32,10 @@ export function OverView() {
       <View className="animate-pulse flex-row items-center gap-3 p-4">
         <View className="size-[100px] rounded-full bg-primary-200" />
         <View className="flex-1 flex-col gap-1">
-          <View className="h-10 rounded-md bg-primary-200" />
-          <View className="h-6 rounded-md bg-primary-200" />
+          <Text className="text-3xl font-bold text-primary-800">
+            Cây trồng của tôi
+          </Text>
+          <Text className="text-lg text-primary-300">0 khu vực 0 cây </Text>
         </View>
       </View>
     );
@@ -48,7 +50,7 @@ export function OverView() {
   }
 
   return (
-    <View className="flex-row items-center gap-3">
+    <View className="flex-row items-center gap-3 p-4">
       <View className="size-[100px] items-center justify-center rounded-full bg-primary-100">
         <User2 color={colors.primary[800]} size={40} />
       </View>
@@ -57,10 +59,10 @@ export function OverView() {
           Cây trồng của tôi
         </Text>
         <View className="flex-row gap-2">
-          <Text className="text-lg text-primary-600">
+          <Text className="text-lg text-primary-300">
             {sitesData?.data.length ?? 0} khu vực
           </Text>
-          <Text className="text-lg text-primary-600">
+          <Text className="text-lg text-primary-300">
             {plantsData?.data.length ?? 0} cây
           </Text>
         </View>
