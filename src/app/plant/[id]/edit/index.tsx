@@ -17,7 +17,7 @@ import { Home, Plant, Size, Tag } from '@/components/ui/icons';
 import { translate } from '@/lib';
 
 export default function Edit() {
-  const route = useRouter();
+  const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
   const { data, isPending, isError } = usePlant({ variables: { id } });
   const { mutateAsync } = useDeletePlant();
@@ -59,7 +59,7 @@ export default function Edit() {
               icon={<Tag size={24} />}
               bgColor="bg-primary-800"
               iconColor={colors.neutral[200]}
-              onPress={() => route.push('./edit/name')}
+              onPress={() => router.push('./edit/name')}
             />
           </ItemsContainer>
           <ItemsContainer title="Phân bón">
@@ -76,7 +76,7 @@ export default function Edit() {
               icon={<Size size={24} />}
               bgColor="bg-primary-400"
               iconColor={colors.neutral[200]}
-              onPress={() => route.push('./edit/size')}
+              onPress={() => router.push('./edit/size')}
             />
             <Item
               label="Loại cây"
@@ -91,7 +91,7 @@ export default function Edit() {
               bgColor="bg-gray-400"
               icon={<Home size={24} />}
               iconColor={colors.neutral[200]}
-              onPress={() => route.push('./edit/name')}
+              onPress={() => router.push('./edit/name')}
             />
           </ItemsContainer>
           <View className="flex flex-col items-start justify-start rounded-2xl bg-primary-100 p-5">
@@ -120,7 +120,7 @@ export default function Edit() {
                     onPress: async () => {
                       try {
                         await mutateAsync({ id: data.id });
-                        route.replace('/my-plant');
+                        router.replace('/my-plant');
                       } catch (err) {
                         Alert.alert(
                           'Lỗi',

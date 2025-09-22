@@ -75,25 +75,25 @@ export function ImagePickerField({ onChange, value, className }: Props) {
 
       <Modal
         ref={ref}
-        snapPoints={['30%']}
+        snapPoints={['32%']}
         backgroundStyle={{ backgroundColor }}
       >
-        <View className="flex-col items-center gap-3 px-4">
-          <Text className="pb-2 text-xl font-bold">Chọn ảnh</Text>
-          <View className="flex-row gap-3">
+        <View className="flex-col items-start gap-4 px-4">
+          <Text className="pb-2 text-2xl font-bold text-primary-800">
+            Chọn ảnh
+          </Text>
+          <View className="flex-col gap-3">
             <TouchableOpacity
               onPress={async () => {
                 dismiss();
                 await takePhoto();
               }}
-              className="flex-1 flex-row items-center justify-start gap-2 rounded-full bg-primary-50 p-1"
+              className="flex-row items-center justify-start gap-2"
             >
-              <View className="rounded-full bg-white p-3">
+              <View className="rounded-full bg-primary-100 p-3">
                 <Camera size={24} color={colors.primary[800]} />
               </View>
-              <Text className="font-medium text-primary-900">
-                Chụp từ Camera
-              </Text>
+              <Text className="font-medium text-primary-900">Máy ảnh</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -101,9 +101,9 @@ export function ImagePickerField({ onChange, value, className }: Props) {
                 dismiss();
                 await pickImage();
               }}
-              className="flex-1 flex-row items-center justify-start gap-2 rounded-full bg-primary-50 p-1"
+              className="flex-row items-center justify-start gap-2"
             >
-              <View className="rounded-full bg-white p-3">
+              <View className="rounded-full bg-primary-100 p-3">
                 <GalleryHorizontal size={24} color={colors.primary[800]} />
               </View>
               <Text className="font-medium text-primary-900">
@@ -114,8 +114,8 @@ export function ImagePickerField({ onChange, value, className }: Props) {
           <Button
             label="Huỷ"
             variant="default"
-            textClassName="font-bold text-black dark:text-white"
-            className="mt-10 w-full rounded-full border-gray-200 bg-gray-50 dark:bg-gray-800"
+            textClassName="font-bold text-primary-50 dark:text-white"
+            className="w-full rounded-full border-gray-200 bg-primary-800 dark:bg-gray-800"
             size="lg"
             onPress={dismiss}
           />

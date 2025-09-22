@@ -10,4 +10,5 @@ export * from './sites';
 export * from './species';
 export * from './template-site';
 export * from './types';
+export * from './user';
 export * from './waters';
