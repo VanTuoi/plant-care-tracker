@@ -29,6 +29,7 @@ export * from './rate';
 export * from './search';
 export * from './settings';
 export * from './share';
+export * from './size';
 export * from './style';
 export * from './sun';
 export * from './support';

@@ -3,9 +3,9 @@ import { Env } from '@env';
 import { useRouter } from 'expo-router';
 import React from 'react';
 
+import { Item } from '@/components/common/item';
+import { ItemsContainer } from '@/components/common/items-container';
 import { AccountItem } from '@/components/settings/account-item';
-import { Item } from '@/components/settings/item';
-import { ItemsContainer } from '@/components/settings/items-container';
 import { LanguageItem } from '@/components/settings/language-item';
 import { ThemeItem } from '@/components/settings/theme-item';
 import {

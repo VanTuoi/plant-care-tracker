@@ -6,34 +6,38 @@ import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { ActivityIndicator, ScrollView } from 'react-native';
 
-import { type SiteNameForm, siteNameSchema, useUpdateSite } from '@/api';
-import { useSite } from '@/api/sites/use-site';
+import {
+  type PlantNameForm,
+  plantNameSchema,
+  usePlant,
+  useUpdatePlant,
+} from '@/api';
 import { ItemsContainer } from '@/components/common/items-container';
 import { Button, colors, Input, Text, View } from '@/components/ui';
 import { translate } from '@/lib';
 
-export default function EditNameSite() {
+export default function EditNamePlant() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
 
-  const { data: site, isPending, isError } = useSite({ variables: { id } });
+  const { data: plant, isPending, isError } = usePlant({ variables: { id } });
 
   const queryClient = useQueryClient();
-  const updateSite = useUpdateSite();
+  const updatePlant = useUpdatePlant();
 
-  const { control, handleSubmit } = useForm<SiteNameForm>({
-    resolver: zodResolver(siteNameSchema),
-    defaultValues: { name: site?.name ?? '' },
+  const { control, handleSubmit } = useForm<PlantNameForm>({
+    resolver: zodResolver(plantNameSchema),
+    defaultValues: { name: plant?.name ?? '' },
   });
 
-  const onSubmit = (values: SiteNameForm) => {
+  const onSubmit = (values: PlantNameForm) => {
     if (!id) return;
-    updateSite.mutate(
-      { id, name: values.name },
+    updatePlant.mutate(
+      { id, ...values },
       {
         onSuccess: () => {
           queryClient.invalidateQueries({
-            queryKey: ['sites'],
+            queryKey: ['plants'],
           });
           router.back();
         },
@@ -49,7 +53,7 @@ export default function EditNameSite() {
     );
   }
 
-  if (isError || !site) {
+  if (isError || !plant) {
     return (
       <View className="flex-1 items-center justify-center">
         <Text className="text-red-500">{translate('common.error_load')}</Text>
@@ -67,7 +71,7 @@ export default function EditNameSite() {
 
       <ScrollView className="px-4" showsVerticalScrollIndicator={false}>
         <Text className="py-2 text-3xl font-bold text-primary-800">
-          Chỉnh sửa tên khu vực
+          Chỉnh sửa tên cây
         </Text>
         <ItemsContainer title="Tên hiển thị">
           <Controller
@@ -75,7 +79,7 @@ export default function EditNameSite() {
             name="name"
             render={({ field, fieldState }) => (
               <Input
-                label="Tên khu vực"
+                label="Tên cây"
                 value={field.value}
                 onChangeText={field.onChange}
                 error={fieldState.error?.message}
@@ -87,9 +91,9 @@ export default function EditNameSite() {
         <Button
           size="lg"
           label="Lưu"
-          loading={updateSite.isPending}
+          loading={updatePlant.isPending}
           onPress={handleSubmit(onSubmit)}
-          disabled={updateSite.isPending}
+          disabled={updatePlant.isPending}
           variant="secondary"
           textClassName="font-bold"
           className="rounded-full"

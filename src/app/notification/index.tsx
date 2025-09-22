@@ -12,8 +12,8 @@ import {
   type NotificationForm,
   NotificationSchema,
 } from '@/api/reminder-options/type';
-import { Item } from '@/components/settings/item';
-import { ItemsContainer } from '@/components/settings/items-container';
+import { Item } from '@/components/common/item';
+import { ItemsContainer } from '@/components/common/items-container';
 import {
   Button,
   colors,

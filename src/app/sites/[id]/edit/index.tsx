@@ -4,8 +4,8 @@ import React from 'react';
 import { ActivityIndicator, Alert, ScrollView } from 'react-native';
 
 import { useDeleteSite, useSite } from '@/api';
-import { Item } from '@/components/settings/item';
-import { ItemsContainer } from '@/components/settings/items-container';
+import { Item } from '@/components/common/item';
+import { ItemsContainer } from '@/components/common/items-container';
 import { Button, colors, Switch, Text, View } from '@/components/ui';
 import {
   Cloud,
@@ -71,70 +71,72 @@ export default function EditSite() {
       />
 
       <ScrollView className="px-4" showsVerticalScrollIndicator={false}>
-        <Text className="py-2 text-3xl font-bold text-primary-800">
-          Chỉnh sửa khu vực
-        </Text>
-        <ItemsContainer title="Cài đặt tổng quan">
-          <Item
-            onPress={() => router.push('./edit/name')}
-            label="Tên khu vực"
-            icon={<Window size={28} />}
-            iconColor={colors.neutral[200]}
-          >
-            <Text className="text-md text-primary-300">{site.name}</Text>
-          </Item>
-          <Item
-            label="Có mưa"
-            icon={<Cloud size={28} />}
-            iconColor={colors.neutral[200]}
-          >
-            <Switch accessibilityLabel="notification" onChange={() => {}} />
-          </Item>
-        </ItemsContainer>
+        <View className="gap-4">
+          <Text className="py-2 text-3xl font-bold text-primary-800">
+            Chỉnh sửa khu vực
+          </Text>
+          <ItemsContainer title="Cài đặt tổng quan">
+            <Item
+              onPress={() => router.push('./edit/name')}
+              label="Tên khu vực"
+              icon={<Window size={28} />}
+              iconColor={colors.neutral[200]}
+            >
+              <Text className="text-md text-primary-300">{site.name}</Text>
+            </Item>
+            <Item
+              label="Có mưa"
+              icon={<Cloud size={28} />}
+              iconColor={colors.neutral[200]}
+            >
+              <Switch accessibilityLabel="notification" onChange={() => {}} />
+            </Item>
+          </ItemsContainer>
 
-        <ItemsContainer title="Thông tin khu vực">
-          <Item
-            label="Ánh sáng"
-            icon={<Sun size={28} />}
-            iconColor={colors.neutral[200]}
-          >
-            <Text className="text-md text-primary-300">{site.sunlight}</Text>
-          </Item>
-          <Item
-            label="Nhiệt độ"
-            icon={<Thermometer size={28} />}
-            iconColor={colors.neutral[200]}
-          >
-            <Text className="text-md text-primary-300">
-              {site.temperature}°C
-            </Text>
-          </Item>
-          <Item
-            label="Độ ẩm"
-            icon={<Humidity size={28} />}
-            iconColor={colors.neutral[200]}
-          >
-            <Text className="text-md text-primary-300">{site.humidity}%</Text>
-          </Item>
-          <Item
-            label="Gió"
-            icon={<Wind size={28} />}
-            iconColor={colors.neutral[200]}
-          >
-            <Text className="text-md text-primary-300">
-              {site.windExposure}
-            </Text>
-          </Item>
-        </ItemsContainer>
+          <ItemsContainer title="Thông tin khu vực">
+            <Item
+              label="Ánh sáng"
+              icon={<Sun size={28} />}
+              iconColor={colors.neutral[200]}
+            >
+              <Text className="text-md text-primary-300">{site.sunlight}</Text>
+            </Item>
+            <Item
+              label="Nhiệt độ"
+              icon={<Thermometer size={28} />}
+              iconColor={colors.neutral[200]}
+            >
+              <Text className="text-md text-primary-300">
+                {site.temperature}°C
+              </Text>
+            </Item>
+            <Item
+              label="Độ ẩm"
+              icon={<Humidity size={28} />}
+              iconColor={colors.neutral[200]}
+            >
+              <Text className="text-md text-primary-300">{site.humidity}%</Text>
+            </Item>
+            <Item
+              label="Gió"
+              icon={<Wind size={28} />}
+              iconColor={colors.neutral[200]}
+            >
+              <Text className="text-md text-primary-300">
+                {site.windExposure}
+              </Text>
+            </Item>
+          </ItemsContainer>
 
-        <Button
-          size="lg"
-          label="Xoá khu vực"
-          onPress={handleDelete}
-          variant="destructive"
-          textClassName="font-bold"
-          className="rounded-full"
-        />
+          <Button
+            size="lg"
+            label="Xoá khu vực"
+            onPress={handleDelete}
+            variant="destructive"
+            textClassName="font-bold"
+            className="rounded-full bg-danger-700"
+          />
+        </View>
       </ScrollView>
     </>
   );

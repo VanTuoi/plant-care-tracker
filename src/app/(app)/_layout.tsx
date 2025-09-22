@@ -8,7 +8,7 @@ import { colors, View } from '@/components/ui';
 import { Home, Settings as SettingsIcon } from '@/components/ui/icons';
 import { Plant } from '@/components/ui/icons/plant';
 import { Search2 } from '@/components/ui/icons/search-2';
-import { useAuth } from '@/lib';
+import { cn, useAuth } from '@/lib';
 import { useThemeConfig } from '@/lib/use-theme-config';
 
 export default function TabLayout() {
@@ -111,11 +111,7 @@ type TabIconProps = {
 function TabIcon({ icon, focused }: TabIconProps) {
   return (
     <View
-      className={
-        focused
-          ? 'rounded-full bg-primary-50 px-4 py-2'
-          : 'rounded-full px-4 py-2'
-      }
+      className={cn('rounded-full px-6 py-2', focused ? 'bg-primary-50' : '')}
     >
       {icon}
     </View>

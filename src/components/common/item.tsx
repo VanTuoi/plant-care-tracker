@@ -3,13 +3,14 @@ import { View } from 'react-native';
 
 import { colors, Pressable, Text } from '@/components/ui';
 import { ArrowRight } from '@/components/ui/icons';
-import type { TxKeyPath } from '@/lib';
+import { cn, type TxKeyPath } from '@/lib';
 
 type ItemProps = {
   label?: string;
   tx?: TxKeyPath;
   icon?: React.ReactElement;
   iconColor?: string;
+  bgColor?: string;
   value?: string;
   onPress?: () => void;
   children?: React.ReactNode;
@@ -20,6 +21,7 @@ export function Item({
   tx,
   icon,
   iconColor = colors.white,
+  bgColor = 'bg-primary-800',
   value,
   onPress,
   children,
@@ -34,7 +36,7 @@ export function Item({
     >
       <View className="flex-row items-center">
         {icon ? (
-          <View className="mr-3 rounded-full bg-primary-800 p-2">
+          <View className={cn('mr-3 rounded-full p-3', bgColor)}>
             {React.cloneElement(icon, { color: iconColor })}
           </View>
         ) : null}

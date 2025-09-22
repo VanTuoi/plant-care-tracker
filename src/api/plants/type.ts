@@ -77,3 +77,15 @@ export const plantFormSchema = z.object({
 });
 
 export type PlantFormValues = z.infer<typeof plantFormSchema>;
+
+export const plantNameSchema = plantFormSchema.pick({
+  name: true,
+});
+
+export type PlantNameForm = z.infer<typeof plantNameSchema>;
+
+export const plantSizeSchema = plantFormSchema.pick({
+  size: true,
+});
+
+export type PlantSizeForm = z.infer<typeof plantSizeSchema>;
