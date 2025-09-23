@@ -11,7 +11,7 @@ type ItemsContainerProps = {
 
 export function ItemsContainer({ title, tx, children }: ItemsContainerProps) {
   return (
-    <View className="rounded-3xl border border-neutral-200 bg-neutral-50 px-4 py-3 dark:border-neutral-700 dark:bg-neutral-800">
+    <View className="w-full rounded-3xl border border-neutral-200 bg-neutral-50 px-4 py-3 dark:border-neutral-700 dark:bg-neutral-800">
       {tx ? (
         <Text
           tx={tx}

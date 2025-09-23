@@ -4,11 +4,12 @@ import { Redirect, SplashScreen, Tabs } from 'expo-router';
 import React, { useCallback, useEffect } from 'react';
 import { Easing } from 'react-native';
 
-import { colors, View } from '@/components/ui';
+import { TabIcon } from '@/components/home/tab-icon';
+import { colors } from '@/components/ui';
 import { Home, Settings as SettingsIcon } from '@/components/ui/icons';
 import { Plant } from '@/components/ui/icons/plant';
 import { Search2 } from '@/components/ui/icons/search-2';
-import { cn, useAuth } from '@/lib';
+import { useAuth } from '@/lib';
 import { useThemeConfig } from '@/lib/use-theme-config';
 
 export default function TabLayout() {
@@ -100,20 +101,5 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
-  );
-}
-
-type TabIconProps = {
-  icon: React.ReactNode;
-  focused: boolean;
-};
-
-function TabIcon({ icon, focused }: TabIconProps) {
-  return (
-    <View
-      className={cn('rounded-full px-6 py-2', focused ? 'bg-primary-50' : '')}
-    >
-      {icon}
-    </View>
   );
 }

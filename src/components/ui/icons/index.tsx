@@ -20,6 +20,7 @@ export * from './home';
 export * from './humidity';
 export * from './image';
 export * from './language';
+export * from './location';
 export * from './logout';
 export * from './mail';
 export * from './no-data';
