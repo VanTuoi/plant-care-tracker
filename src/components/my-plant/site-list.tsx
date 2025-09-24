@@ -5,15 +5,11 @@ import { Dimensions } from 'react-native';
 
 import { type Plant, type PlantImage, usePlants } from '@/api';
 import { type QuerySites, type Site, useSites } from '@/api/sites';
-import {
-  ActivityIndicator,
-  colors,
-  Image,
-  Pressable,
-  Text,
-  View,
-} from '@/components/ui';
+import { Image, Pressable, Text, View } from '@/components/ui';
 import { getFileUrl, translate, useQueryParams } from '@/lib';
+
+import { ErrorState } from '../common';
+import { LoadingState } from '../common/loading-state';
 
 const defaultFilter: QuerySites = {
   page: 1,
@@ -44,126 +40,110 @@ export const SiteList = () => {
   };
 
   if (isPending) {
-    return (
-      <View className="items-center justify-center pt-10">
-        <ActivityIndicator size="large" color={colors.primary[500]} />
-      </View>
-    );
+    return <LoadingState />;
   }
-
   if (isError) {
-    return (
-      <View className="flex-1 items-center justify-center">
-        <Text className="text-red-500">{translate('common.error_load')}</Text>
-      </View>
-    );
+    return <ErrorState />;
   }
 
   return (
-    <>
-      <View className="flex flex-col justify-start gap-2">
-        {data?.data.map((site: Site) => {
-          return (
-            <Pressable
-              key={site.id}
-              onPress={() => router.push(`/sites/${site.id}`)}
-              className="px-4"
-            >
-              <View className="w-full flex-row gap-1">
-                <Image
-                  source={getPlantImage(
-                    plantsData?.data.filter(
-                      (item) => item.siteId === site.id
-                    )[0]?.images,
-                    0
-                  )}
-                  style={{
-                    width: width / 2 - 28,
-                    height: IMAGE_HEIGHT,
-                    borderTopLeftRadius: 32,
-                    borderBottomLeftRadius: 32,
-                  }}
-                  className="bg-primary-200"
-                  resizeMode="cover"
-                />
+    <View className="flex flex-col justify-start gap-2">
+      {data?.data.map((site: Site) => {
+        return (
+          <Pressable
+            key={site.id}
+            onPress={() => router.push(`/sites/${site.id}`)}
+          >
+            <View className="w-full flex-row gap-1">
+              <Image
+                source={getPlantImage(
+                  plantsData?.data.filter((item) => item.siteId === site.id)[0]
+                    ?.images,
+                  0
+                )}
+                style={{
+                  width: width / 2 - 28,
+                  height: IMAGE_HEIGHT,
+                  borderTopLeftRadius: 32,
+                  borderBottomLeftRadius: 32,
+                }}
+                className="bg-primary-200"
+                resizeMode="cover"
+              />
 
-                <View
-                  style={{ width: width / 2 - 4 }}
-                  className="flex-col gap-1"
-                >
-                  <View className="flex-1 flex-row gap-1">
-                    <Image
-                      source={getPlantImage(plantsData?.data[0]?.images, 1)}
-                      style={{
-                        flex: 1,
-                        height: IMAGE_HEIGHT / 2 - 2,
-                      }}
-                      className="bg-primary-200"
-                      resizeMode="cover"
-                    />
-                    <Image
-                      source={getPlantImage(plantsData?.data[0]?.images, 3)}
-                      style={{
-                        flex: 1,
-                        height: IMAGE_HEIGHT / 2 - 2,
-                        borderTopRightRadius: 32,
-                      }}
-                      className="bg-primary-200"
-                      resizeMode="cover"
-                    />
-                  </View>
+              <View style={{ width: width / 2 - 4 }} className="flex-col gap-1">
+                <View className="flex-1 flex-row gap-1">
+                  <Image
+                    source={getPlantImage(plantsData?.data[0]?.images, 1)}
+                    style={{
+                      flex: 1,
+                      height: IMAGE_HEIGHT / 2 - 2,
+                    }}
+                    className="bg-primary-200"
+                    resizeMode="cover"
+                  />
+                  <Image
+                    source={getPlantImage(plantsData?.data[0]?.images, 3)}
+                    style={{
+                      flex: 1,
+                      height: IMAGE_HEIGHT / 2 - 2,
+                      borderTopRightRadius: 32,
+                    }}
+                    className="bg-primary-200"
+                    resizeMode="cover"
+                  />
+                </View>
 
-                  <View className="flex-1 flex-row gap-1">
-                    <Image
-                      source={getPlantImage(plantsData?.data[0]?.images, 2)}
-                      style={{
-                        flex: 1,
-                        height: IMAGE_HEIGHT / 2 - 2,
-                      }}
-                      className="bg-primary-200"
-                      resizeMode="cover"
-                    />
-                    <Image
-                      source={getPlantImage(plantsData?.data[0]?.images, 3)}
-                      style={{
-                        flex: 1,
-                        height: IMAGE_HEIGHT / 2 - 2,
-                        borderBottomRightRadius: 32,
-                      }}
-                      className="bg-primary-200"
-                      resizeMode="cover"
-                    />
-                  </View>
+                <View className="flex-1 flex-row gap-1">
+                  <Image
+                    source={getPlantImage(plantsData?.data[0]?.images, 2)}
+                    style={{
+                      flex: 1,
+                      height: IMAGE_HEIGHT / 2 - 2,
+                    }}
+                    className="bg-primary-200"
+                    resizeMode="cover"
+                  />
+                  <Image
+                    source={getPlantImage(plantsData?.data[0]?.images, 3)}
+                    style={{
+                      flex: 1,
+                      height: IMAGE_HEIGHT / 2 - 2,
+                      borderBottomRightRadius: 32,
+                    }}
+                    className="bg-primary-200"
+                    resizeMode="cover"
+                  />
                 </View>
               </View>
+            </View>
 
-              <View className="flex-row items-start justify-between py-2">
-                <View className="flex-col gap-0">
-                  <Text className="text-2xl font-bold text-primary-800">
-                    {site.name}
-                  </Text>
-                  <Text className="text-md font-medium text-neutral-600">
-                    {
-                      plantsData?.data.filter(
-                        (item: Plant) => item.siteId === site.id
-                      ).length
-                    }{' '}
-                    cây
-                  </Text>
-                </View>
-                <Text className="rounded-full bg-danger-200 px-2 py-1 font-bold text-danger-600">
+            <View className="flex-row items-start justify-between py-2">
+              <View className="flex-col gap-0">
+                <Text className="font-signika-bold text-2xl text-primary-800">
+                  {site.name}
+                </Text>
+                <Text className="text-md font-medium text-neutral-600">
                   {
                     plantsData?.data.filter(
                       (item: Plant) => item.siteId === site.id
                     ).length
                   }{' '}
-                  nhiệm vụ
+                  {translate('my_plant.site_list.plant_number')}
                 </Text>
               </View>
-            </Pressable>
-          );
-        })}
-      </View>
-    </>
+              <Text className="rounded-full bg-danger-200 px-2 py-1 font-signika-bold text-danger-600">
+                {
+                  plantsData?.data.filter(
+                    (item: Plant) => item.siteId === site.id
+                  ).length
+                }{' '}
+                {translate('my_plant.site_list.task')}
+              </Text>
+            </View>
+          </Pressable>
+        );
+      })}
+    </View>
   );
 };

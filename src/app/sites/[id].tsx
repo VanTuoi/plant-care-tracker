@@ -4,6 +4,7 @@ import * as React from 'react';
 import { useColorScheme } from 'react-native';
 
 import { type QueryPlant, usePlants, useSite } from '@/api';
+import { ErrorState, LoadingState } from '@/components/common';
 import { PlantItem } from '@/components/sites/plant-item';
 import {
   Button,
@@ -12,7 +13,6 @@ import {
   FabMenu,
   FocusAwareStatusBar,
   ScrollView,
-  Text,
   View,
 } from '@/components/ui';
 import { Check, Plant, Settings } from '@/components/ui/icons';
@@ -41,26 +41,18 @@ export default function Sites() {
   });
 
   if (isPending) {
-    return (
-      <View className="flex-1 items-center justify-center pt-5">
-        <Text className="text-primary-500">Loading...</Text>
-      </View>
-    );
+    return <LoadingState />;
   }
 
   if (isError) {
-    return (
-      <View className="flex-1 items-center justify-center">
-        <Text className="text-red-500">{translate('common.error_load')}</Text>
-      </View>
-    );
+    return <ErrorState />;
   }
 
   return (
     <>
       <Stack.Screen
         options={{
-          title: data?.name || 'Khu vực',
+          title: data?.name || translate('site.title'),
           headerRight: () => (
             <Button
               testID="edit-site"
@@ -82,8 +74,8 @@ export default function Sites() {
       />
       <FocusAwareStatusBar />
 
-      <View className="flex-1">
-        <ScrollView className="flex-col gap-2 p-4">
+      <ScrollView className="p-4">
+        <View className="flex-col gap-2">
           <View className="flex-row gap-1 py-2">
             <Chip label={data.lightType} variant="primary" />
             <Chip label={data.sunlight} variant="primary" />
@@ -91,20 +83,20 @@ export default function Sites() {
           {dataPlant?.data.map((item) => {
             return <PlantItem item={item} key={item.id} />;
           })}
-        </ScrollView>
-      </View>
+        </View>
+      </ScrollView>
 
       <FabMenu
         position="bottom-right"
         items={[
           {
             icon: <Check size={20} color={colors.primary[50]} />,
-            label: 'Thêm nhiệm vụ cho cây',
+            label: translate('site.fab.addTask'),
             onPress: () => {},
           },
           {
             icon: <Plant size={20} color={colors.primary[50]} />,
-            label: 'Thêm cây trồng',
+            label: translate('site.fab.addPlant'),
             onPress: () => router.push(`/find-species?siteId=${data.id}`),
           },
         ]}

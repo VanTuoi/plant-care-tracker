@@ -2,22 +2,22 @@ import { FlashList } from '@shopify/flash-list';
 import React from 'react';
 
 import { usePlants } from '@/api/plants';
-import { PlantItem } from '@/components/plant/item';
-import { SearchPlantComponent } from '@/components/plant/search';
-import { EmptyList, Text, View } from '@/components/ui';
-import { translate } from '@/lib/i18n';
+import { EmptyList, View } from '@/components/ui';
+
+import { ErrorState, LoadingState } from '../common';
+import { PlantItem, SearchPlantComponent } from '../plant';
 
 export function PlantList() {
   const { data, isPending, isError, refetch } = usePlants({
     variables: {},
   });
 
+  if (isPending) {
+    return <LoadingState />;
+  }
+
   if (isError) {
-    return (
-      <View className="flex-1 items-center justify-center pt-10">
-        <Text className="text-red-500">{translate('common.error_load')}</Text>
-      </View>
-    );
+    return <ErrorState />;
   }
 
   return (

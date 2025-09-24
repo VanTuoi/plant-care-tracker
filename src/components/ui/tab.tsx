@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { Pressable, View } from 'react-native';
 
+import { Text } from '@/components/ui/text';
 import { cn } from '@/lib';
-
-import { Text } from './text';
 
 type TabItem = {
   label: string;

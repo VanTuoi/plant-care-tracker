@@ -4,16 +4,15 @@ import { useQueryClient } from '@tanstack/react-query';
 import { Stack, useRouter } from 'expo-router';
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { ActivityIndicator, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
 
 import { useMe, type UserNameForm, userNameSchema, useUpdateMe } from '@/api';
-import { ItemsContainer } from '@/components/common/items-container';
-import { Button, colors, Input, Text, View } from '@/components/ui';
+import { ErrorState, ItemsContainer, LoadingState } from '@/components/common';
+import { Button, Input, Text } from '@/components/ui';
 import { translate } from '@/lib';
 
 export default function EditNameSite() {
   const router = useRouter();
-
   const { data, isPending, isError } = useMe();
 
   const queryClient = useQueryClient();
@@ -28,54 +27,32 @@ export default function EditNameSite() {
   });
 
   const onSubmit = (values: UserNameForm) => {
-    updateMe.mutate(
-      { ...values },
-      {
-        onSuccess: () => {
-          queryClient.invalidateQueries({
-            queryKey: ['me'],
-          });
-          router.back();
-        },
-      }
-    );
+    updateMe.mutate(values, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['me'] });
+        router.back();
+      },
+    });
   };
 
-  if (isPending) {
-    return (
-      <View className="flex-1 items-center justify-center bg-primary-50">
-        <ActivityIndicator size="large" color={colors.primary[800]} />
-      </View>
-    );
-  }
-
-  if (isError) {
-    return (
-      <View className="flex-1 items-center justify-center">
-        <Text className="text-red-500">{translate('common.error_load')}</Text>
-      </View>
-    );
-  }
+  if (isPending) return <LoadingState />;
+  if (isError) return <ErrorState />;
 
   return (
     <>
-      <Stack.Screen
-        options={{
-          title: '',
-        }}
-      />
+      <Stack.Screen options={{ title: '' }} />
 
       <ScrollView className="px-4" showsVerticalScrollIndicator={false}>
-        <Text className="py-2 text-3xl font-bold text-primary-800">
-          Chỉnh sửa tên
+        <Text className="py-2 font-signika-bold text-3xl text-primary-800">
+          {translate('settings.profile.edit_name_title')}
         </Text>
-        <ItemsContainer title="Tên hiển thị">
+        <ItemsContainer title={translate('settings.profile.display_name')}>
           <Controller
             control={control}
             name="firstName"
             render={({ field, fieldState }) => (
               <Input
-                label="Họ"
+                label={translate('settings.profile.first_name')}
                 value={field.value}
                 onChangeText={field.onChange}
                 error={fieldState.error?.message}
@@ -87,7 +64,7 @@ export default function EditNameSite() {
             name="lastName"
             render={({ field, fieldState }) => (
               <Input
-                label="Tên"
+                label={translate('settings.profile.last_name')}
                 value={field.value}
                 onChangeText={field.onChange}
                 error={fieldState.error?.message}
@@ -98,12 +75,12 @@ export default function EditNameSite() {
 
         <Button
           size="lg"
-          label="Lưu"
+          label={translate('common.button.save')}
           loading={updateMe.isPending}
           onPress={handleSubmit(onSubmit)}
           disabled={updateMe.isPending}
           variant="secondary"
-          textClassName="font-bold"
+          textClassName="font-signika-bold"
           className="rounded-full"
         />
       </ScrollView>

@@ -42,7 +42,7 @@ export default function Edit() {
     <>
       <Stack.Screen
         options={{
-          headerTitle: 'Thay đổi cài đặt cây',
+          headerTitle: translate('plant.plantEdit.settings_title'),
         }}
       />
 
@@ -53,86 +53,98 @@ export default function Edit() {
           contentContainerStyle={{ paddingBottom: 80, gap: 20 }}
           className=" px-4 py-1"
         >
-          <ItemsContainer title="Tên cây">
+          <ItemsContainer title={translate('plant.plantEdit.name_section')}>
             <Item
-              label="Tuỳ chỉnh tên"
+              label={translate('plant.plantEdit.name_edit')}
               icon={<Tag size={24} />}
               bgColor="bg-primary-800"
               iconColor={colors.neutral[200]}
               onPress={() => router.push('./edit/name')}
             />
           </ItemsContainer>
-          <ItemsContainer title="Phân bón">
+
+          <ItemsContainer
+            title={translate('plant.plantEdit.fertilizer_section')}
+          >
             <Item
-              label="Phân bón"
+              label={translate('plant.plantEdit.fertilizer')}
               icon={<Plant size={24} />}
               bgColor="bg-yellow-600"
               iconColor={colors.neutral[200]}
             />
           </ItemsContainer>
-          <ItemsContainer title="Cây">
+
+          <ItemsContainer title={translate('plant.plantEdit.plant_section')}>
             <Item
-              label="Kích thước"
+              label={translate('plant.plantEdit.size')}
               icon={<Size size={24} />}
               bgColor="bg-primary-400"
               iconColor={colors.neutral[200]}
               onPress={() => router.push('./edit/size')}
             />
             <Item
-              label="Loại cây"
+              label={translate('plant.plantEdit.type')}
               icon={<Plant size={24} />}
               bgColor="bg-primary-400"
               iconColor={colors.neutral[200]}
             />
           </ItemsContainer>
-          <ItemsContainer title="Khu vực">
+
+          <ItemsContainer title={translate('plant.plantEdit.area_section')}>
             <Item
-              label="Khu vực"
+              label={translate('plant.plantEdit.area')}
               bgColor="bg-gray-400"
               icon={<Home size={24} />}
               iconColor={colors.neutral[200]}
               onPress={() => router.push('./edit/name')}
             />
           </ItemsContainer>
+
           <View className="flex flex-col items-start justify-start rounded-2xl bg-primary-100 p-5">
-            <Text className="text-primary-800">Ghi chú!</Text>
-            <Text className="text-primary-800">
-              Để thay đổi về khu vực, hãy đến chức năng cài đặt của khu vực
-            </Text>
+            <Text>{translate('plant.plantEdit.note_title')}</Text>
+            <Text>{translate('plant.plantEdit.note_content')}</Text>
           </View>
+
           <View className="w-full flex-col">
             <Button
               size="lg"
-              label="Nó đã chết, chuyển đến kho lưu trữ"
+              label={translate('plant.plantEdit.archive')}
               variant="secondary"
-              textClassName="font-bold"
+              textClassName="font-signika-bold"
               className="rounded-full bg-primary-800"
             />
             <Button
               size="lg"
-              label="Xoá cây"
+              label={translate('plant.plantEdit.delete')}
               onPress={() => {
-                Alert.alert('Xoá cây', 'Bạn có chắc muốn xoá cây này không?', [
-                  { text: 'Thôi', style: 'cancel' },
-                  {
-                    text: 'Xoá ngay',
-                    style: 'destructive',
-                    onPress: async () => {
-                      try {
-                        await mutateAsync({ id: data.id });
-                        router.replace('/my-plant');
-                      } catch (err) {
-                        Alert.alert(
-                          'Lỗi',
-                          'Không thể xoá cây, vui lòng thử lại.'
-                        );
-                      }
+                Alert.alert(
+                  translate('plant.plantEdit.delete_alert_title'),
+                  translate('plant.plantEdit.delete_alert_message'),
+                  [
+                    {
+                      text: translate('plant.plantEdit.delete_alert_cancel'),
+                      style: 'cancel',
                     },
-                  },
-                ]);
+                    {
+                      text: translate('plant.plantEdit.delete_alert_confirm'),
+                      style: 'destructive',
+                      onPress: async () => {
+                        try {
+                          await mutateAsync({ id: data.id });
+                          router.replace('/my-plant');
+                        } catch (err) {
+                          Alert.alert(
+                            translate('plant.plantEdit.delete_error_title'),
+                            translate('plant.plantEdit.delete_error_message')
+                          );
+                        }
+                      },
+                    },
+                  ]
+                );
               }}
               variant="destructive"
-              textClassName="font-bold"
+              textClassName="font-signika-bold"
               className="rounded-full bg-danger-700"
             />
           </View>

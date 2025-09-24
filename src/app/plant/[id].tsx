@@ -1,20 +1,18 @@
 /* eslint-disable max-lines-per-function */
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { ActivityIndicator, SafeAreaView, ScrollView } from 'react-native';
+import { SafeAreaView, ScrollView } from 'react-native';
 
 import { usePlant } from '@/api';
-import { ImageSlider } from '@/components/common/image-slider';
-import { CareInfoPlant } from '@/components/plant/detail/care-info';
+import { ErrorState, ImageSlider, LoadingState } from '@/components/common';
 import {
+  CareInfoPlant,
   FertilizerModal,
+  TodoPlant,
   useFertilizerModal,
-} from '@/components/plant/detail/fertilizer-modal';
-import { TodoPlant } from '@/components/plant/detail/todo';
-import {
   useWateringModal,
   WateringModal,
-} from '@/components/plant/detail/watering-modal';
+} from '@/components/plant';
 import {
   Button,
   colors,
@@ -45,19 +43,11 @@ export default function PlantDetail() {
   const fertilizerModal = useFertilizerModal();
 
   if (isPending) {
-    return (
-      <View className="flex-1 items-center justify-center bg-primary-50">
-        <ActivityIndicator size="large" color={colors.primary[800]} />
-      </View>
-    );
+    return <LoadingState />;
   }
 
-  if (isError || !data) {
-    return (
-      <View className="flex-1 items-center justify-center">
-        <Text className="text-red-500">{translate('common.error_load')}</Text>
-      </View>
-    );
+  if (isError) {
+    return <ErrorState />;
   }
 
   return (
@@ -94,17 +84,15 @@ export default function PlantDetail() {
             children={
               <View className="absolute bottom-4 left-1/2 -translate-x-1/2 flex-row items-center rounded-2xl bg-primary-100 px-4 py-2">
                 <Home color={colors.primary[800]} size={14} />
-                <Text className="text-md ml-2 font-bold text-primary-800">
-                  Ban công nhà A
+                <Text className="text-md ml-2 font-signika-bold">
+                  {data.siteId}
                 </Text>
               </View>
             }
           />
 
           <View className="flex-col gap-1 px-4 pt-6">
-            <Text className="text-3xl font-bold text-primary-800">
-              {data?.name}
-            </Text>
+            <Text className="font-signika-bold text-3xl">{data?.name}</Text>
             <Text className="text-xl text-primary-500">
               {data?.scientificName}
             </Text>
@@ -115,12 +103,12 @@ export default function PlantDetail() {
             onChange={setActiveTab}
             tabs={[
               {
-                label: 'Cần làm',
+                label: translate('plant.plantDetail.tabs.todo'),
                 value: 'todo',
                 content: <TodoPlant plant={data} />,
               },
               {
-                label: 'Chăm sóc',
+                label: translate('plant.plantDetail.tabs.care'),
                 value: 'info',
                 content: <CareInfoPlant plant={data} />,
               },
@@ -136,25 +124,24 @@ export default function PlantDetail() {
                   ...
                 </Text>
               ),
-
-              label: 'Thêm',
+              label: translate('common.button.add'),
               backgroundColor: 'bg-primary-400',
               onPress: () => {},
             },
             {
               icon: <Camera size={20} color={colors.primary[50]} />,
-              label: 'Chụp ảnh',
+              label: translate('plant.plantDetail.fab.takePhoto'),
               backgroundColor: 'bg-primary-400',
               onPress: () => router.push(`/plant/${id}/growth-diaries`),
             },
             {
               icon: <Fertilizer size={20} color={colors.primary[50]} />,
-              label: 'Bón phân',
+              label: translate('plant.plantDetail.fab.fertilize'),
               onPress: () => fertilizerModal.present(),
             },
             {
               icon: <WateringCan size={20} color={colors.primary[50]} />,
-              label: 'Tưới nước',
+              label: translate('plant.plantDetail.fab.water'),
               onPress: () => wateringModal.present(),
             },
           ]}

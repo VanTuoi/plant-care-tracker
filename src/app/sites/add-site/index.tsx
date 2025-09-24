@@ -1,12 +1,10 @@
-/* eslint-disable unicorn/filename-case */
-/* eslint-disable max-lines-per-function */
 import { useLocalSearchParams } from 'expo-router';
 import * as React from 'react';
 
-import AddSiteScreen from '@/components/sites/add-site-step';
+import { AddSiteScreen } from '@/components/sites';
 import { FocusAwareStatusBar, ScrollView, View } from '@/components/ui';
 
-export default function AddPlant() {
+export default function AddSite() {
   const { templateSiteId } = useLocalSearchParams<{
     templateSiteId?: string;
   }>();
@@ -14,12 +12,8 @@ export default function AddPlant() {
   return (
     <>
       <FocusAwareStatusBar />
-
       <View className="flex-1">
-        <ScrollView
-          className="flex-1 p-2"
-          contentContainerStyle={{ paddingBottom: 80 }}
-        >
+        <ScrollView className="flex-1 p-2">
           <AddSiteScreen templateSiteId={templateSiteId} />
         </ScrollView>
       </View>

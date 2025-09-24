@@ -1,32 +1,334 @@
 {
   "common": {
+    "button": {
+      "add": "إضافة",
+      "back": "رجوع",
+      "cancel": "إلغاء",
+      "close": "إغلاق",
+      "complete": "إكمال",
+      "confirm": "تأكيد",
+      "delete": "حذف",
+      "error": "خطأ",
+      "next": "التالي",
+      "save": "حفظ",
+      "update": "تحديث"
+    },
+    "error_form": {
+      "select_minimum": "اختر خيارًا واحدًا على الأقل"
+    },
     "error_load": "خطأ في تحميل البيانات",
-    "no_data": "عذرًا! لا توجد بيانات",
-    "save": "حفظ"
+    "form": {
+      "select": "الرجاء الاختيار"
+    },
+    "imagePicker": {
+      "camera": "الكاميرا",
+      "gallery": "اختر من المعرض",
+      "title": "اختر صورة"
+    },
+    "no_data": "عذرًا! لم يتم العثور على بيانات"
   },
-  "layout": {
-    "settings_tab": "الإعدادات",
-    "user_tab": "المستخدم"
+  "fertilizers": {
+    "form": {
+      "select": "الرجاء الاختيار"
+    }
+  },
+  "home": {
+    "fab": {
+      "addPlant": "إضافة نبات",
+      "addSite": "إضافة موقع"
+    },
+    "greeting": {
+      "afternoon": "مساء الخير",
+      "evening": "مساء الخير",
+      "morning": "صباح الخير",
+      "night": "ليلة سعيدة"
+    },
+    "subtitle": {
+      "afternoon": "الظهيرة وقت جيد للتحقق من نباتاتك.",
+      "evening": "المساء مثالي للاسترخاء مع نباتاتك.",
+      "morning": "الصباح وقت رائع للاعتناء بنباتاتك.",
+      "night": "الليل للراحة، ونباتاتك أيضًا."
+    },
+    "tabs": {
+      "today": "اليوم",
+      "upcoming": "القادم"
+    },
+    "tasks": {
+      "count": "{{count}} مهام",
+      "fertilize": "تسميد",
+      "prune": "تقليم",
+      "repot": "إعادة زراعة",
+      "water": "ري"
+    },
+    "todayMission": {
+      "completionHint": "أكمل المهام بالضغط على التعليمات",
+      "fertilizing": "تسميد",
+      "lateDays": "متأخر {{days}} يوم",
+      "overdue": "متأخر",
+      "pruning": "تقليم",
+      "repotting": "إعادة زراعة",
+      "watering": "ري"
+    },
+    "upcomingMission": {
+      "completionHint": "أكمل المهام بالضغط على التعليمات",
+      "next3Days": "الـ 3 أيام القادمة",
+      "nextWeek": "الأسبوع القادم"
+    }
   },
   "login": {
     "button": "تسجيل الدخول",
-    "demo_email": "البريد الإلكتروني التجريبي هو admin@example.com",
-    "demo_message": "مرحبًا! 👋 هذه شاشة تسجيل دخول تجريبية!",
-    "demo_password": "كلمة المرور التجريبية هي 123456",
+    "button_register": "تسجيل",
     "errors": {
       "email_invalid": "صيغة البريد الإلكتروني غير صالحة",
       "email_notfound": "البريد الإلكتروني غير موجود",
       "email_required": "البريد الإلكتروني مطلوب",
       "incorrect_password": "كلمة المرور غير صحيحة",
-      "password_min": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
+      "password_min": "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
       "password_required": "كلمة المرور مطلوبة",
       "server": "خطأ في الخادم"
     },
+    "forget_password": "نسيت كلمة المرور؟",
     "form": {
       "email": "البريد الإلكتروني",
       "password": "كلمة المرور"
     },
     "title": "تسجيل الدخول"
+  },
+  "my_plant": {
+    "overview": {
+      "careTasks": "مهام العناية",
+      "loading": "0 مواقع 0 نباتات",
+      "plantsCount": "{{count}} نباتات",
+      "sitesCount": "{{count}} مواقع",
+      "totalPlants": "إجمالي النباتات",
+      "totalSites": "إجمالي المواقع"
+    },
+    "plant_list": {
+      "placeholder_search": "بحث"
+    },
+    "site_list": {
+      "plant_number": "نبات",
+      "task": "مهمة"
+    },
+    "tabs": {
+      "images": "الصور",
+      "plant": "النباتات",
+      "site": "المواقع"
+    },
+    "title": "نباتاتي"
+  },
+  "plant": {
+    "plantDetail": {
+      "careInfo": {
+        "area": {
+          "title": "المنطقة"
+        },
+        "description": "بفضل نظام جذوره الهوائية يمكنه النمو بشكل شاقولي على الشجرة/الجدار، لذا دعهُ يتسلق!",
+        "sections": {
+          "area": "المنطقة",
+          "care": "العناية"
+        },
+        "wateringHistory": {
+          "nextTime": "المرة القادمة بعد يومين",
+          "schedule": "الري كل أسبوعين",
+          "title": "سجل الري"
+        }
+      },
+      "fab": {
+        "fertilize": "تسميد",
+        "takePhoto": "التقاط صورة",
+        "water": "ري"
+      },
+      "fertilizerModal": {
+        "amount": "كمية السماد (غ/مل)",
+        "descriptionAdd": "هذا الإجراء سيسجل أن {{plantName}} تم تسميده.",
+        "descriptionEdit": "تعديل سجل التسميد لـ {{plantName}}.",
+        "method": "طريقة التسميد",
+        "methods": {
+          "foliar_feed": "رش ورقي",
+          "liquid_feed": "سماد سائل",
+          "other": "أخرى",
+          "soil_mixing": "خلط مع التربة",
+          "surface_spread": "نشر على السطح"
+        },
+        "note": "ملاحظة",
+        "titleAdd": "وضع علامة كأنه تم تسميده",
+        "titleEdit": "تحديث التسميد",
+        "type": "نوع السماد",
+        "types": {
+          "ammonium_sulfate": "كبريتات الأمونيوم",
+          "bloodmeal": "مسحوق دم",
+          "bonemeal": "مسحوق عظام",
+          "compost": "سماد عضوي",
+          "green_manure": "سماد أخضر",
+          "inorganic": "غير عضوي",
+          "liquid": "سماد سائل",
+          "manure": "روث",
+          "micro_nutrient": "مغذيات دقيقة",
+          "npk": "NPK",
+          "organic": "عضوي",
+          "other": "أخرى",
+          "urea": "يوريا"
+        }
+      },
+      "growthDiary": {
+        "addNote": "أضف ملاحظة...",
+        "mood": "المزاج",
+        "moodPlaceholder": "اختر المزاج...",
+        "noteAndImage": "ملاحظة وصورة"
+      },
+      "historyWatering": {
+        "empty": "لا يوجد سجل للري.",
+        "title": "سجل الري"
+      },
+      "mood": {
+        "angry": "غاضب",
+        "happy": "سعيد",
+        "neutral": "عادي",
+        "other": "أخرى",
+        "sad": "حزين"
+      },
+      "tabs": {
+        "care": "العناية",
+        "todo": "المهام"
+      },
+      "todo": {
+        "completeHint": "أكمل المهام بالضغط على الدليل",
+        "day_ago": "يوم مضى",
+        "fertilizing": {
+          "schedule": "كل 14 يوم",
+          "title": "تسميد"
+        },
+        "lastTime": "آخر مرة:",
+        "noData": "لا توجد سجلات",
+        "overdue": "متأخر {{days}} يوم",
+        "today": "اليوم",
+        "watering": {
+          "action": "ري",
+          "schedule": "كل 3 أيام",
+          "title": "ري"
+        },
+        "yesterday": "أمس"
+      },
+      "wateringModal": {
+        "amount": "كمية الماء (مل)",
+        "descriptionAdd": "هذا الإجراء سيسجل أن {{plantName}} تم ريه.",
+        "descriptionEdit": "تعديل سجل الري لـ {{plantName}}.",
+        "method": "طريقة الري",
+        "methods": {
+          "drip": "ري بالتنقيط",
+          "immersion": "نقع",
+          "other": "أخرى",
+          "overhead": "ري علوي",
+          "root": "ري الجذور",
+          "self_watering": "أصص الري الذاتي",
+          "spray": "رذاذ / ضباب",
+          "wick": "نظام الفتيلة"
+        },
+        "note": "ملاحظة",
+        "titleAdd": "وضع علامة كأنه تم ريه",
+        "titleEdit": "تحديث الري"
+      }
+    },
+    "plantEdit": {
+      "archive": "لقد مات، انقل إلى الأرشيف",
+      "area": "المنطقة",
+      "area_section": "المنطقة",
+      "delete": "حذف النبات",
+      "delete_alert_cancel": "إلغاء",
+      "delete_alert_confirm": "احذف الآن",
+      "delete_alert_message": "هل أنت متأكد من رغبتك في حذف هذا النبات؟",
+      "delete_alert_title": "حذف النبات",
+      "delete_error_message": "تعذر حذف النبات، يرجى المحاولة مرة أخرى.",
+      "delete_error_title": "خطأ",
+      "edit_name": {
+        "field_label": "اسم النبات",
+        "header": "تعديل اسم النبات",
+        "section_title": "اسم العرض",
+        "title": "تعديل اسم النبات"
+      },
+      "edit_size": {
+        "field_label": "حجم النبات",
+        "header": "ما هو حجم نباتك؟",
+        "options": {
+          "huge": "ضخم (> 120 سم)",
+          "large": "كبير (60 - 120 سم)",
+          "medium": "متوسط (30 - 60 سم)",
+          "small": "صغير (10 - 30 سم)",
+          "tiny": "صغير جدًا (< 10 سم)"
+        },
+        "title": "تعديل حجم النبات"
+      },
+      "fertilizer": "سماد",
+      "fertilizer_section": "السماد",
+      "name_edit": "تخصيص الاسم",
+      "name_section": "الاسم",
+      "note_content": "لتغيير المنطقة، يرجى الانتقال إلى وظيفة إعدادات المنطقة.",
+      "note_title": "ملاحظة!",
+      "plant_section": "نبات",
+      "settings_title": "تغيير إعدادات النبات",
+      "size": "الحجم",
+      "type": "نوع النبات"
+    },
+    "plantWizard": {
+      "inGroundOptions": {
+        "inGround": "في الأرض",
+        "potted": "في أصيص"
+      },
+      "sizeOptions": {
+        "huge": "ضخم",
+        "large": "كبير",
+        "medium": "متوسط",
+        "small": "صغير",
+        "tiny": "صغير جدًا"
+      },
+      "steps": {
+        "inGround": {
+          "title": "هل نباتك في أصيص؟"
+        },
+        "lastFertilized": {
+          "title": "آخر مرة تم التسميد فيها"
+        },
+        "lastWatered": {
+          "title": "آخر مرة تم الري فيها"
+        },
+        "name": {
+          "placeholder": "مثال: نبات الأفعى",
+          "title": "اسم نباتك"
+        },
+        "plantImage": {
+          "title": "أضف صورة نباتك"
+        },
+        "site": {
+          "title": "أين تريد وضع النبات؟"
+        },
+        "size": {
+          "title": "حجم النبات"
+        }
+      }
+    },
+    "search": {
+      "button_apply_filter": "تطبيق",
+      "button_reset_filter": "إعادة تعيين الفلتر",
+      "filter": "فلتر",
+      "order": "ترتيب",
+      "placeholder_search": "بحث",
+      "search_by": "البحث بواسطة",
+      "sort_by": "ترتيب حسب"
+    },
+    "species": {
+      "difficulty": {
+        "easy": "سهل",
+        "hard": "صعب",
+        "moderate": "متوسط"
+      },
+      "sunlight": {
+        "full_sun": "شمس كاملة",
+        "partial_sun": "شمس جزئية",
+        "shade": "ظل",
+        "unknown": "غير معروف"
+      }
+    }
   },
   "settings": {
     "about": "حول",
@@ -36,28 +338,105 @@
     "generale": "عام",
     "language": "اللغة",
     "logout": "تسجيل الخروج",
+    "notification": {
+      "channel_email": "الإشعار عبر البريد الإلكتروني",
+      "channel_socket": "إشعار مباشر",
+      "channels": "قنوات الإشعارات",
+      "enable": "تفعيل الإشعارات",
+      "error_load": "خطأ في تحميل البيانات",
+      "general": "الإعدادات العامة",
+      "options": {
+        "anytime": "في أي وقت",
+        "fixed_time": "وقت محدد"
+      },
+      "time": "وقت الإشعار",
+      "time_mode": "الوضع",
+      "time_range": "النطاق الزمني",
+      "title": "إعدادات الإشعارات"
+    },
+    "profile": {
+      "become_beta": "كن عضوًا في النسخة التجريبية",
+      "beta_description": "بأن تصبح عضوًا في Beta، ستتلقى أحدث الميزات مننا.",
+      "beta_section": "بيتا",
+      "display_name": "اسم العرض",
+      "edit_name_title": "تعديل الاسم",
+      "first_name": "الاسم الأول",
+      "last_name": "الاسم الأخير",
+      "location": "الموقع",
+      "location_section": "الموقع",
+      "name_section": "الاسم",
+      "title": "الملف الشخصي",
+      "update_location": "تحديث الموقع"
+    },
     "theme": {
       "dark": "مظلم",
       "light": "فاتح",
       "system": "النظام",
-      "title": "المظهر"
+      "title": "السمة"
     },
     "title": "الإعدادات",
     "version": "الإصدار",
     "vietnamese": "الفيتنامية"
   },
+  "site": {
+    "edit": {
+      "deleteButton": "حذف الموقع",
+      "deleteConfirm": {
+        "message": "هل أنت متأكد من رغبتك في حذف هذا الموقع؟",
+        "title": "حذف الموقع"
+      },
+      "deleteError": "فشل في حذف الموقع",
+      "generalSettings": "الإعدادات العامة",
+      "hasRain": "يوجد مطر",
+      "humidity": "الرطوبة",
+      "siteInfo": "معلومات الموقع",
+      "siteName": "اسم الموقع",
+      "sunlight": "أشعة الشمس",
+      "temperature": "درجة الحرارة",
+      "title": "تعديل الموقع",
+      "wind": "الرياح"
+    },
+    "editName": {
+      "displayName": "اسم العرض",
+      "siteNameLabel": "اسم الموقع",
+      "title": "تعديل اسم الموقع"
+    },
+    "fab": {
+      "addPlant": "إضافة نبات",
+      "addTask": "إضافة مهمة"
+    },
+    "siteWizard": {
+      "onError": "خطأ عند إنشاء الموقع",
+      "steps": {
+        "name": {
+          "placeholder": "مثال: الطابق الثاني",
+          "title": "اسم هذه المنطقة"
+        },
+        "sunlight": {
+          "title": "كيف تكون أشعة الشمس في هذه المنطقة؟"
+        },
+        "template": {
+          "title": "ما هي مساحة الزراعة الخاصة بك؟"
+        }
+      },
+      "sunlightOptions": {
+        "fullSun": "شمس كاملة",
+        "partialSun": "شمس جزئية",
+        "shade": "ظل",
+        "unknown": "غير معروف"
+      }
+    },
+    "title": "الموقع"
+  },
   "species": {
-    "add_plant": "إضافة نبات",
-    "button_apply_filter": "تطبيق الفلتر",
-    "button_reset_filter": "إعادة تعيين",
     "care": {
       "fertilizing": {
         "amount": "الكمية: {{amount}} غرام",
         "fertilizer_type": {
           "ammonium_sulfate": "سماد كبريتات الأمونيوم",
-          "bloodmeal": "وجبة الدم",
-          "bonemeal": "وجبة العظام",
-          "compost": "سماد",
+          "bloodmeal": "مسحوق الدم",
+          "bonemeal": "مسحوق العظام",
+          "compost": "سماد عضوي",
           "green_manure": "سماد أخضر",
           "inorganic": "سماد غير عضوي",
           "liquid": "سماد سائل",
@@ -69,8 +448,8 @@
           "urea": "سماد اليوريا"
         },
         "fertilizing_method": {
-          "foliar_feed": "الرش الورقي",
-          "liquid_feed": "الري بالسماد",
+          "foliar_feed": "رش ورقي",
+          "liquid_feed": "ري بالتسميد",
           "other": "أخرى",
           "soil_mixing": "خلط مع التربة",
           "surface_spread": "نشر على السطح"
@@ -82,19 +461,19 @@
       },
       "title": "العناية",
       "watering": {
-        "amount": "{{amount}} مل/مرة",
+        "amount": "كل {{amount}} مل/مرة",
         "frequency": "كل {{freq}} يوم/مرة",
         "method": "الطريقة: {{method}}",
         "title": "الري",
         "watering_method": {
-          "drip": "الري بالتنقيط",
+          "drip": "ري بالتنقيط",
           "immersion": "نقع الأصص",
           "other": "أخرى",
           "overhead": "الري من الأعلى",
           "root": "ري الجذور",
           "self_watering": "الري الذاتي",
-          "spray": "الضباب",
-          "wick": "الري باستخدام الفتيل"
+          "spray": "رذاذ",
+          "wick": "الري بالفتيلة"
         }
       }
     },
@@ -107,19 +486,31 @@
       "name": "اسم النبات",
       "scientificName": "الاسم العلمي"
     },
+    "item_detail": {
+      "name": "نبات"
+    },
     "location_chip": "{{count}} مناطق متاحة",
+    "search": {
+      "add_plant": "إضافة نبات",
+      "button_apply_filter": "تطبيق الفلتر",
+      "button_reset_filter": "إعادة تعيين",
+      "search_title": "بحث عن نبات",
+      "sort_by": {
+        "name": "اسم النبات",
+        "scientificName": "الاسم العلمي",
+        "title": "ترتيب حسب"
+      },
+      "sort_order": {
+        "asc": "تصاعدي",
+        "desc": "تنازلي",
+        "title": "اتجاه الترتيب"
+      }
+    },
     "search_by": {
       "title": "البحث بواسطة"
     },
-    "sort_by": {
-      "name": "اسم النبات",
-      "scientificName": "الاسم العلمي",
-      "title": "ترتيب حسب"
-    },
-    "sort_order": {
-      "asc": "تصاعدي",
-      "desc": "تنازلي",
-      "title": "ترتيب الفرز"
+    "site": {
+      "title": "الموقع"
     },
     "sunlight": {
       "full_sun": "شمس كاملة",
@@ -129,13 +520,9 @@
     },
     "title": "معلومات الشجرة"
   },
-  "users": {
-    "button_apply_filter": "تطبيق",
-    "button_reset_filter": "إعادة تعيين الفلتر",
-    "filter": "فلتر",
-    "order": "ترتيب",
-    "placeholder_search": "بحث",
-    "search_by": "البحث بواسطة",
-    "sort_by": "ترتيب حسب"
+  "waters": {
+    "form": {
+      "select": "الرجاء الاختيار"
+    }
   }
 }

@@ -4,20 +4,24 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import React, { useEffect, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { Platform, Pressable, ScrollView } from 'react-native';
+import { Platform } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 
-import { useGetReminder, useUpdateReminder } from '@/api/reminder-options';
 import {
   type NotificationForm,
   NotificationSchema,
-} from '@/api/reminder-options/type';
-import { Item } from '@/components/common/item';
-import { ItemsContainer } from '@/components/common/items-container';
+  useGetReminder,
+  useUpdateReminder,
+} from '@/api';
+import { Item, ItemsContainer } from '@/components/common';
 import {
   Button,
   colors,
   FocusAwareStatusBar,
+  Options,
+  type OptionType,
+  Pressable,
+  ScrollView,
   Switch,
   Text,
   View,
@@ -25,16 +29,22 @@ import {
 import {
   Bell,
   CalendarCheck,
+  CalendarTime,
   CaretDown,
   Clock,
   Mail,
 } from '@/components/ui/icons';
-import { CalendarTime } from '@/components/ui/icons/calendar-time';
-import { Options, type OptionType } from '@/components/ui/select';
+import { translate } from '@/lib';
 
 const reminderOptions: OptionType[] = [
-  { label: 'Bất cứ khi nào', value: 'anytime' },
-  { label: 'Khung giờ cố định', value: 'fixed_time' },
+  {
+    label: translate('settings.notification.options.anytime'),
+    value: 'anytime',
+  },
+  {
+    label: translate('settings.notification.options.fixed_time'),
+    value: 'fixed_time',
+  },
 ];
 
 const defaultValues: NotificationForm = {
@@ -57,7 +67,7 @@ export default function NotificationConfig() {
   const { control, watch, reset, handleSubmit } = useForm<NotificationForm>({
     resolver: zodResolver(NotificationSchema),
     mode: 'onChange',
-    defaultValues: defaultValues,
+    defaultValues,
   });
 
   const formValues = watch();
@@ -77,10 +87,10 @@ export default function NotificationConfig() {
       },
       onError: () => {
         showMessage({
-          message: 'Lỗi khi lấy cài đặt',
+          message: translate('settings.notification.error_load'),
           type: 'danger',
-          backgroundColor: '#ef4444',
-          color: '#fff',
+          backgroundColor: colors.danger[500],
+          color: colors.white,
           icon: 'danger',
         });
       },
@@ -115,13 +125,14 @@ export default function NotificationConfig() {
       <FocusAwareStatusBar />
 
       <ScrollView>
-        <View className="flex-1 px-4 pt-2">
-          <Text className="py-2 text-2xl font-bold text-primary-900">
-            Cài đặt thông báo
+        <View className="flex-1 gap-4 px-4 pt-2">
+          <Text className="py-2 font-signika-bold text-2xl">
+            {translate('settings.notification.title')}
           </Text>
-          <ItemsContainer title="Cài đặt tổng quan">
+
+          <ItemsContainer title={translate('settings.notification.general')}>
             <Item
-              label="Bật thông báo"
+              label={translate('settings.notification.enable')}
               icon={<Bell size={24} />}
               iconColor={colors.neutral[200]}
             >
@@ -141,9 +152,11 @@ export default function NotificationConfig() {
 
           {formValues.isEnabled && (
             <>
-              <ItemsContainer title="Kênh nhận thông báo">
+              <ItemsContainer
+                title={translate('settings.notification.channels')}
+              >
                 <Item
-                  label="Thông báo qua email"
+                  label={translate('settings.notification.channel_email')}
                   icon={<Mail size={24} />}
                   iconColor={colors.neutral[200]}
                 >
@@ -167,7 +180,7 @@ export default function NotificationConfig() {
                 </Item>
 
                 <Item
-                  label="Thông báo trực tiếp"
+                  label={translate('settings.notification.channel_socket')}
                   icon={<CalendarCheck size={24} />}
                   iconColor={colors.neutral[200]}
                 >
@@ -190,9 +203,9 @@ export default function NotificationConfig() {
                 </Item>
               </ItemsContainer>
 
-              <ItemsContainer title="Thời gian báo">
+              <ItemsContainer title={translate('settings.notification.time')}>
                 <Item
-                  label="Báo vào lúc"
+                  label={translate('settings.notification.time_mode')}
                   icon={<Clock size={24} />}
                   iconColor={colors.neutral[200]}
                 >
@@ -211,7 +224,7 @@ export default function NotificationConfig() {
 
                 {formValues.sendMode === 'fixed_time' && (
                   <Item
-                    label="Khoảng giờ"
+                    label={translate('settings.notification.time_range')}
                     icon={<CalendarTime size={24} />}
                     iconColor={colors.neutral[200]}
                   >
@@ -304,7 +317,7 @@ export default function NotificationConfig() {
 
           <Button
             loading={isPending}
-            label="Lưu cài đặt"
+            label={translate('common.button.save')}
             onPress={handleSubmit(onSubmit)}
             size="lg"
             variant="secondary"

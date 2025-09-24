@@ -1,9 +1,10 @@
 /* eslint-disable max-lines-per-function */
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React from 'react';
-import { ActivityIndicator, Alert, ScrollView } from 'react-native';
+import { Alert, ScrollView } from 'react-native';
 
 import { useDeleteSite, useSite } from '@/api';
+import { ErrorState, LoadingState } from '@/components/common';
 import { Item } from '@/components/common/item';
 import { ItemsContainer } from '@/components/common/items-container';
 import { Button, colors, Switch, Text, View } from '@/components/ui';
@@ -25,41 +26,40 @@ export default function EditSite() {
   const { data: site, isPending, isError } = useSite({ variables: { id } });
 
   const handleDelete = () => {
-    Alert.alert('Xoá khu vực', 'Bạn có chắc muốn xoá khu vực này không?', [
-      { text: 'Huỷ', style: 'cancel' },
-      {
-        text: 'Xoá',
-        style: 'destructive',
-        onPress: () => {
-          deleteSite.mutate(
-            { id },
-            {
-              onSuccess: () => router.push('/my-plant'),
-              onError: (err) => {
-                console.error(err);
-                Alert.alert('Lỗi', 'Xoá khu vực thất bại');
-              },
-            }
-          );
+    Alert.alert(
+      translate('site.edit.deleteConfirm.title'),
+      translate('site.edit.deleteConfirm.message'),
+      [
+        { text: translate('common.button'), style: 'cancel' },
+        {
+          text: translate('common.button.delete'),
+          style: 'destructive',
+          onPress: () => {
+            deleteSite.mutate(
+              { id },
+              {
+                onSuccess: () => router.push('/my-plant'),
+                onError: (err) => {
+                  console.error(err);
+                  Alert.alert(
+                    translate('common.button.error'),
+                    translate('site.edit.deleteError')
+                  );
+                },
+              }
+            );
+          },
         },
-      },
-    ]);
+      ]
+    );
   };
 
   if (isPending) {
-    return (
-      <View className="flex-1 items-center justify-center bg-primary-50">
-        <ActivityIndicator size="large" color={colors.primary[800]} />
-      </View>
-    );
+    return <LoadingState />;
   }
 
   if (isError || !site) {
-    return (
-      <View className="flex-1 items-center justify-center">
-        <Text className="text-red-500">{translate('common.error_load')}</Text>
-      </View>
-    );
+    return <ErrorState />;
   }
 
   return (
@@ -72,20 +72,20 @@ export default function EditSite() {
 
       <ScrollView className="px-4" showsVerticalScrollIndicator={false}>
         <View className="gap-4">
-          <Text className="py-2 text-3xl font-bold text-primary-800">
-            Chỉnh sửa khu vực
+          <Text className="py-2 font-signika-bold text-3xl text-primary-800">
+            {translate('site.edit.title')}
           </Text>
-          <ItemsContainer title="Cài đặt tổng quan">
+          <ItemsContainer title={translate('site.edit.generalSettings')}>
             <Item
               onPress={() => router.push('./edit/name')}
-              label="Tên khu vực"
+              label={translate('site.edit.siteName')}
               icon={<Window size={28} />}
               iconColor={colors.neutral[200]}
             >
               <Text className="text-md text-primary-300">{site.name}</Text>
             </Item>
             <Item
-              label="Có mưa"
+              label={translate('site.edit.hasRain')}
               icon={<Cloud size={28} />}
               iconColor={colors.neutral[200]}
             >
@@ -93,16 +93,16 @@ export default function EditSite() {
             </Item>
           </ItemsContainer>
 
-          <ItemsContainer title="Thông tin khu vực">
+          <ItemsContainer title={translate('site.edit.siteInfo')}>
             <Item
-              label="Ánh sáng"
+              label={translate('site.edit.sunlight')}
               icon={<Sun size={28} />}
               iconColor={colors.neutral[200]}
             >
               <Text className="text-md text-primary-300">{site.sunlight}</Text>
             </Item>
             <Item
-              label="Nhiệt độ"
+              label={translate('site.edit.temperature')}
               icon={<Thermometer size={28} />}
               iconColor={colors.neutral[200]}
             >
@@ -111,14 +111,14 @@ export default function EditSite() {
               </Text>
             </Item>
             <Item
-              label="Độ ẩm"
+              label={translate('site.edit.humidity')}
               icon={<Humidity size={28} />}
               iconColor={colors.neutral[200]}
             >
               <Text className="text-md text-primary-300">{site.humidity}%</Text>
             </Item>
             <Item
-              label="Gió"
+              label={translate('site.edit.wind')}
               icon={<Wind size={28} />}
               iconColor={colors.neutral[200]}
             >
@@ -130,10 +130,10 @@ export default function EditSite() {
 
           <Button
             size="lg"
-            label="Xoá khu vực"
+            label={translate('site.edit.deleteButton')}
             onPress={handleDelete}
             variant="destructive"
-            textClassName="font-bold"
+            textClassName="font-signika-bold"
             className="rounded-full bg-danger-700"
           />
         </View>

@@ -4,12 +4,16 @@ import { useQueryClient } from '@tanstack/react-query';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { ActivityIndicator, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
 
-import { type SiteNameForm, siteNameSchema, useUpdateSite } from '@/api';
-import { useSite } from '@/api/sites/use-site';
-import { ItemsContainer } from '@/components/common/items-container';
-import { Button, colors, Input, Text, View } from '@/components/ui';
+import {
+  type SiteNameForm,
+  siteNameSchema,
+  useSite,
+  useUpdateSite,
+} from '@/api';
+import { ErrorState, ItemsContainer, LoadingState } from '@/components/common';
+import { Button, Input, Text } from '@/components/ui';
 import { translate } from '@/lib';
 
 export default function EditNameSite() {
@@ -42,19 +46,11 @@ export default function EditNameSite() {
   };
 
   if (isPending) {
-    return (
-      <View className="flex-1 items-center justify-center bg-primary-50">
-        <ActivityIndicator size="large" color={colors.primary[800]} />
-      </View>
-    );
+    return <LoadingState />;
   }
 
-  if (isError || !site) {
-    return (
-      <View className="flex-1 items-center justify-center">
-        <Text className="text-red-500">{translate('common.error_load')}</Text>
-      </View>
-    );
+  if (isError) {
+    return <ErrorState />;
   }
 
   return (
@@ -66,16 +62,16 @@ export default function EditNameSite() {
       />
 
       <ScrollView className="px-4" showsVerticalScrollIndicator={false}>
-        <Text className="py-2 text-3xl font-bold text-primary-800">
-          Chỉnh sửa tên khu vực
+        <Text className="py-2 font-signika-bold text-3xl">
+          {translate('site.editName.title')}
         </Text>
-        <ItemsContainer title="Tên hiển thị">
+        <ItemsContainer title={translate('site.editName.displayName')}>
           <Controller
             control={control}
             name="name"
             render={({ field, fieldState }) => (
               <Input
-                label="Tên khu vực"
+                label={translate('site.editName.siteNameLabel')}
                 value={field.value}
                 onChangeText={field.onChange}
                 error={fieldState.error?.message}
@@ -86,12 +82,12 @@ export default function EditNameSite() {
 
         <Button
           size="lg"
-          label="Lưu"
+          label={translate('common.button.save')}
           loading={updateSite.isPending}
           onPress={handleSubmit(onSubmit)}
           disabled={updateSite.isPending}
           variant="secondary"
-          textClassName="font-bold"
+          textClassName="font-signika-bold"
           className="rounded-full"
         />
       </ScrollView>

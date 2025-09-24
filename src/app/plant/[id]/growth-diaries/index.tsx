@@ -1,6 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
+import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import {
@@ -19,6 +20,7 @@ import {
   Text,
   View,
 } from '@/components/ui';
+import { translate } from '@/lib';
 
 export default function GrowthDiaryForm() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -38,7 +40,7 @@ export default function GrowthDiaryForm() {
 
   const onSubmit = (values: GrowthDiaryFormValues) => {
     createDiaryMutation.mutate(values, {
-      onSuccess: (_) => {
+      onSuccess: () => {
         router.back();
       },
     });
@@ -56,8 +58,8 @@ export default function GrowthDiaryForm() {
       />
       <View className="flex-1 bg-charcoal-50 p-4">
         <View className="rounded-xl bg-white p-3 shadow-gray-300">
-          <Text className="mb-2 text-lg font-bold text-primary-700">
-            Ghi chú và ảnh
+          <Text className="mb-2 font-signika-bold text-lg text-primary-700">
+            {translate('plant.plantDetail.growthDiary.noteAndImage')}
           </Text>
 
           <Controller
@@ -65,7 +67,7 @@ export default function GrowthDiaryForm() {
             name="note"
             render={({ field }) => (
               <Input
-                placeholder="Thêm ghi chú..."
+                placeholder={translate('plant.plantDetail.growthDiary.addNote')}
                 value={field.value}
                 onChangeText={field.onChange}
               />
@@ -96,14 +98,31 @@ export default function GrowthDiaryForm() {
           <ControlledSelect
             control={control}
             name="mood"
-            label="Tâm trạng"
-            placeholder="Chọn tâm trạng..."
+            label={translate('plant.plantDetail.growthDiary.mood')}
+            placeholder={translate(
+              'plant.plantDetail.growthDiary.moodPlaceholder'
+            )}
             options={[
-              { label: '😊 Vui vẻ', value: Mood.HAPPY },
-              { label: '😢 Buồn', value: Mood.SAD },
-              { label: '😐 Bình thường', value: Mood.NEUTRAL },
-              { label: '😡 Tức giận', value: Mood.ANGRY },
-              { label: '🤔 Khác', value: Mood.OTHER },
+              {
+                label: `😊 ${translate('plant.plantDetail.mood.happy')}`,
+                value: Mood.HAPPY,
+              },
+              {
+                label: `😢 ${translate('plant.plantDetail.mood.sad')}`,
+                value: Mood.SAD,
+              },
+              {
+                label: `😐 ${translate('plant.plantDetail.mood.neutral')}`,
+                value: Mood.NEUTRAL,
+              },
+              {
+                label: `😡 ${translate('plant.plantDetail.mood.angry')}`,
+                value: Mood.ANGRY,
+              },
+              {
+                label: `🤔 ${translate('plant.plantDetail.mood.other')}`,
+                value: Mood.OTHER,
+              },
             ]}
           />
         </View>
@@ -111,10 +130,10 @@ export default function GrowthDiaryForm() {
       <View className="absolute bottom-4 w-full px-4">
         <Button
           size="lg"
-          textClassName="text-primary-800 font-bold"
+          textClassName="text-primary-800 font-signika-bold"
           className="rounded-full bg-gray-50 "
           loading={createDiaryMutation.isPending}
-          label="Lưu"
+          label={translate('common.button.save')}
           onPress={handleSubmit(onSubmit)}
         />
       </View>

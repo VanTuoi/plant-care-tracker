@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { type Plant, useFertilizers, useWaters } from '@/api';
 import { colors, Text, TouchableOpacity, View } from '@/components/ui';
 import { Check, Fertilizer, WateringCan } from '@/components/ui/icons';
-import { cn } from '@/lib';
+import { cn, translate } from '@/lib';
 
 import { HistoryWatering } from './history-watering';
 
@@ -37,12 +37,12 @@ export function TodoPlant({ plant }: Props) {
 
   const missions: Mission[] = [
     {
-      label: 'Hôm nay',
+      label: translate('plant.plantDetail.todo.today'),
       items: [
         {
           icon: <WateringCan size={24} color={colors.white} />,
-          action: 'Tưới nước',
-          overdueText: 'Trễ 2n',
+          action: translate('plant.plantDetail.todo.watering.action'),
+          overdueText: translate('plant.plantDetail.todo.overdue', { days: 2 }),
         },
       ],
     },
@@ -80,9 +80,9 @@ export function TodoPlant({ plant }: Props) {
     const diffTime = startOfToday.getTime() - startOfUpdated.getTime();
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-    if (diffDays === 0) return 'Hôm nay';
-    if (diffDays === 1) return 'Hôm qua';
-    return `${diffDays} ngày trước`;
+    if (diffDays === 0) return translate('plant.plantDetail.todo.today');
+    if (diffDays === 1) return translate('plant.plantDetail.todo.yesterday');
+    return diffDays + translate('plant.plantDetail.todo.day_ago');
   };
 
   return (
@@ -94,17 +94,19 @@ export function TodoPlant({ plant }: Props) {
               <WateringCan size={32} color={colors.charcoal[700]} />
             </View>
           </View>
-          <Text className="pt-2 text-lg text-primary-700">Tưới nước</Text>
-          <Text className="text-lg font-bold text-primary-700">
-            Trong 3 ngày
+          <Text className="pt-2 text-lg text-primary-700">
+            {translate('plant.plantDetail.todo.watering.title')}
+          </Text>
+          <Text className="font-signika-bold text-lg text-primary-700">
+            {translate('plant.plantDetail.todo.watering.schedule')}
           </Text>
           <Text className="py-1 text-lg text-primary-400">
-            Lần cuối:{' '}
+            {translate('plant.plantDetail.todo.lastTime')}{' '}
             {wateringOfPlant?.[wateringOfPlant.length - 1]
               ? getDaysAgo(
                   wateringOfPlant[wateringOfPlant.length - 1].updatedAt
                 )
-              : 'Chưa có'}
+              : translate('plant.plantDetail.todo.noData')}
           </Text>
         </View>
         <View className="flex-col items-center justify-center">
@@ -113,17 +115,19 @@ export function TodoPlant({ plant }: Props) {
               <Fertilizer size={32} color={colors.charcoal[700]} />
             </View>
           </View>
-          <Text className="pt-2 text-lg text-primary-700">Bón phân</Text>
-          <Text className="text-lg font-bold text-primary-700">
-            Trong 14 ngày
+          <Text className="pt-2 text-lg text-primary-700">
+            {translate('plant.plantDetail.todo.fertilizing.title')}
+          </Text>
+          <Text className="font-signika-bold text-lg text-primary-700">
+            {translate('plant.plantDetail.todo.fertilizing.schedule')}
           </Text>
           <Text className="py-1 text-lg text-primary-400">
-            Lần cuối:{' '}
+            {translate('plant.plantDetail.todo.lastTime')}{' '}
             {fertilizingOfPlant?.[fertilizingOfPlant.length - 1]
               ? getDaysAgo(
                   fertilizingOfPlant[fertilizingOfPlant.length - 1].updatedAt
                 )
-              : 'Chưa có'}
+              : translate('plant.plantDetail.todo.noData')}
           </Text>
         </View>
       </View>
@@ -133,7 +137,7 @@ export function TodoPlant({ plant }: Props) {
             key={mi}
             className="mb-6 flex-col gap-4 rounded-3xl bg-white p-3 px-6 shadow"
           >
-            <Text className="py-3 text-2xl font-bold text-primary-800">
+            <Text className="py-3 font-signika-bold text-2xl">
               {mission.label}
             </Text>
             {mission.items.map((item, ii) => (
@@ -146,7 +150,7 @@ export function TodoPlant({ plant }: Props) {
                     <View className="size-[60px] items-center justify-center rounded-full bg-neutral-600">
                       {item.icon}
                       {item.overdueText && (
-                        <View className="absolute bottom-0 rounded-full bg-danger-200 p-1 px-2">
+                        <View className="absolute bottom-0 w-auto rounded-full bg-danger-200 p-1 px-2">
                           <Text className="text-xs text-danger-800">
                             {item.overdueText}
                           </Text>
@@ -155,7 +159,7 @@ export function TodoPlant({ plant }: Props) {
                     </View>
                     <View className="flex-col">
                       {item.action && (
-                        <Text className="text-lg font-medium text-primary-800">
+                        <Text className="text-lg font-medium ">
                           {item.action}
                         </Text>
                       )}
@@ -176,7 +180,7 @@ export function TodoPlant({ plant }: Props) {
               </View>
             ))}
             <Text className="text-md px-5 py-3 text-center text-primary-300">
-              Hoàn thành nhiệm vụ bằng cách nhấn vào chỉ dẫn
+              {translate('plant.plantDetail.todo.completeHint')}
             </Text>
           </View>
         ))}

@@ -22,7 +22,7 @@ import {
   showErrorMessage,
   Text,
 } from '@/components/ui';
-import { cn } from '@/lib';
+import { cn, translate } from '@/lib';
 
 import { WizardForm, type WizardStep } from '../common/wizard-form';
 
@@ -61,7 +61,7 @@ const getPlantSteps = (props: AddPlantScreenProps): WizardStep[] => {
   if (!props.siteId || props.siteId === 'undefined') {
     steps.push({
       key: 'siteId',
-      title: 'Bạn muốn đặt cây ở đâu?',
+      title: translate('plant.plantWizard.steps.site.title'),
       image: (
         <Image
           source={require('@/assets/cactus flower-cuate.png')}
@@ -76,7 +76,7 @@ const getPlantSteps = (props: AddPlantScreenProps): WizardStep[] => {
   steps.push(
     {
       key: 'inGround',
-      title: 'Cây của bạn có ở trong chậu không?',
+      title: translate('plant.plantWizard.steps.inGround.title'),
       image: (
         <Image
           source={require('@/assets/cactus flower-cuate.png')}
@@ -98,7 +98,7 @@ const getPlantSteps = (props: AddPlantScreenProps): WizardStep[] => {
 
         const getTextStyle = (option: boolean) =>
           cn(
-            'text-xl font-bold',
+            'text-xl font-signika-bold',
             val === option ? 'text-white' : 'text-primary-500'
           );
 
@@ -108,14 +108,18 @@ const getPlantSteps = (props: AddPlantScreenProps): WizardStep[] => {
               className={getButtonStyle(false, true)}
               onPress={() => setValue('inGround', false)}
             >
-              <Text className={getTextStyle(false)}>Trong chậu</Text>
+              <Text className={getTextStyle(false)}>
+                {translate('plant.plantWizard.inGroundOptions.potted')}
+              </Text>
             </Pressable>
 
             <Pressable
               className={getButtonStyle(true, false)}
               onPress={() => setValue('inGround', true)}
             >
-              <Text className={getTextStyle(true)}>Ngoài đất</Text>
+              <Text className={getTextStyle(true)}>
+                {translate('plant.plantWizard.inGroundOptions.inGround')}
+              </Text>
             </Pressable>
           </View>
         );
@@ -123,7 +127,7 @@ const getPlantSteps = (props: AddPlantScreenProps): WizardStep[] => {
     },
     {
       key: 'size',
-      title: 'Kích thước của cây',
+      title: translate('plant.plantWizard.steps.size.title'),
       image: (
         <Image
           source={require('@/assets/cactus flower-cuate.png')}
@@ -135,11 +139,26 @@ const getPlantSteps = (props: AddPlantScreenProps): WizardStep[] => {
         const val = watch('size');
 
         const sizes = [
-          { key: PlantSizeEnum.TINY, label: 'Rất nhỏ' },
-          { key: PlantSizeEnum.SMALL, label: 'Nhỏ' },
-          { key: PlantSizeEnum.MEDIUM, label: 'Trung bình' },
-          { key: PlantSizeEnum.LARGE, label: 'Lớn' },
-          { key: PlantSizeEnum.HUGE, label: 'Khổng lồ' },
+          {
+            key: PlantSizeEnum.TINY,
+            label: translate('plant.plantWizard.sizeOptions.tiny'),
+          },
+          {
+            key: PlantSizeEnum.SMALL,
+            label: translate('plant.plantWizard.sizeOptions.small'),
+          },
+          {
+            key: PlantSizeEnum.MEDIUM,
+            label: translate('plant.plantWizard.sizeOptions.medium'),
+          },
+          {
+            key: PlantSizeEnum.LARGE,
+            label: translate('plant.plantWizard.sizeOptions.large'),
+          },
+          {
+            key: PlantSizeEnum.HUGE,
+            label: translate('plant.plantWizard.sizeOptions.huge'),
+          },
         ];
 
         return (
@@ -169,7 +188,7 @@ const getPlantSteps = (props: AddPlantScreenProps): WizardStep[] => {
     },
     {
       key: 'lastWateredAt',
-      title: 'Lần cuối tưới nước',
+      title: translate('plant.plantWizard.steps.lastWatered.title'),
       optional: true,
       image: (
         <Image
@@ -191,7 +210,7 @@ const getPlantSteps = (props: AddPlantScreenProps): WizardStep[] => {
     },
     {
       key: 'lastFertilizedAt',
-      title: 'Lần cuối bón phân',
+      title: translate('plant.plantWizard.steps.lastFertilized.title'),
       optional: true,
       image: (
         <Image
@@ -213,7 +232,7 @@ const getPlantSteps = (props: AddPlantScreenProps): WizardStep[] => {
     },
     {
       key: 'plantImageUri',
-      title: 'Thêm ảnh cây của bạn',
+      title: translate('plant.plantWizard.steps.plantImage.title'),
       optional: true,
       image: (
         <Image
@@ -231,7 +250,7 @@ const getPlantSteps = (props: AddPlantScreenProps): WizardStep[] => {
     },
     {
       key: 'name',
-      title: 'Đặt tên cho cây',
+      title: translate('plant.plantWizard.steps.name.title'),
       image: (
         <Image
           source={require('@/assets/cactus flower-cuate.png')}
@@ -248,7 +267,9 @@ const getPlantSteps = (props: AddPlantScreenProps): WizardStep[] => {
             <Input
               value={field.value}
               onChangeText={field.onChange}
-              placeholder="Ví dụ: Cây Lưỡi Hổ"
+              placeholder={translate(
+                'plant.plantWizard.steps.name.placeholder'
+              )}
               placeholderTextColor={colors.primary[500]}
               className="rounded-full bg-primary-200 p-4 text-primary-500"
             />
@@ -266,7 +287,7 @@ type AddPlantScreenProps = {
   siteId?: string;
 };
 
-export default function AddPlantScreen(props: AddPlantScreenProps) {
+export function AddPlantScreen(props: AddPlantScreenProps) {
   const cleanDefaults = Object.fromEntries(
     Object.entries({ ...props }).filter(
       ([_, v]) => v !== undefined && v !== null && v !== '' && v !== 'undefined'

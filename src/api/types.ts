@@ -12,13 +12,8 @@ export type InfinityPaginationResponse<T> = {
 export interface ResponseData<T> {
   data?: T | null;
 }
-
 export interface ErrorResponse {
   status: number;
   message?: string;
-  errors?: {
-    email?: 'notFound';
-    password?: 'incorrectPassword';
-    [key: string]: string | undefined;
-  };
+  errors?: Record<string, string | undefined>;
 }

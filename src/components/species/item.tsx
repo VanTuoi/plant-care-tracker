@@ -5,6 +5,7 @@ import React from 'react';
 import { type DifficultyLevelEnum, type Species } from '@/api/species/type';
 import { type SunlightNeedEnum } from '@/api/species/type';
 import { colors, Pressable, Text, View } from '@/components/ui';
+import { translate } from '@/lib';
 
 import { Image } from '../ui';
 import { Cloud, PartialSun, Sun } from '../ui/icons';
@@ -49,10 +50,10 @@ function renderDifficultyChip(level: DifficultyLevelEnum) {
   if (!color) return null;
   const label =
     level === 'easy'
-      ? 'Dễ chăm sóc'
+      ? translate('species.difficulty.easy')
       : level === 'moderate'
-        ? 'Trung bình'
-        : 'Khó chăm sóc';
+        ? translate('species.difficulty.moderate')
+        : translate('species.difficulty.hard');
   return <Chip label={label} bg={color.bg} textColor={color.text} />;
 }
 

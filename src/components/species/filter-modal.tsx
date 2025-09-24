@@ -34,16 +34,16 @@ const SEARCH_FIELDS: Option[] = [
 ];
 
 const FILTER_FIELDS: Option[] = [
-  { label: translate('species.sort_by.name'), value: 'name' },
+  { label: translate('species.search'), value: 'name' },
   {
-    label: translate('species.sort_by.scientificName'),
+    label: translate('species.search.sort_by.scientificName'),
     value: 'scientificName',
   },
 ];
 
 const SORT_ORDERS: Option[] = [
-  { label: translate('species.sort_order.asc'), value: 'asc' },
-  { label: translate('species.sort_order.desc'), value: 'desc' },
+  { label: translate('species.search.sort_order.asc'), value: 'asc' },
+  { label: translate('species.search.sort_order.desc'), value: 'desc' },
 ];
 
 export const SpeciesFilterModal = ({
@@ -84,7 +84,7 @@ export const SpeciesFilterModal = ({
     >
       <BottomSheetKeyboardAwareScrollView className="px-4 dark:bg-neutral-800">
         <Text className="mb-2 text-base font-semibold dark:text-white">
-          {translate('species.sort_by.title')}
+          {translate('species.search.sort_by.title')}
         </Text>
         <View className="mb-4 gap-2">
           {FILTER_FIELDS.map((item) => (
@@ -101,7 +101,7 @@ export const SpeciesFilterModal = ({
         </View>
 
         <Text className="mb-2 text-base font-semibold dark:text-white">
-          {translate('species.sort_order.title')}
+          {translate('species.search.sort_order.title')}
         </Text>
         <View className="mb-4 gap-2">
           {SORT_ORDERS.map((item) => (
@@ -137,13 +137,13 @@ export const SpeciesFilterModal = ({
         <View className="mt-4">
           <Button
             textClassName="dark:text-white"
-            label={translate('species.button_apply_filter')}
+            label={translate('species.search.button_apply_filter')}
             className="rounded-full bg-primary-500 dark:bg-primary-600"
             onPress={() => onApply(selectedField, selectedOrder, searchFields)}
           />
           <Button
             className="rounded-full"
-            label={translate('species.button_reset_filter')}
+            label={translate('species.search.button_reset_filter')}
             variant="outline"
             onPress={onReset}
           />

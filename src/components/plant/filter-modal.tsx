@@ -74,7 +74,7 @@ export const FilterModal = ({
     >
       <BottomSheetKeyboardAwareScrollView className="px-4 dark:bg-neutral-800">
         <Text className="mb-2 text-base font-semibold dark:text-white">
-          {translate('users.sort_by')}
+          {translate('plant.search.sort_by')}
         </Text>
         <View className="mb-4 gap-2">
           {FILTER_FIELDS.map((item) => (
@@ -88,7 +88,7 @@ export const FilterModal = ({
           ))}
         </View>
         <Text className="mb-2 text-base font-semibold dark:text-white">
-          {translate('users.order')}
+          {translate('plant.search.order')}
         </Text>
         <View className="mb-4 gap-2">
           {SORT_ORDERS.map((item) => (
@@ -102,7 +102,7 @@ export const FilterModal = ({
           ))}
         </View>
         <Text className="mb-2 text-base font-semibold dark:text-white">
-          {translate('users.search_by')}
+          {translate('plant.search.search_by')}
         </Text>
         <View className="mb-4 gap-2">
           {SEARCH_FIELDS.map((item) => (
@@ -118,12 +118,12 @@ export const FilterModal = ({
         <View className="mt-4">
           <Button
             textClassName="dark:text-white"
-            label={translate('users.button_apply_filter')}
+            label={translate('plant.search.button_apply_filter')}
             className="bg-primary-500 dark:bg-primary-600"
             onPress={() => onApply(selectedField, selectedOrder, searchFields)}
           />
           <Button
-            label={translate('users.button_reset_filter')}
+            label={translate('plant.search.button_reset_filter')}
             variant="outline"
             onPress={onReset}
           />

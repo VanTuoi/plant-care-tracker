@@ -1,13 +1,16 @@
+import { useRouter } from 'expo-router';
 import React from 'react';
 
-import { usePlants } from '@/api';
-import { useSites } from '@/api/sites';
-import { colors, Text, View } from '@/components/ui';
+import { usePlants, useSites } from '@/api';
+import { colors, Pressable, Text, View } from '@/components/ui';
 import { translate } from '@/lib';
 
+import { ErrorState } from '../common';
 import { User2 } from '../ui/icons';
 
 export function OverView() {
+  const router = useRouter();
+
   const {
     data: sitesData,
     isPending: isSitesPending,
@@ -29,41 +32,45 @@ export function OverView() {
 
   if (isLoading) {
     return (
-      <View className="animate-pulse flex-row items-center gap-3 p-4">
+      <View className="animate-pulse flex-row items-center gap-3">
         <View className="size-[100px] rounded-full bg-primary-200" />
         <View className="flex-1 flex-col gap-1">
-          <Text className="text-3xl font-bold text-primary-800">
-            Cây trồng của tôi
+          <Text className="font-signika-bold text-3xl">
+            {translate('my_plant.title')}
           </Text>
-          <Text className="text-lg text-primary-300">0 khu vực 0 cây </Text>
+          <Text className="text-lg text-primary-300">
+            {translate('my_plant.overview.loading')}
+          </Text>
         </View>
       </View>
     );
   }
 
   if (isError) {
-    return (
-      <View className="flex-1 items-center justify-center">
-        <Text className="text-red-500">{translate('common.error_load')}</Text>
-      </View>
-    );
+    return <ErrorState />;
   }
 
   return (
-    <View className="flex-row items-center gap-3 p-4">
-      <View className="size-[100px] items-center justify-center rounded-full bg-primary-100">
-        <User2 color={colors.primary[800]} size={40} />
-      </View>
+    <View className="flex-row items-center gap-3">
+      <Pressable onPress={() => router.push('/profile')}>
+        <View className="size-[100px] items-center justify-center rounded-full bg-primary-100">
+          <User2 color={colors.primary[800]} size={40} />
+        </View>
+      </Pressable>
       <View className="flex-col">
-        <Text className="text-3xl font-bold text-primary-800">
-          Cây trồng của tôi
+        <Text className="font-signika-bold text-3xl">
+          {translate('my_plant.title')}
         </Text>
         <View className="flex-row gap-2">
           <Text className="text-lg text-primary-300">
-            {sitesData?.data.length ?? 0} khu vực
+            {translate('my_plant.overview.sitesCount', {
+              count: sitesData?.data.length ?? 0,
+            })}
           </Text>
           <Text className="text-lg text-primary-300">
-            {plantsData?.data.length ?? 0} cây
+            {translate('my_plant.overview.plantsCount', {
+              count: plantsData?.data.length ?? 0,
+            })}
           </Text>
         </View>
       </View>

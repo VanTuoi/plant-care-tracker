@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { translate } from '@/lib/i18n';
+
 export enum Mood {
   HAPPY = 'happy',
   SAD = 'sad',
@@ -22,7 +24,7 @@ export const growthDiarySchema = z.object({
   note: z.string().optional(),
   fileId: z.string().optional(),
   plantId: z.string(),
-  mood: z.nativeEnum(Mood, { required_error: 'Vui lòng chọn tâm trạng' }),
+  mood: z.nativeEnum(Mood, { required_error: translate('common.form.select') }),
 });
 
 export type GrowthDiaryFormValues = z.infer<typeof growthDiarySchema>;

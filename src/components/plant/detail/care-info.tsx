@@ -49,8 +49,14 @@ export function CareInfoPlant({ plant }: Props) {
   };
 
   const sections = [
-    { key: 'care', label: 'Chăm sóc' },
-    { key: 'area', label: 'Khu vực' },
+    {
+      key: 'care',
+      label: translate('plant.plantDetail.careInfo.sections.care'),
+    },
+    {
+      key: 'area',
+      label: translate('plant.plantDetail.careInfo.sections.area'),
+    },
   ];
 
   return (
@@ -63,8 +69,7 @@ export function CareInfoPlant({ plant }: Props) {
       >
         <View className="w-full rounded-3xl bg-primary-100 p-6">
           <Text className="text-primary-800">
-            Thanks to its aerial root system it can grow almost straight up a
-            tree / wall, so let it climb!
+            {translate('plant.plantDetail.careInfo.description')}
           </Text>
         </View>
 
@@ -124,8 +129,8 @@ export function CareInfoPlant({ plant }: Props) {
           className="flex-col gap-4"
         >
           <View className="mb-8 flex-col gap-1 rounded-3xl bg-white p-4">
-            <Text className="py-3 text-2xl font-bold text-primary-800">
-              Lịch sử tưới nước
+            <Text className="py-3 font-signika-bold text-2xl">
+              {translate('plant.plantDetail.careInfo.wateringHistory.title')}
             </Text>
             <View
               className="flex-row items-center justify-start gap-4"
@@ -137,11 +142,15 @@ export function CareInfoPlant({ plant }: Props) {
                 </Text>
               </View>
               <View className="flex-col items-start justify-center">
-                <Text className="text-lg text-primary-500">
-                  Tưới mỗi 2 tuần 1 lần
+                <Text className="text-lg">
+                  {translate(
+                    'plant.plantDetail.careInfo.wateringHistory.schedule'
+                  )}
                 </Text>
                 <Text className="text-lg text-primary-300">
-                  Lần tiếp theo vào 2 ngày nữa
+                  {translate(
+                    'plant.plantDetail.careInfo.wateringHistory.nextTime'
+                  )}
                 </Text>
               </View>
             </View>
@@ -153,8 +162,8 @@ export function CareInfoPlant({ plant }: Props) {
           className="flex-col gap-4"
         >
           <View className="mb-8 flex-col gap-1 rounded-3xl bg-white p-4">
-            <Text className="py-3 text-2xl font-bold text-primary-800">
-              Khu vực
+            <Text className="py-3 font-signika-bold text-2xl">
+              {translate('plant.plantDetail.careInfo.area.title')}
             </Text>
             <View
               className="flex-row items-center justify-center gap-4 py-2"
@@ -174,19 +183,19 @@ export const SunlightConfig: Record<
   { label: string; icon: JSX.Element }
 > = {
   [SunlightNeedEnum.FULL_SUN]: {
-    label: translate('species.sunlight.full_sun', 'Nắng nhiều'),
+    label: translate('plant.species.sunlight.full_sun'),
     icon: <Sun height={24} width={24} color={colors.primary[800]} />,
   },
   [SunlightNeedEnum.PARTIAL_SUN]: {
-    label: translate('species.sunlight.partial_sun', 'Nắng nhẹ'),
+    label: translate('plant.species.sunlight.partial_sun'),
     icon: <Sun height={24} width={24} color={colors.primary[800]} />,
   },
   [SunlightNeedEnum.SHADE]: {
-    label: translate('species.sunlight.shade', 'Bóng râm'),
+    label: translate('plant.species.sunlight.shade'),
     icon: <Sun height={24} width={24} color={colors.primary[800]} />,
   },
   [SunlightNeedEnum.UNKNOWN]: {
-    label: translate('species.sunlight.unknown', 'Không rõ'),
+    label: translate('plant.species.sunlight.unknown'),
     icon: <Sun height={24} width={24} color={colors.primary[800]} />,
   },
 };
@@ -196,15 +205,15 @@ export const DifficultyConfig: Record<
   { label: string; icon: JSX.Element }
 > = {
   [DifficultyLevelEnum.EASY]: {
-    label: translate('species.difficulty.easy', 'Dễ'),
+    label: translate('plant.species.difficulty.easy'),
     icon: <PlantIcon height={24} width={24} color={colors.primary[800]} />,
   },
   [DifficultyLevelEnum.MODERATE]: {
-    label: translate('species.difficulty.moderate', 'Trung bình'),
+    label: translate('plant.species.difficulty.moderate'),
     icon: <PlantIcon height={24} width={24} color={colors.primary[800]} />,
   },
   [DifficultyLevelEnum.HARD]: {
-    label: translate('species.difficulty.hard', 'Khó'),
+    label: translate('plant.species.difficulty.hard'),
     icon: <PlantIcon height={24} width={24} color={colors.primary[800]} />,
   },
 };
@@ -218,7 +227,7 @@ export function SpeciesAttribute({ icon, label }: SpeciesAttributeProps) {
   return (
     <View className="size-[80] flex-col items-center justify-center rounded-2xl bg-primary-100">
       {icon}
-      <Text className="text-center text-primary-800">{label}</Text>
+      <Text className="text-center">{label}</Text>
     </View>
   );
 }

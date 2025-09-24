@@ -1,25 +1,23 @@
 /* eslint-disable max-lines-per-function */
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import * as React from 'react';
-import { ActivityIndicator, ScrollView, TouchableOpacity } from 'react-native';
+import { ScrollView, TouchableOpacity } from 'react-native';
 
 import {
   type DifficultyLevelEnum,
-  type SunlightNeedEnum,
-  useSpeciesDetail,
-} from '@/api';
-import {
   type FertilizerMethodEnum,
   type FertilizerTypeEnum,
-} from '@/api/fertilizers';
-import { type WaterEnum } from '@/api/waters';
-import { ImageSlider } from '@/components/common/image-slider';
-import { CareSection } from '@/components/species/detail/care-section';
+  type SunlightNeedEnum,
+  useSpeciesDetail,
+  type WaterEnum,
+} from '@/api';
+import { ErrorState, ImageSlider, LoadingState } from '@/components/common';
 import {
+  CareSection,
   DifficultyConfig,
   SpeciesAttribute,
   SunlightConfig,
-} from '@/components/species/detail/species-attribute';
+} from '@/components/species';
 import {
   Button,
   colors,
@@ -40,7 +38,7 @@ import { translate } from '@/lib';
 export default function SpeciesDetail() {
   const router = useRouter();
   const { id, siteId } = useLocalSearchParams<{ id: string; siteId: string }>();
-  const { data, isPending } = useSpeciesDetail({ variables: { id } });
+  const { data, isPending, isError } = useSpeciesDetail({ variables: { id } });
 
   const scrollViewRef = React.useRef<ScrollView>(null);
   const [activeSection, setActiveSection] = React.useState<string>('care');
@@ -75,23 +73,23 @@ export default function SpeciesDetail() {
   };
 
   if (isPending) {
-    return (
-      <View className="flex-1 items-center justify-center bg-primary-50">
-        <ActivityIndicator size="large" color={colors.primary[800]} />
-      </View>
-    );
+    return <LoadingState />;
+  }
+
+  if (isError) {
+    return <ErrorState />;
   }
 
   const sections = [
-    { key: 'care', label: translate('species.care.title', 'Chăm sóc') },
-    { key: 'area', label: 'Khu vực' },
+    { key: 'care', label: translate('species.care.title') },
+    { key: 'area', label: translate('species.site.title') },
   ];
 
   return (
     <>
       <Stack.Screen
         options={{
-          headerTitle: data?.name,
+          headerTitle: data?.name ?? translate('species.item_detail.name'),
           headerTitleAlign: 'center',
         }}
       />
@@ -113,7 +111,7 @@ export default function SpeciesDetail() {
           children={
             <View className="absolute bottom-4 left-1/2 -translate-x-1/2 flex-row items-center rounded-2xl bg-yellow-300 px-4 py-2">
               <Home color={colors.primary[800]} size={14} />
-              <Text className="text-md ml-2 font-bold text-primary-800">
+              <Text className="text-md ml-2 font-signika-bold">
                 {translate('species.location_chip', { count: 1 })}
               </Text>
             </View>
@@ -121,9 +119,7 @@ export default function SpeciesDetail() {
         />
 
         <View className="flex-col gap-1 px-4 pt-6">
-          <Text className="text-3xl font-bold text-primary-800">
-            {data?.name}
-          </Text>
+          <Text className="font-signika-bold text-3xl">{data?.name}</Text>
           <Text className="text-xl text-primary-500">
             {data?.scientificName}
           </Text>
@@ -182,8 +178,8 @@ export default function SpeciesDetail() {
           onLayout={(e) => handleLayout('care', e)}
           className="flex-col gap-4 px-4 pt-4"
         >
-          <Text className="text-3xl font-bold text-primary-800">
-            {translate('species.care.title', 'Chăm sóc')}
+          <Text className="font-signika-bold text-3xl">
+            {translate('species.care.title')}
           </Text>
 
           <CareSection
@@ -210,7 +206,7 @@ export default function SpeciesDetail() {
           />
 
           <CareSection
-            label={translate('species.care.fertilizing.title', 'Bón phân')}
+            label={translate('species.care.fertilizing.title')}
             items={[
               {
                 icon: <Calendar color="white" size={32} />,
@@ -245,7 +241,9 @@ export default function SpeciesDetail() {
           onLayout={(e) => handleLayout('area', e)}
           className="min-h-screen flex-col gap-8 px-4 pt-4"
         >
-          <Text className="text-3xl font-bold text-primary-800">Khu vực</Text>
+          <Text className="font-signika-bold text-3xl">
+            {translate('species.site.title')}
+          </Text>
         </View>
       </ScrollView>
 
@@ -255,7 +253,7 @@ export default function SpeciesDetail() {
             router.push(`/plant/add-plant/${data?.id}?siteId=${siteId}`)
           }
           variant="secondary"
-          label={translate('species.add_plant')}
+          label={translate('species.search.add_plant')}
           size="lg"
           className="h-[45] flex-1 rounded-full bg-primary-800"
         />
