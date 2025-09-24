@@ -1,32 +1,25 @@
 /* eslint-disable max-lines-per-function */
 import { Env } from '@env';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'expo-router';
 import React from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
-import * as z from 'zod';
 
-import { Button, ControlledInput, Image, Text, View } from '@/components/ui';
+import { type LoginForm as LoginFormType, loginSchema } from '@/api';
+import {
+  Button,
+  ControlledInput,
+  ControlledPasswordInput,
+  Image,
+  Text,
+  View,
+} from '@/components/ui';
 import { translate } from '@/lib/i18n';
 
-const schema = z.object({
-  email: z
-    .string({
-      required_error: translate('login.errors.email_required'),
-    })
-    .email(translate('login.errors.email_invalid')),
-  password: z
-    .string({
-      required_error: translate('login.errors.password_required'),
-    })
-    .min(6, translate('login.errors.password_min')),
-});
-
-export type FormType = z.infer<typeof schema>;
-
 export type LoginFormProps = {
-  onSubmit?: SubmitHandler<FormType>;
+  onSubmit?: SubmitHandler<LoginFormType>;
   errorMessage?: string | null;
   isLoading?: boolean;
 };
@@ -36,8 +29,10 @@ export const LoginForm = ({
   errorMessage,
   isLoading,
 }: LoginFormProps) => {
-  const { handleSubmit, control } = useForm<FormType>({
-    resolver: zodResolver(schema),
+  const router = useRouter();
+
+  const { handleSubmit, control } = useForm<LoginFormType>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: Env.APP_ENV === 'development' ? 'john.doe@example.com' : '',
       password: Env.APP_ENV === 'development' ? 'secret' : '',
@@ -52,10 +47,10 @@ export const LoginForm = ({
     >
       <View className="flex-1 justify-center p-4">
         <View className="mb-6 items-center justify-center">
-          <Text className="mb-5 w-full text-center text-6xl font-bold text-green-700 dark:text-green-700">
+          <Text className="mb-5 w-full text-center font-signika-bold text-8xl text-green-700">
             Panda
           </Text>
-          <Text className="pb-6 text-center text-4xl font-bold">
+          <Text className="pb-6 text-center font-signika-bold text-4xl">
             {translate('login.title')}
           </Text>
           <Image
@@ -70,25 +65,42 @@ export const LoginForm = ({
           name="email"
           label={translate('login.form.email')}
         />
-        <ControlledInput
+        <ControlledPasswordInput
           testID="password-input"
           control={control}
           name="password"
           label={translate('login.form.password')}
           placeholder="******"
-          secureTextEntry
         />
         {errorMessage && (
-          <Text className="mb-4 text-left text-red-500">{errorMessage}</Text>
+          <Text className="mb-4 text-left text-sm text-red-500">
+            {errorMessage}
+          </Text>
         )}
+        <View className="w-full items-end">
+          <Button
+            label={translate('login.forget_password')}
+            onPress={() => router.push('/forget-password')}
+            variant="link"
+            size="sm"
+          />
+        </View>
         <Button
           variant="secondary"
           loading={isLoading}
           size="lg"
-          className="mt-8 bg-primary-500"
+          className="mt-8"
           testID="login-button"
           label={translate('login.button')}
           onPress={handleSubmit(onSubmit)}
+        />
+        <Button
+          variant="outline"
+          size="lg"
+          className="mt-2"
+          testID="login-button"
+          label={translate('login.button_register')}
+          onPress={() => router.push('/register')}
         />
       </View>
     </KeyboardAvoidingView>

@@ -9,6 +9,8 @@ import {
   View,
 } from 'react-native';
 
+import { translate } from '@/lib';
+
 import { Button } from './button';
 import colors from './colors';
 import { Camera, GalleryHorizontal } from './icons';
@@ -79,8 +81,8 @@ export function ImagePickerField({ onChange, value, className }: Props) {
         backgroundStyle={{ backgroundColor }}
       >
         <View className="flex-col items-start gap-4 px-4">
-          <Text className="pb-2 text-2xl font-bold text-primary-800">
-            Chọn ảnh
+          <Text className="pb-2 font-signika-bold text-2xl text-primary-800">
+            {translate('common.imagePicker.title')}
           </Text>
           <View className="flex-col gap-3">
             <TouchableOpacity
@@ -93,7 +95,9 @@ export function ImagePickerField({ onChange, value, className }: Props) {
               <View className="rounded-full bg-primary-100 p-3">
                 <Camera size={24} color={colors.primary[800]} />
               </View>
-              <Text className="font-medium text-primary-900">Máy ảnh</Text>
+              <Text className="font-medium text-primary-900">
+                {translate('common.imagePicker.camera')}
+              </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -107,14 +111,14 @@ export function ImagePickerField({ onChange, value, className }: Props) {
                 <GalleryHorizontal size={24} color={colors.primary[800]} />
               </View>
               <Text className="font-medium text-primary-900">
-                Chọn từ Thư viện
+                {translate('common.imagePicker.gallery')}
               </Text>
             </TouchableOpacity>
           </View>
           <Button
-            label="Huỷ"
+            label={translate('common.button.cancel')}
             variant="default"
-            textClassName="font-bold text-primary-50 dark:text-white"
+            textClassName="font-signika-bold text-primary-50 dark:text-white"
             className="w-full rounded-full border-gray-200 bg-primary-800 dark:bg-gray-800"
             size="lg"
             onPress={dismiss}

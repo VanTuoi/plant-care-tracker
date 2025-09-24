@@ -19,7 +19,7 @@ export const EmptyList = React.memo(({ isLoading }: Props) => {
       {!isLoading && (
         <View className="flex flex-col items-center justify-center">
           <NoData size={64} color={colors.primary[800]} />
-          <Text className="mt-5 text-center text-lg font-bold text-primary-800">
+          <Text className="mt-2 text-center font-signika-bold text-lg">
             {translate('common.no_data')}
           </Text>
         </View>

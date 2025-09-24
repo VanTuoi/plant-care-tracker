@@ -2,11 +2,9 @@ import { Redirect, useRouter } from 'expo-router';
 import React from 'react';
 
 import { useLogin } from '@/api';
-import type { LoginFormProps } from '@/components/login-form';
-import { LoginForm } from '@/components/login-form';
+import { LoginForm, type LoginFormProps } from '@/components/login-form';
 import { FocusAwareStatusBar } from '@/components/ui';
-import { type TxKeyPath, useAuth } from '@/lib';
-import { translate } from '@/lib';
+import { translate, type TxKeyPath, useAuth } from '@/lib';
 
 export default function Login() {
   const router = useRouter();

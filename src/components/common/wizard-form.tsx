@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { FormProvider, useForm, type UseFormReturn } from 'react-hook-form';
 import { Animated, ScrollView } from 'react-native';
 
+import { translate } from '@/lib';
+
 import { Button, colors, showWaningMessage, Text, View } from '../ui';
 
 export type WizardStep = {
@@ -47,7 +49,7 @@ export function WizardForm<T>({
     if (!step.optional) {
       const valid = await trigger(step.key as any);
       if (!valid) {
-        showWaningMessage('Chọn ít nhất 1 lựa chọn');
+        showWaningMessage(translate('common.error_form.select_minimum'));
         return;
       }
     }
@@ -74,7 +76,7 @@ export function WizardForm<T>({
               }}
             />
           </View>
-          <Text className="mt-4 text-3xl font-bold text-primary-800">
+          <Text className="mt-4 font-signika-bold text-3xl text-primary-800">
             {step.title}
           </Text>
         </View>
@@ -96,7 +98,7 @@ export function WizardForm<T>({
           <Button
             size="lg"
             disabled={activeStep === 0}
-            label="Quay lại"
+            label={translate('common.button.back')}
             onPress={prev}
             variant="default"
             className="flex-1 rounded-full bg-primary-200 text-primary-50"
@@ -104,7 +106,11 @@ export function WizardForm<T>({
           <Button
             size="lg"
             variant="default"
-            label={activeStep === steps.length - 1 ? 'Hoàn tất' : 'Tiếp theo'}
+            label={
+              activeStep === steps.length - 1
+                ? translate('common.button.complete')
+                : translate('common.button.next')
+            }
             onPress={next}
             className="flex-1 rounded-full bg-primary-800"
           />

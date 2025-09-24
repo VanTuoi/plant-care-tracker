@@ -1,18 +1,83 @@
 {
   "common": {
+    "button": {
+      "add": "Add",
+      "back": "Back",
+      "cancel": "Cancel",
+      "close": "Close",
+      "complete": "Complete",
+      "confirm": "Confirm",
+      "delete": "Delete",
+      "error": "Error",
+      "next": "Next",
+      "save": "Save",
+      "update": "Update"
+    },
+    "error_form": {
+      "select_minimum": "select 1 option"
+    },
     "error_load": "Error when loading data",
-    "no_data": "Sorry! No data found",
-    "save": "Save"
+    "form": {
+      "select": "Please select one"
+    },
+    "imagePicker": {
+      "camera": "Camera",
+      "gallery": "Choose from Gallery",
+      "title": "Choose image"
+    },
+    "no_data": "Sorry! No data found"
   },
-  "layout": {
-    "settings_tab": "Settings",
-    "user_tab": "User"
+  "fertilizers": {
+    "form": {
+      "select": "Please select one"
+    }
+  },
+  "home": {
+    "fab": {
+      "addPlant": "Add plant",
+      "addSite": "Add site"
+    },
+    "greeting": {
+      "afternoon": "Good afternoon",
+      "evening": "Good evening",
+      "morning": "Good morning",
+      "night": "Good night"
+    },
+    "subtitle": {
+      "afternoon": "Afternoon is a good time to check your plants.",
+      "evening": "Evening is perfect for relaxing with your plants.",
+      "morning": "Morning is a great time to take care of your plants.",
+      "night": "Night is for resting, your plants too."
+    },
+    "tabs": {
+      "today": "Today",
+      "upcoming": "Upcoming"
+    },
+    "tasks": {
+      "count": "{{count}} tasks",
+      "fertilize": "Fertilize",
+      "prune": "Prune",
+      "repot": "Repot",
+      "water": "Water"
+    },
+    "todayMission": {
+      "completionHint": "Complete missions by tapping on the instructions",
+      "fertilizing": "Fertilizing",
+      "lateDays": "Late {{days}}d",
+      "overdue": "Overdue",
+      "pruning": "Pruning",
+      "repotting": "Repotting",
+      "watering": "Watering"
+    },
+    "upcomingMission": {
+      "completionHint": "Complete missions by tapping on the instructions",
+      "next3Days": "Next 3 days",
+      "nextWeek": "Next week"
+    }
   },
   "login": {
     "button": "Login",
-    "demo_email": "Demo email is admin@example.com",
-    "demo_message": "Welcome! 👋 This is a demo login screen!",
-    "demo_password": "Demo password is 123456",
+    "button_register": "Register",
     "errors": {
       "email_invalid": "Invalid email format",
       "email_notfound": "Email not found",
@@ -22,11 +87,248 @@
       "password_required": "Password is required",
       "server": "Server error"
     },
+    "forget_password": "Forget password ?",
     "form": {
       "email": "Email",
       "password": "Password"
     },
-    "title": "Sign In"
+    "title": "Login"
+  },
+  "my_plant": {
+    "overview": {
+      "careTasks": "Care tasks",
+      "loading": "0 sites 0 plants",
+      "plantsCount": "{{count}} plants",
+      "sitesCount": "{{count}} sites",
+      "totalPlants": "Total plants",
+      "totalSites": "Total sites"
+    },
+    "plant_list": {
+      "placeholder_search": "Search"
+    },
+    "site_list": {
+      "plant_number": "plant",
+      "task": "task"
+    },
+    "tabs": {
+      "images": "Images",
+      "plant": "Plants",
+      "site": "Sites"
+    },
+    "title": "My Plants"
+  },
+  "plant": {
+    "plantDetail": {
+      "careInfo": {
+        "area": {
+          "title": "Area"
+        },
+        "description": "Thanks to its aerial root system it can grow almost straight up a tree / wall, so let it climb!",
+        "sections": {
+          "area": "Area",
+          "care": "Care"
+        },
+        "wateringHistory": {
+          "nextTime": "Next time in 2 days",
+          "schedule": "Water every 2 weeks",
+          "title": "Watering history"
+        }
+      },
+      "fab": {
+        "fertilize": "Fertilize",
+        "takePhoto": "Take photo",
+        "water": "Water"
+      },
+      "fertilizerModal": {
+        "amount": "Amount of fertilizer (g/ml)",
+        "descriptionAdd": "This action will record that {{plantName}} has been fertilized.",
+        "descriptionEdit": "Edit the fertilization history of {{plantName}}.",
+        "method": "Fertilizer method",
+        "methods": {
+          "foliar_feed": "Foliar spray",
+          "liquid_feed": "Liquid fertilizer",
+          "other": "Other",
+          "soil_mixing": "Mix into soil",
+          "surface_spread": "Surface spread"
+        },
+        "note": "Note",
+        "titleAdd": "Mark as fertilized",
+        "titleEdit": "Update fertilization",
+        "type": "Fertilizer type",
+        "types": {
+          "ammonium_sulfate": "Ammonium sulfate",
+          "bloodmeal": "Blood meal",
+          "bonemeal": "Bone meal",
+          "compost": "Compost",
+          "green_manure": "Green manure",
+          "inorganic": "Inorganic",
+          "liquid": "Liquid fertilizer",
+          "manure": "Manure",
+          "micro_nutrient": "Micronutrient",
+          "npk": "NPK",
+          "organic": "Organic",
+          "other": "Other",
+          "urea": "Urea"
+        }
+      },
+      "growthDiary": {
+        "addNote": "Add note...",
+        "mood": "Mood",
+        "moodPlaceholder": "Choose mood...",
+        "noteAndImage": "Note and Image"
+      },
+      "historyWatering": {
+        "empty": "No watering history.",
+        "title": "Watering history"
+      },
+      "mood": {
+        "angry": "Angry",
+        "happy": "Happy",
+        "neutral": "Normal",
+        "other": "Other",
+        "sad": "Sad"
+      },
+      "tabs": {
+        "care": "Care",
+        "todo": "To do"
+      },
+      "todo": {
+        "completeHint": "Complete tasks by tapping the guide",
+        "day_ago": "day ago",
+        "fertilizing": {
+          "schedule": "Every 14 days",
+          "title": "Fertilizing"
+        },
+        "lastTime": "Last:",
+        "noData": "No record",
+        "overdue": "Overdue {{days}}d",
+        "today": "Today",
+        "watering": {
+          "action": "Water",
+          "schedule": "Every 3 days",
+          "title": "Watering"
+        },
+        "yesterday": "Yesterday"
+      },
+      "wateringModal": {
+        "amount": "Water amount (ml)",
+        "descriptionAdd": "This action will record that {{plantName}} has been watered.",
+        "descriptionEdit": "Edit watering history of {{plantName}}.",
+        "method": "Watering method",
+        "methods": {
+          "drip": "Drip irrigation",
+          "immersion": "Immersion",
+          "other": "Other",
+          "overhead": "Overhead watering",
+          "root": "Root watering",
+          "self_watering": "Self-watering pot",
+          "spray": "Spray / Mist",
+          "wick": "Wick system"
+        },
+        "note": "Note",
+        "titleAdd": "Mark as watered",
+        "titleEdit": "Update watering"
+      }
+    },
+    "plantEdit": {
+      "archive": "It has died, move to archive",
+      "area": "Area",
+      "area_section": "Area",
+      "delete": "Delete plant",
+      "delete_alert_cancel": "Cancel",
+      "delete_alert_confirm": "Delete now",
+      "delete_alert_message": "Are you sure you want to delete this plant?",
+      "delete_alert_title": "Delete plant",
+      "delete_error_message": "Unable to delete plant, please try again.",
+      "delete_error_title": "Error",
+      "edit_name": {
+        "field_label": "Plant name",
+        "header": "Edit plant name",
+        "section_title": "Display name",
+        "title": "Edit plant name"
+      },
+      "edit_size": {
+        "field_label": "Plant size",
+        "header": "What is your plant's size?",
+        "options": {
+          "huge": "Huge (> 120 cm)",
+          "large": "Large (60 - 120 cm)",
+          "medium": "Medium (30 - 60 cm)",
+          "small": "Small (10 - 30 cm)",
+          "tiny": "Tiny (< 10 cm)"
+        },
+        "title": "Edit plant size"
+      },
+      "fertilizer": "Fertilizer",
+      "fertilizer_section": "Fertilizer",
+      "name_edit": "Customize name",
+      "name_section": "Name",
+      "note_content": "To change the area, please go to the area settings function.",
+      "note_title": "Note!",
+      "plant_section": "Plant",
+      "settings_title": "Change plant settings",
+      "size": "Size",
+      "type": "Plant type"
+    },
+    "plantWizard": {
+      "inGroundOptions": {
+        "inGround": "In ground",
+        "potted": "In pot"
+      },
+      "sizeOptions": {
+        "huge": "Huge",
+        "large": "Large",
+        "medium": "Medium",
+        "small": "Small",
+        "tiny": "Very small"
+      },
+      "steps": {
+        "inGround": {
+          "title": "Is your plant in a pot?"
+        },
+        "lastFertilized": {
+          "title": "Last fertilized"
+        },
+        "lastWatered": {
+          "title": "Last watered"
+        },
+        "name": {
+          "placeholder": "Example: Snake Plant",
+          "title": "Name your plant"
+        },
+        "plantImage": {
+          "title": "Add your plant photo"
+        },
+        "site": {
+          "title": "Where would you like to place the plant?"
+        },
+        "size": {
+          "title": "Plant size"
+        }
+      }
+    },
+    "search": {
+      "button_apply_filter": "Apply",
+      "button_reset_filter": "Reset Filter",
+      "filter": "Filter",
+      "order": "Order",
+      "placeholder_search": "Search",
+      "search_by": "Search by",
+      "sort_by": "Sort by"
+    },
+    "species": {
+      "difficulty": {
+        "easy": "Easy",
+        "hard": "Hard",
+        "moderate": "Moderate"
+      },
+      "sunlight": {
+        "full_sun": "Full sun",
+        "partial_sun": "Partial sun",
+        "shade": "Shade",
+        "unknown": "Unknown"
+      }
+    }
   },
   "settings": {
     "about": "About",
@@ -36,6 +338,36 @@
     "generale": "General",
     "language": "Language",
     "logout": "Logout",
+    "notification": {
+      "channel_email": "Notify via email",
+      "channel_socket": "Direct notification",
+      "channels": "Notification channels",
+      "enable": "Enable notifications",
+      "error_load": "Error when loading data",
+      "general": "General settings",
+      "options": {
+        "anytime": "Anytime",
+        "fixed_time": "Fixed time"
+      },
+      "time": "Notification time",
+      "time_mode": "Mode",
+      "time_range": "Time range",
+      "title": "Notification settings"
+    },
+    "profile": {
+      "become_beta": "Become a beta member",
+      "beta_description": "By becoming a Beta member, you will receive the earliest features from us.",
+      "beta_section": "Beta",
+      "display_name": "Display Name",
+      "edit_name_title": "Edit Name",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "location": "Location",
+      "location_section": "Location",
+      "name_section": "Name",
+      "title": "Profile",
+      "update_location": "Update Location"
+    },
     "theme": {
       "dark": "Dark",
       "light": "Light",
@@ -46,10 +378,57 @@
     "version": "Version",
     "vietnamese": "Vietnamese"
   },
+  "site": {
+    "edit": {
+      "deleteButton": "Delete site",
+      "deleteConfirm": {
+        "message": "Are you sure you want to delete this site?",
+        "title": "Delete site"
+      },
+      "deleteError": "Failed to delete site",
+      "generalSettings": "General settings",
+      "hasRain": "Has rain",
+      "humidity": "Humidity",
+      "siteInfo": "Site information",
+      "siteName": "Site name",
+      "sunlight": "Sunlight",
+      "temperature": "Temperature",
+      "title": "Edit site",
+      "wind": "Wind"
+    },
+    "editName": {
+      "displayName": "Display name",
+      "siteNameLabel": "Site name",
+      "title": "Edit site name"
+    },
+    "fab": {
+      "addPlant": "Add plant",
+      "addTask": "Add task"
+    },
+    "siteWizard": {
+      "onError": "Error when create site",
+      "steps": {
+        "name": {
+          "placeholder": "Example: 2nd floor",
+          "title": "Name this area"
+        },
+        "sunlight": {
+          "title": "How is the sunlight in this area?"
+        },
+        "template": {
+          "title": "What is your planting area?"
+        }
+      },
+      "sunlightOptions": {
+        "fullSun": "Full sun",
+        "partialSun": "Partial sun",
+        "shade": "Shade",
+        "unknown": "Unknown"
+      }
+    },
+    "title": "Site"
+  },
   "species": {
-    "add_plant": "Add plant",
-    "button_apply_filter": "Apply filter",
-    "button_reset_filter": "Reset",
     "care": {
       "fertilizing": {
         "amount": "Quantity: {{amount}} g",
@@ -107,19 +486,31 @@
       "name": "Plant name",
       "scientificName": "Scientific name"
     },
+    "item_detail": {
+      "name": "Plant"
+    },
     "location_chip": "{{count}} available areas",
+    "search": {
+      "add_plant": "Add plant",
+      "button_apply_filter": "Apply filter",
+      "button_reset_filter": "Reset",
+      "search_title": "Search plant",
+      "sort_by": {
+        "name": "Plant name",
+        "scientificName": "Scientific name",
+        "title": "Sort by"
+      },
+      "sort_order": {
+        "asc": "Ascending",
+        "desc": "Descending",
+        "title": "Sort order"
+      }
+    },
     "search_by": {
       "title": "Search by"
     },
-    "sort_by": {
-      "name": "Plant name",
-      "scientificName": "Scientific name",
-      "title": "Sort by"
-    },
-    "sort_order": {
-      "asc": "Ascending",
-      "desc": "Descending",
-      "title": "Sort order"
+    "site": {
+      "title": "Site"
     },
     "sunlight": {
       "full_sun": "Full sun",
@@ -129,13 +520,9 @@
     },
     "title": "Tree information"
   },
-  "users": {
-    "button_apply_filter": "Apply",
-    "button_reset_filter": "Reset Filter",
-    "filter": "Filter",
-    "order": "Order",
-    "placeholder_search": "Search",
-    "search_by": "Search by",
-    "sort_by": "Sort by"
+  "waters": {
+    "form": {
+      "select": "Please select one"
+    }
   }
 }

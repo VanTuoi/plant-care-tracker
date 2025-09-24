@@ -5,6 +5,7 @@ import { Controller, useForm } from 'react-hook-form';
 
 import {
   type Plant,
+  useCreateWater,
   type Water,
   WaterEnum,
   waterSchema,
@@ -20,7 +21,7 @@ import {
   useModal,
   View,
 } from '@/components/ui';
-import { WaterDrop } from '@/components/ui/icons';
+import { translate, type TxKeyPath } from '@/lib';
 
 type Props = {
   refModal: React.Ref<any>;
@@ -54,6 +55,8 @@ export const WateringModal = ({
     },
   });
 
+  const createWaterMutation = useCreateWater();
+
   useEffect(() => {
     if (watering) {
       reset({
@@ -71,30 +74,41 @@ export const WateringModal = ({
     if (isEdit) {
       console.log('Update water:', watering?.id, values);
     } else {
-      console.log('Create water:', values);
+      createWaterMutation.mutate(values);
     }
     dismiss();
     onSuccess?.();
   };
 
+  const waterMethodLabel = (
+    method: WaterEnum,
+    translate: (key: TxKeyPath) => string
+  ) => {
+    return translate(`plant.plantDetail.wateringModal.methods.${method}`);
+  };
+
   return (
     <Modal
       ref={refModal}
-      snapPoints={['65%']}
+      snapPoints={['55%']}
       detached
       backgroundStyle={{ backgroundColor: colors.charcoal[600] }}
     >
-      <View className="flex flex-col gap-4 px-6">
-        <View className="flex-row items-center justify-between">
-          <Text className="text-2xl font-bold text-white">
-            {isEdit ? 'Cập nhật tưới nước' : 'Đánh dấu đã tưới nước'}
-          </Text>
-          <WaterDrop color={colors.white} size={30} />
-        </View>
+      <View className="flex flex-col gap-2 px-6">
+        <Text className="font-signika-bold text-2xl text-white">
+          {isEdit
+            ? translate('plant.plantDetail.wateringModal.titleEdit')
+            : translate('plant.plantDetail.wateringModal.titleAdd')}
+        </Text>
+
         <Text className="text-white">
           {isEdit
-            ? `Chỉnh sửa lịch sử tưới nước của ${plant.name}.`
-            : `Hành động này sẽ ghi nhận rằng ${plant.name} đã được tưới nước.`}
+            ? translate('plant.plantDetail.wateringModal.descriptionEdit', {
+                plantName: plant.name,
+              })
+            : translate('plant.plantDetail.wateringModal.descriptionAdd', {
+                plantName: plant.name,
+              })}
         </Text>
 
         <Controller
@@ -102,7 +116,9 @@ export const WateringModal = ({
           name="amount"
           render={({ field }) => (
             <View>
-              <Text className="mb-1 text-white">Lượng nước (ml)</Text>
+              <Text className="mb-1 text-white">
+                {translate('plant.plantDetail.wateringModal.amount')}
+              </Text>
               <Input
                 {...field}
                 value={String(field.value)}
@@ -118,12 +134,14 @@ export const WateringModal = ({
           name="method"
           render={({ field }) => (
             <View>
-              <Text className="mb-1 text-white">Phương pháp tưới</Text>
+              <Text className="mb-1 text-white">
+                {translate('plant.plantDetail.wateringModal.method')}
+              </Text>
               <Select
                 value={field.value}
                 onSelect={field.onChange}
                 options={Object.values(WaterEnum).map((m) => ({
-                  label: m,
+                  label: waterMethodLabel(m, translate),
                   value: m,
                 }))}
                 error={errors.method?.message}
@@ -137,7 +155,9 @@ export const WateringModal = ({
           name="note"
           render={({ field }) => (
             <View>
-              <Text className="mb-1 text-white">Ghi chú</Text>
+              <Text className="mb-1 text-white">
+                {translate('plant.plantDetail.wateringModal.note')}
+              </Text>
               <Input
                 value={field.value}
                 onChangeText={field.onChange}
@@ -150,16 +170,20 @@ export const WateringModal = ({
 
         <View className="w-full flex-row items-center justify-between gap-2">
           <Button
-            label="Đóng"
+            label={translate('common.button.close')}
             onPress={dismiss}
             className="mx-2 rounded-full bg-charcoal-700"
-            textClassName="text-white font-bold"
+            textClassName="text-white font-signika-bold"
           />
           <Button
-            label={isEdit ? 'Cập nhật' : 'Xác nhận'}
+            label={
+              isEdit
+                ? translate('common.button.update')
+                : translate('common.button.confirm')
+            }
             onPress={handleSubmit(onSubmit)}
             className="flex-1 rounded-full bg-charcoal-800 px-5"
-            textClassName="text-white font-bold"
+            textClassName="text-white font-signika-bold"
           />
         </View>
       </View>

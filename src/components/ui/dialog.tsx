@@ -41,7 +41,9 @@ export const Dialog = forwardRef<DialogRef, any>(
         )}
       >
         <View className="p-4">
-          {title && <Text className="mb-2 text-lg font-bold">{title}</Text>}
+          {title && (
+            <Text className="mb-2 font-signika-bold text-lg">{title}</Text>
+          )}
           {children}
           <View className="mt-4 flex-row justify-end gap-3">
             <Button

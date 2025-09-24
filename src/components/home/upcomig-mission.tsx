@@ -2,6 +2,7 @@
 import React from 'react';
 
 import { Image, Text, View } from '@/components/ui';
+import { translate } from '@/lib';
 
 interface PlantItem {
   imageUrl: string;
@@ -18,40 +19,43 @@ interface Mission {
 export const UpcomingMission = () => {
   const missions: Mission[] = [
     {
-      label: '3 Ngày tới',
+      label: translate('home.upcomingMission.next3Days'),
       items: [
         {
           imageUrl:
             'https://trongcay.vn/upload/news/2023/10/18/image-1697600685cay-luoi-ho-3.jpg',
           plantName: 'Cây trầu bà',
           siteName: 'Ban công nhà A',
-          task: 'water',
+          task: translate('home.tasks.water'),
         },
         {
           imageUrl:
             'https://trongcay.vn/upload/news/2023/10/18/image-1697600685cay-luoi-ho-3.jpg',
           plantName: 'Vạn niên thanh',
           siteName: 'Phòng khách',
-          task: 'fertilizers',
+          task: translate('home.tasks.fertilize'),
         },
       ],
     },
     {
-      label: '1 Tuần tới',
+      label: translate('home.upcomingMission.nextWeek'),
       items: [
         {
           imageUrl:
             'https://trongcay.vn/upload/news/2023/10/18/image-1697600685cay-luoi-ho-3.jpg',
           plantName: 'Lưỡi hổ',
           siteName: 'Văn phòng',
-          task: ['fertilizers', 'water'], // 👈 cũng ok
+          task: [
+            translate('home.tasks.fertilize'),
+            translate('home.tasks.water'),
+          ],
         },
         {
           imageUrl:
             'https://trongcay.vn/upload/news/2023/10/18/image-1697600685cay-luoi-ho-3.jpg',
           plantName: 'Kim ngân',
           siteName: 'Phòng khách',
-          task: 'fertilizers',
+          task: translate('home.tasks.fertilize'),
         },
       ],
     },
@@ -65,11 +69,11 @@ export const UpcomingMission = () => {
           className="mb-6 flex-col gap-4 rounded-3xl bg-white p-3 px-6 shadow"
         >
           <View className="w-full flex-row justify-between py-3">
-            <Text className="text-xl font-bold text-primary-800">
+            <Text className="font-signika-bold text-xl text-primary-800">
               {mission.label}
             </Text>
             <Text className="rounded-full bg-primary-100 px-3 py-1 text-primary-800">
-              {mission.items.length} tasks
+              {translate('home.tasks.count', { count: mission.items.length })}
             </Text>
           </View>
 
@@ -119,7 +123,7 @@ export const UpcomingMission = () => {
             </View>
           ))}
           <Text className="text-md px-5 py-3 text-center text-primary-300">
-            Hoàn thành nhiệm vụ bằng cách nhấn vào chỉ dẫn
+            {translate('home.upcomingMission.completionHint')}
           </Text>
         </View>
       ))}

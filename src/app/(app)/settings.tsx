@@ -28,7 +28,7 @@ export default function Settings() {
 
       <ScrollView>
         <View className="flex-1 gap-4 px-4 py-2">
-          <Text className="py-2 text-2xl font-bold text-primary-900">
+          <Text className="py-2 font-signika-bold text-2xl">
             {translate('settings.title')}
           </Text>
           <ItemsContainer tx="settings.generale">
@@ -37,11 +37,11 @@ export default function Settings() {
             <AccountItem />
           </ItemsContainer>
 
-          <ItemsContainer tx={'Notification' as any}>
+          <ItemsContainer tx={'settings.notification.title'}>
             <Item
               icon={<SettingsIcon />}
               iconColor={colors.neutral[200]}
-              tx={'Setting' as any}
+              tx={'settings.notification.general'}
               onPress={() => route.push('/notification')}
             />
           </ItemsContainer>

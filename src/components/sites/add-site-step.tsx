@@ -12,7 +12,7 @@ import {
   useTemplateSites,
 } from '@/api';
 import { colors, Image, Input, showErrorMessage, Text } from '@/components/ui';
-import { cn } from '@/lib';
+import { cn, translate } from '@/lib';
 
 import { WizardForm, type WizardStep } from '../common/wizard-form';
 
@@ -50,7 +50,7 @@ const getSiteSteps = (): WizardStep[] => {
   steps.push(
     {
       key: 'templateSiteId',
-      title: 'Khu vực trồng cây của bạn là?',
+      title: translate('site.siteWizard.steps.template.title'),
       optional: false,
       image: (
         <Image
@@ -63,7 +63,7 @@ const getSiteSteps = (): WizardStep[] => {
     },
     {
       key: 'sunlight',
-      title: 'Nơi này có ánh sáng thế nào?',
+      title: translate('site.siteWizard.steps.sunlight.title'),
       optional: false,
       image: (
         <Image
@@ -76,10 +76,22 @@ const getSiteSteps = (): WizardStep[] => {
         const val = watch('sunlight');
 
         const options = [
-          { key: Sunlight.FULL_SUN, label: 'Nắng gắt' },
-          { key: Sunlight.PARTIAL_SUN, label: 'Nắng một phần' },
-          { key: Sunlight.SHADE, label: 'Bóng râm' },
-          { key: Sunlight.UNKNOWN, label: 'Không rõ' },
+          {
+            key: Sunlight.FULL_SUN,
+            label: translate('site.siteWizard.sunlightOptions.fullSun'),
+          },
+          {
+            key: Sunlight.PARTIAL_SUN,
+            label: translate('site.siteWizard.sunlightOptions.partialSun'),
+          },
+          {
+            key: Sunlight.SHADE,
+            label: translate('site.siteWizard.sunlightOptions.shade'),
+          },
+          {
+            key: Sunlight.UNKNOWN,
+            label: translate('site.siteWizard.sunlightOptions.unknown'),
+          },
         ];
 
         return (
@@ -109,7 +121,7 @@ const getSiteSteps = (): WizardStep[] => {
     },
     {
       key: 'name',
-      title: 'Đặt tên cho khu vực',
+      title: translate('site.siteWizard.steps.name.title'),
       image: (
         <Image
           source={require('@/assets/cactus flower-cuate.png')}
@@ -126,7 +138,7 @@ const getSiteSteps = (): WizardStep[] => {
             <Input
               value={field.value}
               onChangeText={field.onChange}
-              placeholder="Ví dụ: Tầng 2"
+              placeholder={translate('site.siteWizard.steps.name.placeholder')}
               placeholderTextColor={colors.primary[500]}
               className="rounded-full bg-primary-200 p-4 text-primary-500"
             />
@@ -143,7 +155,7 @@ type AddSiteScreenProps = {
   templateSiteId?: string;
 };
 
-export default function AddSiteScreen(props: AddSiteScreenProps) {
+export function AddSiteScreen(props: AddSiteScreenProps) {
   const cleanDefaults = Object.fromEntries(
     Object.entries({ ...props }).filter(
       ([_, v]) => v !== undefined && v !== null && v !== '' && v !== 'undefined'
@@ -163,7 +175,7 @@ export default function AddSiteScreen(props: AddSiteScreenProps) {
             router.replace('/my-plant');
           },
           onError: (err) => {
-            showErrorMessage('Tạo khu vực thất bại');
+            showErrorMessage(translate('site.siteWizard.onError'));
             console.error(err);
           },
         });

@@ -5,6 +5,7 @@ import { TouchableOpacity } from 'react-native';
 import { colors, Image, Text, View } from '@/components/ui';
 import { Check } from '@/components/ui/icons/check';
 import { cn } from '@/lib';
+import { translate } from '@/lib';
 
 interface PlantItem {
   imageUrl: string;
@@ -21,7 +22,7 @@ interface Mission {
 export const TodayMission = () => {
   const missions: Mission[] = [
     {
-      label: 'Tưới nước',
+      label: translate('home.todayMission.watering'),
       items: [
         {
           imageUrl:
@@ -35,19 +36,19 @@ export const TodayMission = () => {
             'https://trongcay.vn/upload/news/2023/10/18/image-1697600685cay-luoi-ho-3.jpg',
           plantName: 'Vạn niên thanh',
           siteName: 'Phòng khách',
-          overdueText: 'Trễ 5n',
+          overdueText: translate('home.todayMission.lateDays', { days: 5 }),
         },
       ],
     },
     {
-      label: 'Bón phân',
+      label: translate('home.todayMission.fertilizing'),
       items: [
         {
           imageUrl:
             'https://trongcay.vn/upload/news/2023/10/18/image-1697600685cay-luoi-ho-3.jpg',
           plantName: 'Lưỡi hổ',
           siteName: 'Văn phòng',
-          overdueText: 'Trễ 2n',
+          overdueText: translate('home.todayMission.lateDays', { days: 2 }),
         },
         {
           imageUrl:
@@ -81,7 +82,7 @@ export const TodayMission = () => {
           key={mi}
           className="mb-6 flex-col gap-4 rounded-3xl bg-white p-3 px-6 shadow"
         >
-          <Text className="py-3 text-xl font-bold text-primary-800">
+          <Text className="py-3 font-signika-bold text-xl text-primary-800">
             {mission.label}
           </Text>
           {mission.items.map((item, ii) => (
@@ -131,7 +132,7 @@ export const TodayMission = () => {
             </View>
           ))}
           <Text className="text-md px-5 py-3 text-center text-primary-300">
-            Hoàn thành nhiệm vụ bằng cách nhấn vào chỉ dẫn
+            {translate('home.todayMission.completionHint')}
           </Text>
         </View>
       ))}

@@ -1,10 +1,12 @@
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 
-import { ImageList } from '@/components/my-plant/image-list';
-import { OverView } from '@/components/my-plant/overview';
-import { PlantList } from '@/components/my-plant/plant-list';
-import { SiteList } from '@/components/my-plant/site-list';
+import {
+  ImageList,
+  OverView,
+  PlantList,
+  SiteList,
+} from '@/components/my-plant';
 import {
   colors,
   FabMenu,
@@ -13,7 +15,8 @@ import {
   Tabs,
   View,
 } from '@/components/ui';
-import { Plant as PlantIcon, Window } from '@/components/ui/icons';
+import { Plant as PlantIcon, Settings, Window } from '@/components/ui/icons';
+import { translate } from '@/lib';
 
 export default function MyPlant() {
   const router = useRouter();
@@ -22,14 +25,14 @@ export default function MyPlant() {
     site: [
       {
         icon: <Window size={20} color={colors.primary[50]} />,
-        label: 'Thêm khu vực',
+        label: translate('home.fab.addSite'),
         onPress: () => router.push('/sites/add-site'),
       },
     ],
     plant: [
       {
         icon: <PlantIcon size={20} color={colors.primary[50]} />,
-        label: 'Thêm cây trồng',
+        label: translate('home.fab.addPlant'),
         onPress: () => router.push(`/find-species`),
       },
     ],
@@ -40,15 +43,30 @@ export default function MyPlant() {
     <>
       <FocusAwareStatusBar />
       <ScrollView className="flex-1">
-        <View className="flex-1 flex-col gap-4 pt-10">
+        <View className="flex-1 flex-col gap-2 p-4">
+          <View className="w-full items-end">
+            <Settings size={28} color={colors.primary[800]} />
+          </View>
           <OverView />
           <Tabs
             value={activeTab}
             onChange={setActiveTab}
             tabs={[
-              { label: 'Khu vực', value: 'site', content: <SiteList /> },
-              { label: 'Cây trồng', value: 'plant', content: <PlantList /> },
-              { label: 'Ảnh', value: 'images', content: <ImageList /> },
+              {
+                label: translate('my_plant.tabs.site'),
+                value: 'site',
+                content: <SiteList />,
+              },
+              {
+                label: translate('my_plant.tabs.plant'),
+                value: 'plant',
+                content: <PlantList />,
+              },
+              {
+                label: translate('my_plant.tabs.images'),
+                value: 'images',
+                content: <ImageList />,
+              },
             ]}
           />
         </View>

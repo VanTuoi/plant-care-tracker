@@ -7,19 +7,20 @@ import type {
 } from 'react-hook-form';
 import { useController } from 'react-hook-form';
 import type { TextInputProps } from 'react-native';
-import { I18nManager, StyleSheet, View } from 'react-native';
+import { I18nManager, Pressable, StyleSheet, View } from 'react-native';
 import { TextInput as NTextInput } from 'react-native';
 import { tv } from 'tailwind-variants';
 
 import colors from './colors';
+import { Eye, EyeOff } from './icons';
 import { Text } from './text';
 
 const inputTv = tv({
   slots: {
     container: 'mb-2',
-    label: 'text-grey-100 mb-1 text-lg dark:text-neutral-100',
+    label: 'text-grey-100 mb-1 text-lg text-primary-800 dark:text-neutral-100',
     input:
-      'mt-0 rounded-xl border-[0.5px] border-neutral-300 bg-neutral-100 px-4 py-3 font-inter text-base  font-medium leading-5 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white',
+      'mt-0 rounded-2xl border-[0.5px] border-neutral-300 bg-neutral-100 px-4 py-3 font-signika-medium text-base leading-5 text-primary-800 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white',
   },
 
   variants: {
@@ -68,6 +69,10 @@ export type InputControllerType<T extends FieldValues> = {
 };
 
 interface ControlledInputProps<T extends FieldValues>
+  extends NInputProps,
+    InputControllerType<T> {}
+
+interface ControlledPasswordInputProps<T extends FieldValues>
   extends NInputProps,
     InputControllerType<T> {}
 
@@ -123,7 +128,6 @@ export const Input = React.forwardRef<NTextInput, NInputProps>((props, ref) => {
   );
 });
 
-// only used with react-hook-form
 export function ControlledInput<T extends FieldValues>(
   props: ControlledInputProps<T>
 ) {
@@ -139,5 +143,39 @@ export function ControlledInput<T extends FieldValues>(
       {...inputProps}
       error={fieldState.error?.message}
     />
+  );
+}
+
+export function ControlledPasswordInput<T extends FieldValues>(
+  props: ControlledPasswordInputProps<T>
+) {
+  const { name, control, rules, ...inputProps } = props;
+  const { field, fieldState } = useController({ control, name, rules });
+
+  const [secure, setSecure] = React.useState(true);
+
+  return (
+    <View className="relative">
+      <Input
+        ref={field.ref}
+        autoCapitalize="none"
+        onChangeText={field.onChange}
+        value={(field.value as string) || ''}
+        error={fieldState.error?.message}
+        secureTextEntry={secure}
+        {...inputProps}
+      />
+      <Pressable
+        onPress={() => setSecure(!secure)}
+        className="absolute right-3 top-10"
+        hitSlop={10}
+      >
+        {secure ? (
+          <EyeOff size={24} color={colors.primary[800]} />
+        ) : (
+          <Eye size={24} color={colors.primary[800]} />
+        )}
+      </Pressable>
+    </View>
   );
 }

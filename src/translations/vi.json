@@ -1,32 +1,334 @@
 {
   "common": {
+    "button": {
+      "add": "Thêm",
+      "back": "Quay lại",
+      "cancel": "Hủy",
+      "close": "Đóng",
+      "complete": "Hoàn thành",
+      "confirm": "Xác nhận",
+      "delete": "Xóa",
+      "error": "Lỗi",
+      "next": "Tiếp theo",
+      "save": "Lưu",
+      "update": "Cập nhật"
+    },
+    "error_form": {
+      "select_minimum": "chọn 1 tùy chọn"
+    },
     "error_load": "Lỗi khi tải dữ liệu",
-    "no_data": "Xin lỗi! Không tìm thấy dữ liệu",
-    "save": "Lưu"
+    "form": {
+      "select": "Vui lòng chọn một"
+    },
+    "imagePicker": {
+      "camera": "Máy ảnh",
+      "gallery": "Chọn từ Thư viện",
+      "title": "Chọn ảnh"
+    },
+    "no_data": "Xin lỗi! Không tìm thấy dữ liệu"
   },
-  "layout": {
-    "settings_tab": "Cài đặt",
-    "user_tab": "Người dùng"
+  "fertilizers": {
+    "form": {
+      "select": "Vui lòng chọn một"
+    }
+  },
+  "home": {
+    "fab": {
+      "addPlant": "Thêm cây",
+      "addSite": "Thêm khu vực"
+    },
+    "greeting": {
+      "afternoon": "Chào buổi chiều",
+      "evening": "Chào buổi tối",
+      "morning": "Chào buổi sáng",
+      "night": "Chúc ngủ ngon"
+    },
+    "subtitle": {
+      "afternoon": "Buổi chiều là thời điểm tốt để kiểm tra cây của bạn.",
+      "evening": "Buổi tối hoàn hảo để thư giãn cùng cây cối.",
+      "morning": "Buổi sáng là thời điểm tuyệt vời để chăm sóc cây của bạn.",
+      "night": "Ban đêm là để nghỉ ngơi, cây của bạn cũng vậy."
+    },
+    "tabs": {
+      "today": "Hôm nay",
+      "upcoming": "Sắp tới"
+    },
+    "tasks": {
+      "count": "{{count}} nhiệm vụ",
+      "fertilize": "Bón phân",
+      "prune": "Tỉa cành",
+      "repot": "Thay chậu",
+      "water": "Tưới nước"
+    },
+    "todayMission": {
+      "completionHint": "Hoàn thành nhiệm vụ bằng cách chạm vào hướng dẫn",
+      "fertilizing": "Bón phân",
+      "lateDays": "Trễ {{days}} ngày",
+      "overdue": "Quá hạn",
+      "pruning": "Tỉa cành",
+      "repotting": "Thay chậu",
+      "watering": "Tưới nước"
+    },
+    "upcomingMission": {
+      "completionHint": "Hoàn thành nhiệm vụ bằng cách chạm vào hướng dẫn",
+      "next3Days": "3 ngày tới",
+      "nextWeek": "Tuần tới"
+    }
   },
   "login": {
     "button": "Đăng nhập",
-    "demo_email": "Email demo là admin@example.com",
-    "demo_message": "Chào mừng! 👋 Đây là màn hình đăng nhập demo!",
-    "demo_password": "Mật khẩu demo là 123456",
+    "button_register": "Đăng ký",
     "errors": {
       "email_invalid": "Định dạng email không hợp lệ",
       "email_notfound": "Không tìm thấy email",
-      "email_required": "Yêu cầu email",
-      "incorrect_password": "Mật khẩu không chính xác",
+      "email_required": "Email là bắt buộc",
+      "incorrect_password": "Mật khẩu không đúng",
       "password_min": "Mật khẩu phải có ít nhất 6 ký tự",
-      "password_required": "Bắt buộc phải nhập mật khẩu",
+      "password_required": "Mật khẩu là bắt buộc",
       "server": "Lỗi máy chủ"
     },
+    "forget_password": "Quên mật khẩu?",
     "form": {
       "email": "Email",
       "password": "Mật khẩu"
     },
     "title": "Đăng nhập"
+  },
+  "my_plant": {
+    "overview": {
+      "careTasks": "Nhiệm vụ chăm sóc",
+      "loading": "0 khu vực 0 cây",
+      "plantsCount": "{{count}} cây",
+      "sitesCount": "{{count}} khu vực",
+      "totalPlants": "Tổng số cây",
+      "totalSites": "Tổng số khu vực"
+    },
+    "plant_list": {
+      "placeholder_search": "Tìm kiếm"
+    },
+    "site_list": {
+      "plant_number": "cây",
+      "task": "nhiệm vụ"
+    },
+    "tabs": {
+      "images": "Hình ảnh",
+      "plant": "Cây",
+      "site": "Khu vực"
+    },
+    "title": "Cây của tôi"
+  },
+  "plant": {
+    "plantDetail": {
+      "careInfo": {
+        "area": {
+          "title": "Khu vực"
+        },
+        "description": "Nhờ hệ thống rễ khí sinh, nó có thể phát triển gần như thẳng đứng trên cây/tường, vì vậy hãy để nó leo trèo!",
+        "sections": {
+          "area": "Khu vực",
+          "care": "Chăm sóc"
+        },
+        "wateringHistory": {
+          "nextTime": "Lần tới sau 2 ngày",
+          "schedule": "Tưới nước mỗi 2 tuần",
+          "title": "Lịch sử tưới nước"
+        }
+      },
+      "fab": {
+        "fertilize": "Bón phân",
+        "takePhoto": "Chụp ảnh",
+        "water": "Tưới nước"
+      },
+      "fertilizerModal": {
+        "amount": "Lượng phân bón (g/ml)",
+        "descriptionAdd": "Hành động này sẽ ghi nhận {{plantName}} đã được bón phân.",
+        "descriptionEdit": "Chỉnh sửa lịch sử bón phân của {{plantName}}.",
+        "method": "Phương pháp bón phân",
+        "methods": {
+          "foliar_feed": "Phun qua lá",
+          "liquid_feed": "Phân lỏng",
+          "other": "Khác",
+          "soil_mixing": "Trộn vào đất",
+          "surface_spread": "Rải trên bề mặt"
+        },
+        "note": "Ghi chú",
+        "titleAdd": "Đánh dấu đã bón phân",
+        "titleEdit": "Cập nhật bón phân",
+        "type": "Loại phân bón",
+        "types": {
+          "ammonium_sulfate": "Amoni sunfat",
+          "bloodmeal": "Bột máu",
+          "bonemeal": "Bột xương",
+          "compost": "Phân compost",
+          "green_manure": "Phân xanh",
+          "inorganic": "Vô cơ",
+          "liquid": "Phân lỏng",
+          "manure": "Phân chuồng",
+          "micro_nutrient": "Vi lượng",
+          "npk": "NPK",
+          "organic": "Hữu cơ",
+          "other": "Khác",
+          "urea": "Ure"
+        }
+      },
+      "growthDiary": {
+        "addNote": "Thêm ghi chú...",
+        "mood": "Tâm trạng",
+        "moodPlaceholder": "Chọn tâm trạng...",
+        "noteAndImage": "Ghi chú và Hình ảnh"
+      },
+      "historyWatering": {
+        "empty": "Không có lịch sử tưới nước.",
+        "title": "Lịch sử tưới nước"
+      },
+      "mood": {
+        "angry": "Tức giận",
+        "happy": "Vui vẻ",
+        "neutral": "Bình thường",
+        "other": "Khác",
+        "sad": "Buồn"
+      },
+      "tabs": {
+        "care": "Chăm sóc",
+        "todo": "Việc cần làm"
+      },
+      "todo": {
+        "completeHint": "Hoàn thành nhiệm vụ bằng cách chạm vào hướng dẫn",
+        "day_ago": "ngày trước",
+        "fertilizing": {
+          "schedule": "Mỗi 14 ngày",
+          "title": "Bón phân"
+        },
+        "lastTime": "Lần cuối:",
+        "noData": "Không có dữ liệu",
+        "overdue": "Quá hạn {{days}} ngày",
+        "today": "Hôm nay",
+        "watering": {
+          "action": "Tưới nước",
+          "schedule": "Mỗi 3 ngày",
+          "title": "Tưới nước"
+        },
+        "yesterday": "Hôm qua"
+      },
+      "wateringModal": {
+        "amount": "Lượng nước (ml)",
+        "descriptionAdd": "Hành động này sẽ ghi nhận {{plantName}} đã được tưới nước.",
+        "descriptionEdit": "Chỉnh sửa lịch sử tưới nước của {{plantName}}.",
+        "method": "Phương pháp tưới",
+        "methods": {
+          "drip": "Tưới nhỏ giọt",
+          "immersion": "Ngâm",
+          "other": "Khác",
+          "overhead": "Tưới từ trên cao",
+          "root": "Tưới gốc",
+          "self_watering": "Chậu tự tưới",
+          "spray": "Phun sương",
+          "wick": "Hệ thống bấc"
+        },
+        "note": "Ghi chú",
+        "titleAdd": "Đánh dấu đã tưới",
+        "titleEdit": "Cập nhật tưới nước"
+      }
+    },
+    "plantEdit": {
+      "archive": "Nó đã chết, chuyển vào lưu trữ",
+      "area": "Khu vực",
+      "area_section": "Khu vực",
+      "delete": "Xóa cây",
+      "delete_alert_cancel": "Hủy",
+      "delete_alert_confirm": "Xóa ngay",
+      "delete_alert_message": "Bạn có chắc chắn muốn xóa cây này?",
+      "delete_alert_title": "Xóa cây",
+      "delete_error_message": "Không thể xóa cây, vui lòng thử lại.",
+      "delete_error_title": "Lỗi",
+      "edit_name": {
+        "field_label": "Tên cây",
+        "header": "Chỉnh sửa tên cây",
+        "section_title": "Tên hiển thị",
+        "title": "Chỉnh sửa tên cây"
+      },
+      "edit_size": {
+        "field_label": "Kích thước cây",
+        "header": "Kích thước cây của bạn là gì?",
+        "options": {
+          "huge": "Rất lớn (> 120 cm)",
+          "large": "Lớn (60 - 120 cm)",
+          "medium": "Trung bình (30 - 60 cm)",
+          "small": "Nhỏ (10 - 30 cm)",
+          "tiny": "Rất nhỏ (< 10 cm)"
+        },
+        "title": "Chỉnh sửa kích thước cây"
+      },
+      "fertilizer": "Phân bón",
+      "fertilizer_section": "Phân bón",
+      "name_edit": "Tùy chỉnh tên",
+      "name_section": "Tên",
+      "note_content": "Để thay đổi khu vực, vui lòng vào chức năng cài đặt khu vực.",
+      "note_title": "Lưu ý!",
+      "plant_section": "Cây",
+      "settings_title": "Thay đổi cài đặt cây",
+      "size": "Kích thước",
+      "type": "Loại cây"
+    },
+    "plantWizard": {
+      "inGroundOptions": {
+        "inGround": "Trong đất",
+        "potted": "Trong chậu"
+      },
+      "sizeOptions": {
+        "huge": "Rất lớn",
+        "large": "Lớn",
+        "medium": "Trung bình",
+        "small": "Nhỏ",
+        "tiny": "Rất nhỏ"
+      },
+      "steps": {
+        "inGround": {
+          "title": "Cây của bạn có trồng trong chậu không?"
+        },
+        "lastFertilized": {
+          "title": "Lần bón phân cuối cùng"
+        },
+        "lastWatered": {
+          "title": "Lần tưới nước cuối cùng"
+        },
+        "name": {
+          "placeholder": "Ví dụ: Cây Lưỡi Hổ",
+          "title": "Đặt tên cho cây của bạn"
+        },
+        "plantImage": {
+          "title": "Thêm ảnh cây của bạn"
+        },
+        "site": {
+          "title": "Bạn muốn đặt cây ở đâu?"
+        },
+        "size": {
+          "title": "Kích thước cây"
+        }
+      }
+    },
+    "search": {
+      "button_apply_filter": "Áp dụng",
+      "button_reset_filter": "Đặt lại bộ lọc",
+      "filter": "Bộ lọc",
+      "order": "Thứ tự",
+      "placeholder_search": "Tìm kiếm",
+      "search_by": "Tìm kiếm theo",
+      "sort_by": "Sắp xếp theo"
+    },
+    "species": {
+      "difficulty": {
+        "easy": "Dễ",
+        "hard": "Khó",
+        "moderate": "Trung bình"
+      },
+      "sunlight": {
+        "full_sun": "Nắng nhiều",
+        "partial_sun": "Nắng một phần",
+        "shade": "Bóng râm",
+        "unknown": "Không xác định"
+      }
+    }
   },
   "settings": {
     "about": "Giới thiệu",
@@ -36,67 +338,141 @@
     "generale": "Chung",
     "language": "Ngôn ngữ",
     "logout": "Đăng xuất",
+    "notification": {
+      "channel_email": "Thông báo qua email",
+      "channel_socket": "Thông báo trực tiếp",
+      "channels": "Kênh thông báo",
+      "enable": "Bật thông báo",
+      "error_load": "Lỗi khi tải dữ liệu",
+      "general": "Cài đặt chung",
+      "options": {
+        "anytime": "Bất kỳ lúc nào",
+        "fixed_time": "Thời gian cố định"
+      },
+      "time": "Thời gian thông báo",
+      "time_mode": "Chế độ",
+      "time_range": "Khoảng thời gian",
+      "title": "Cài đặt thông báo"
+    },
+    "profile": {
+      "become_beta": "Trở thành thành viên beta",
+      "beta_description": "Bằng cách trở thành thành viên Beta, bạn sẽ nhận được những tính năng sớm nhất từ chúng tôi.",
+      "beta_section": "Beta",
+      "display_name": "Tên hiển thị",
+      "edit_name_title": "Chỉnh sửa tên",
+      "first_name": "Tên",
+      "last_name": "Họ",
+      "location": "Vị trí",
+      "location_section": "Vị trí",
+      "name_section": "Tên",
+      "title": "Hồ sơ",
+      "update_location": "Cập nhật vị trí"
+    },
     "theme": {
       "dark": "Tối",
       "light": "Sáng",
       "system": "Hệ thống",
-      "title": "Giao diện"
+      "title": "Chủ đề"
     },
     "title": "Cài đặt",
     "version": "Phiên bản",
     "vietnamese": "Tiếng Việt"
   },
+  "site": {
+    "edit": {
+      "deleteButton": "Xóa khu vực",
+      "deleteConfirm": {
+        "message": "Bạn có chắc chắn muốn xóa khu vực này?",
+        "title": "Xóa khu vực"
+      },
+      "deleteError": "Không thể xóa khu vực",
+      "generalSettings": "Cài đặt chung",
+      "hasRain": "Có mưa",
+      "humidity": "Độ ẩm",
+      "siteInfo": "Thông tin khu vực",
+      "siteName": "Tên khu vực",
+      "sunlight": "Ánh sáng mặt trời",
+      "temperature": "Nhiệt độ",
+      "title": "Chỉnh sửa khu vực",
+      "wind": "Gió"
+    },
+    "editName": {
+      "displayName": "Tên hiển thị",
+      "siteNameLabel": "Tên khu vực",
+      "title": "Chỉnh sửa tên khu vực"
+    },
+    "fab": {
+      "addPlant": "Thêm cây",
+      "addTask": "Thêm nhiệm vụ"
+    },
+    "siteWizard": {
+      "onError": "Lỗi khi tạo khu vực",
+      "steps": {
+        "name": {
+          "placeholder": "Ví dụ: Tầng 2",
+          "title": "Đặt tên cho khu vực này"
+        },
+        "sunlight": {
+          "title": "Ánh sáng mặt trời trong khu vực này như thế nào?"
+        },
+        "template": {
+          "title": "Khu vực trồng cây của bạn là gì?"
+        }
+      },
+      "sunlightOptions": {
+        "fullSun": "Nắng nhiều",
+        "partialSun": "Nắng một phần",
+        "shade": "Bóng râm",
+        "unknown": "Không xác định"
+      }
+    },
+    "title": "Khu vực"
+  },
   "species": {
-    "add_plant": "Thêm cây",
-    "button_apply_filter": "Áp dụng bộ lọc",
-    "button_reset_filter": "Đặt lại",
     "care": {
       "fertilizing": {
-        "amount": "Số lượng: {{amount}} g",
+        "amount": "Lượng: {{amount}} g",
         "fertilizer_type": {
-          "ammonium_sulfate": "Phân bón amoni sulfat",
-          "bloodmeal": "Bloodmeal",
-          "bonemeal": "Bonemeal",
-          "compost": "Phân trộn",
+          "ammonium_sulfate": "Phân amoni sunfat",
+          "bloodmeal": "Bột máu",
+          "bonemeal": "Bột xương",
+          "compost": "Phân compost",
           "green_manure": "Phân xanh",
           "inorganic": "Phân vô cơ",
           "liquid": "Phân lỏng",
           "manure": "Phân chuồng",
-          "micro_nutrient": "Phân bón vi lượng",
+          "micro_nutrient": "Phân vi lượng",
           "npk": "Phân NPK",
           "organic": "Phân hữu cơ",
           "other": "Khác",
           "urea": "Phân urê"
         },
-
         "fertilizing_method": {
-          "foliar_feed": "Phun lá",
+          "foliar_feed": "Phun qua lá",
           "liquid_feed": "Tưới phân",
           "other": "Khác",
           "soil_mixing": "Trộn vào đất",
           "surface_spread": "Rải trên bề mặt"
         },
-
         "frequency": "Tần suất: {{freq}} ngày/lần",
         "method": "Phương pháp: {{method}}",
         "title": "Bón phân",
-        "type": "Loại phân bón: {{type}}"
+        "type": "Loại phân: {{type}}"
       },
-
       "title": "Chăm sóc",
       "watering": {
-        "amount": "Cứ mỗi {{amount}} ml/lần",
-        "frequency": "Cứ mỗi {{freq}} ngày/lần",
+        "amount": "Mỗi {{amount}} ml/lần",
+        "frequency": "Mỗi {{freq}} ngày/lần",
         "method": "Phương pháp: {{method}}",
         "title": "Tưới nước",
         "watering_method": {
           "drip": "Tưới nhỏ giọt",
-          "immersion": "Chậu ngâm",
+          "immersion": "Ngâm chậu",
           "other": "Khác",
           "overhead": "Tưới từ trên cao",
-          "root": "Tưới rễ",
-          "self_watering": "Tự giữ ẩm",
-          "spray": "Sương mù",
+          "root": "Tưới gốc",
+          "self_watering": "Tự tưới",
+          "spray": "Phun sương",
           "wick": "Tưới bằng bấc"
         }
       }
@@ -110,35 +486,43 @@
       "name": "Tên cây",
       "scientificName": "Tên khoa học"
     },
-    "location_chip": "{{count}} khu vực khả dụng",
+    "item_detail": {
+      "name": "Cây"
+    },
+    "location_chip": "{{count}} khu vực phù hợp",
+    "search": {
+      "add_plant": "Thêm cây",
+      "button_apply_filter": "Áp dụng bộ lọc",
+      "button_reset_filter": "Đặt lại",
+      "search_title": "Tìm kiếm cây",
+      "sort_by": {
+        "name": "Tên cây",
+        "scientificName": "Tên khoa học",
+        "title": "Sắp xếp theo"
+      },
+      "sort_order": {
+        "asc": "Tăng dần",
+        "desc": "Giảm dần",
+        "title": "Thứ tự sắp xếp"
+      }
+    },
     "search_by": {
       "title": "Tìm kiếm theo"
     },
-    "sort_by": {
-      "name": "Tên cây",
-      "scientificName": "Tên khoa học",
-      "title": "Sắp xếp theo"
-    },
-    "sort_order": {
-      "asc": "Tăng dần",
-      "desc": "Giảm dần",
-      "title": "Thứ tự sắp xếp"
+    "site": {
+      "title": "Khu vực"
     },
     "sunlight": {
-      "full_sun": "Nắng đầy đủ",
+      "full_sun": "Nắng nhiều",
       "partial_sun": "Nắng một phần",
       "shade": "Bóng râm",
       "unknown": "Không xác định"
     },
     "title": "Thông tin cây"
   },
-  "users": {
-    "button_apply_filter": "Áp dụng",
-    "button_reset_filter": "Đặt lại Bộ lọc",
-    "filter": "Bộ lọc",
-    "order": "Thứ tự",
-    "placeholder_search": "Tìm kiếm",
-    "search_by": "Tìm kiếm theo",
-    "sort_by": "Sắp xếp theo"
+  "waters": {
+    "form": {
+      "select": "Vui lòng chọn một"
+    }
   }
 }

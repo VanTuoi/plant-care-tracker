@@ -92,7 +92,7 @@ export const SearchSpeciesComponent = () => {
           </View>
           {filterCount > 0 && (
             <View className="absolute -right-1 -top-1 min-w-[20px] rounded-full border border-gray-300 bg-white px-1 py-0.5 dark:border-gray-500 dark:bg-neutral-900">
-              <Text className="text-center text-xs font-bold text-black">
+              <Text className="text-center font-signika-bold text-xs text-black">
                 {filterCount}
               </Text>
             </View>

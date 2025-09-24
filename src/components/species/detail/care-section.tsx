@@ -16,7 +16,9 @@ interface CareSectionProps {
 export const CareSection = ({ label, items }: CareSectionProps) => {
   return (
     <View className="flex-col gap-4 rounded-2xl bg-white p-3 px-5 shadow">
-      <Text className="text-lg font-bold text-primary-800">{label}</Text>
+      <Text className="font-signika-bold text-lg text-primary-800">
+        {label}
+      </Text>
       {items.map((item, idx) => (
         <View key={idx} className="flex-row items-center justify-start gap-3">
           <View className="size-[60px] items-center justify-center rounded-full bg-slate-700">

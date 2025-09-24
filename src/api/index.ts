@@ -6,6 +6,7 @@ export * from './growth-diaries';
 export * from './plant-image';
 export * from './plants';
 export * from './reminder-options';
+export * from './role';
 export * from './sites';
 export * from './species';
 export * from './template-site';

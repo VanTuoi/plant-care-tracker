@@ -30,7 +30,7 @@ export const SearchPlantComponent = () => {
       <View className="mb-3 mt-2 flex-row items-center gap-5">
         <View className="flex-1">
           <SearchInput
-            placeholder={translate('users.placeholder_search')}
+            placeholder={translate('my_plant.plant_list.placeholder_search')}
             value={queryParams.filters?.name ?? ''}
             onChangeText={handleSearchChange}
           />

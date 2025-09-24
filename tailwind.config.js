@@ -9,8 +9,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        inter: ['Inter'],
-        signika: ['Signika'],
+        signika: ['Signika-Regular'],
+        'signika-light': ['Signika-Light'],
+        'signika-medium': ['Signika-Medium'],
+        'signika-semibold': ['Signika-SemiBold'],
+        'signika-bold': ['Signika-Bold'],
       },
       colors,
     },
