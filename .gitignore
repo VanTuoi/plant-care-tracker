@@ -21,6 +21,6 @@ expo-env.d.ts
 # @end expo-cli
 
 # Ignore all env files
-.env*
-# But keep .env.example
-!.env.example
+.env.development
+.env.production
+.env.staging
