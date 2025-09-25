@@ -19,3 +19,8 @@ yarn-error.log
 
 expo-env.d.ts
 # @end expo-cli
+
+# Ignore all env files
+.env*
+# But keep .env.example
+!.env.example
