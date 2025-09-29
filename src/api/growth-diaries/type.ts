@@ -2,6 +2,8 @@ import { z } from 'zod';
 
 import { translate } from '@/lib/i18n';
 
+import { type FileType } from '../files/type';
+
 export enum Mood {
   HAPPY = 'happy',
   SAD = 'sad',
@@ -13,7 +15,7 @@ export enum Mood {
 export type GrowthDiary = {
   id: string;
   plantId: string;
-  fileId: string;
+  file: FileType;
   note?: string;
   mood: Mood;
   createdAt: Date;

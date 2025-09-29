@@ -70,7 +70,10 @@ export default function RootLayout() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="species/[id]" />
-        <Stack.Screen name="plant/[id]" options={{ headerShown: true }} />
+        <Stack.Screen
+          name="plant/[id]"
+          options={{ headerShown: true, headerTitle: '' }}
+        />
         <Stack.Screen
           name="plant/[id]/edit/index"
           options={{ headerShown: true }}

@@ -27,7 +27,7 @@ export const SearchPlantComponent = () => {
 
   return (
     <>
-      <View className="mb-3 mt-2 flex-row items-center gap-5">
+      <View className="flex-row items-center gap-5">
         <View className="flex-1">
           <SearchInput
             placeholder={translate('my_plant.plant_list.placeholder_search')}

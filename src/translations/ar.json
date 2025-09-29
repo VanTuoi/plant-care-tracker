@@ -196,7 +196,7 @@
         "completeHint": "أكمل المهام بالضغط على الدليل",
         "day_ago": "يوم مضى",
         "fertilizing": {
-          "schedule": "كل 14 يوم",
+          "schedule": "كل {{day}} يوم",
           "title": "تسميد"
         },
         "lastTime": "آخر مرة:",
@@ -205,7 +205,7 @@
         "today": "اليوم",
         "watering": {
           "action": "ري",
-          "schedule": "كل 3 أيام",
+          "schedule": "كل {{day}} أيام",
           "title": "ري"
         },
         "yesterday": "أمس"

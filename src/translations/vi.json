@@ -196,7 +196,7 @@
         "completeHint": "Hoàn thành nhiệm vụ bằng cách chạm vào hướng dẫn",
         "day_ago": "ngày trước",
         "fertilizing": {
-          "schedule": "Mỗi 14 ngày",
+          "schedule": "Mỗi {{day}} ngày",
           "title": "Bón phân"
         },
         "lastTime": "Lần cuối:",
@@ -205,7 +205,7 @@
         "today": "Hôm nay",
         "watering": {
           "action": "Tưới nước",
-          "schedule": "Mỗi 3 ngày",
+          "schedule": "Mỗi {{day}} ngày",
           "title": "Tưới nước"
         },
         "yesterday": "Hôm qua"
