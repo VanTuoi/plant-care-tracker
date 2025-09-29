@@ -196,7 +196,7 @@
         "completeHint": "Complete tasks by tapping the guide",
         "day_ago": "day ago",
         "fertilizing": {
-          "schedule": "Every 14 days",
+          "schedule": "Every {{day}} days",
           "title": "Fertilizing"
         },
         "lastTime": "Last:",
@@ -205,7 +205,7 @@
         "today": "Today",
         "watering": {
           "action": "Water",
-          "schedule": "Every 3 days",
+          "schedule": "Every {{day}} days",
           "title": "Watering"
         },
         "yesterday": "Yesterday"

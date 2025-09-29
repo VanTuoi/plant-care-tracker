@@ -21,7 +21,7 @@ export function PlantList() {
   }
 
   return (
-    <View className="px-4">
+    <View className="gap-2 px-4">
       <SearchPlantComponent />
       <FlashList
         data={data?.data}

@@ -30,7 +30,7 @@ export default function EditSite() {
       translate('site.edit.deleteConfirm.title'),
       translate('site.edit.deleteConfirm.message'),
       [
-        { text: translate('common.button'), style: 'cancel' },
+        { text: translate('common.button.cancel'), style: 'cancel' },
         {
           text: translate('common.button.delete'),
           style: 'destructive',

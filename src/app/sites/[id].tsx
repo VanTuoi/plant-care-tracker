@@ -52,7 +52,7 @@ export default function Sites() {
     <>
       <Stack.Screen
         options={{
-          title: data?.name || translate('site.title'),
+          title: data?.name ? data?.name : translate('site.title'),
           headerRight: () => (
             <Button
               testID="edit-site"

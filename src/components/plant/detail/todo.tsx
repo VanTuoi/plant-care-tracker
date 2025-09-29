@@ -98,7 +98,9 @@ export function TodoPlant({ plant }: Props) {
             {translate('plant.plantDetail.todo.watering.title')}
           </Text>
           <Text className="font-signika-bold text-lg text-primary-700">
-            {translate('plant.plantDetail.todo.watering.schedule')}
+            {translate('plant.plantDetail.todo.watering.schedule', {
+              day: plant.wateringFrequency,
+            })}
           </Text>
           <Text className="py-1 text-lg text-primary-400">
             {translate('plant.plantDetail.todo.lastTime')}{' '}
@@ -119,7 +121,9 @@ export function TodoPlant({ plant }: Props) {
             {translate('plant.plantDetail.todo.fertilizing.title')}
           </Text>
           <Text className="font-signika-bold text-lg text-primary-700">
-            {translate('plant.plantDetail.todo.fertilizing.schedule')}
+            {translate('plant.plantDetail.todo.fertilizing.schedule', {
+              day: plant.fertilizingFrequency,
+            })}
           </Text>
           <Text className="py-1 text-lg text-primary-400">
             {translate('plant.plantDetail.todo.lastTime')}{' '}
