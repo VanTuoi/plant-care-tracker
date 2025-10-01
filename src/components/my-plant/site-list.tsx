@@ -57,8 +57,9 @@ export const SiteList = () => {
             <View className="w-full flex-row gap-1">
               <Image
                 source={getPlantImage(
-                  plantsData?.data.filter((item) => item.siteId === site.id)[0]
-                    ?.images,
+                  plantsData?.data.filter(
+                    (item) => item.site?.id === site.id
+                  )[0]?.images,
                   0
                 )}
                 style={{
@@ -126,7 +127,7 @@ export const SiteList = () => {
                 <Text className="text-md font-medium text-neutral-600">
                   {
                     plantsData?.data.filter(
-                      (item: Plant) => item.siteId === site.id
+                      (item: Plant) => item.site?.id === site.id
                     ).length
                   }{' '}
                   {translate('my_plant.site_list.plant_number')}
@@ -135,7 +136,7 @@ export const SiteList = () => {
               <Text className="rounded-full bg-danger-200 px-2 py-1 font-signika-bold text-danger-600">
                 {
                   plantsData?.data.filter(
-                    (item: Plant) => item.siteId === site.id
+                    (item: Plant) => item.site?.id === site.id
                   ).length
                 }{' '}
                 {translate('my_plant.site_list.task')}

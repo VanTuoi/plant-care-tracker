@@ -2,6 +2,8 @@ import { z } from 'zod';
 
 import { translate } from '@/lib/i18n';
 
+import { type Plant } from '../plants';
+
 export enum WaterEnum {
   ROOT = 'root',
   SPRAY = 'spray',
@@ -13,14 +15,21 @@ export enum WaterEnum {
   OTHER = 'other',
 }
 
+export enum WaterStatusEnum {
+  SCHEDULED = 'scheduled',
+  DONE = 'done',
+  MISSED = 'missed',
+}
+
 export type Water = {
   id: string;
   note?: string;
   amount: number;
   method: WaterEnum;
+  status: WaterStatusEnum;
   createdAt: Date;
   updatedAt: Date;
-  plantId: string;
+  plant: Plant;
 };
 
 export const waterSchema = z.object({
@@ -30,6 +39,10 @@ export const waterSchema = z.object({
   method: z.nativeEnum(WaterEnum, {
     required_error: translate('waters.form.select'),
   }),
+  status: z
+    .nativeEnum(WaterStatusEnum)
+    .optional()
+    .default(WaterStatusEnum.DONE),
 });
 
 export type WaterSchemaFormValues = z.infer<typeof waterSchema>;

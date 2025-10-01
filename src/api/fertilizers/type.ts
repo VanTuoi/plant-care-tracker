@@ -2,6 +2,8 @@ import { z } from 'zod';
 
 import { translate } from '@/lib/i18n';
 
+import { type Plant } from '../plants';
+
 export enum FertilizerMethodEnum {
   SOIL_MIXING = 'soil_mixing',
   SURFACE_SPREAD = 'surface_spread',
@@ -26,15 +28,22 @@ export enum FertilizerTypeEnum {
   OTHER = 'other',
 }
 
+export enum FertilizerStatusEnum {
+  SCHEDULED = 'scheduled',
+  DONE = 'done',
+  MISSED = 'missed',
+}
+
 export type Fertilizer = {
   id: string;
   note?: string;
   amount: number;
   method: FertilizerMethodEnum;
   fertilizerType: FertilizerTypeEnum;
+  status: FertilizerStatusEnum;
   createdAt: Date;
   updatedAt: Date;
-  plantId: string;
+  plant: Plant;
 };
 
 export const fertilizerSchema = z.object({
@@ -47,6 +56,10 @@ export const fertilizerSchema = z.object({
   fertilizerType: z.nativeEnum(FertilizerTypeEnum, {
     required_error: translate('fertilizers.form.select'),
   }),
+  status: z
+    .nativeEnum(FertilizerStatusEnum)
+    .optional()
+    .default(FertilizerStatusEnum.DONE),
 });
 
 export type FertilizerSchemaFormValues = z.infer<typeof fertilizerSchema>;

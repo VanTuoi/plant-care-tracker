@@ -56,6 +56,7 @@
     "tasks": {
       "count": "{{count}} nhiệm vụ",
       "fertilize": "Bón phân",
+      "none": "Không có nhiệm vụ trong hôm nay",
       "prune": "Tỉa cành",
       "repot": "Thay chậu",
       "water": "Tưới nước"
@@ -208,6 +209,7 @@
           "schedule": "Mỗi {{day}} ngày",
           "title": "Tưới nước"
         },
+        "within_days": "Trong vòng {{days}} ngày",
         "yesterday": "Hôm qua"
       },
       "wateringModal": {

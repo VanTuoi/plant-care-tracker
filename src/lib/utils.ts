@@ -39,5 +39,7 @@ export const cleanFilters = (
 };
 
 export const getFileUrl = (filePath?: string) => {
-  return `${Env.API_URL}${filePath}`;
+  if (!filePath) return '';
+  const normalizedPath = filePath.replace(/\\/g, '/');
+  return `${Env.API_URL}${normalizedPath}`;
 };

@@ -17,7 +17,7 @@ export function HistoryWatering({ plant }: Props) {
   const wateringModal = useWateringModal();
   const { data: dataWatering } = useWaters();
   const wateringOfPlant = dataWatering?.filter(
-    (item) => item.plantId === plant.id
+    (item) => item.plant.id === plant.id
   );
 
   return (

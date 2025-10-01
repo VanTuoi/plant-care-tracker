@@ -7,6 +7,7 @@ import { Pressable } from 'react-native';
 
 import { useDeleteGrowthDiary, useGrowthDiaries } from '@/api';
 import { Button, Image, Text, View } from '@/components/ui';
+import { getFileUrl } from '@/lib';
 import i18n from '@/lib/i18n';
 
 import { ErrorState, LoadingState } from '../common';
@@ -32,11 +33,11 @@ export function ImageList() {
     }
     setSelectedId(null);
   };
+
   return (
     <View className="flex-col gap-3">
       {data?.map((item) => {
         const isSelected = item.id === selectedId;
-
         return (
           <View
             key={item.id}
@@ -49,7 +50,7 @@ export function ImageList() {
               {item.file?.path && (
                 <Image
                   source={{
-                    uri: 'https://trongcay.vn/upload/news/2023/10/18/image-1697600685cay-luoi-ho-3.jpg',
+                    uri: getFileUrl(item.file.path),
                   }}
                   className="h-48 w-full rounded-2xl"
                   resizeMode="cover"
