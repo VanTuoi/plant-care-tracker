@@ -60,7 +60,7 @@ export const WateringModal = ({
   useEffect(() => {
     if (watering) {
       reset({
-        plantId: watering.plantId,
+        plantId: watering.plant.id,
         amount: watering.amount ?? 100,
         method: watering.method ?? WaterEnum.ROOT,
         note: watering.note ?? '',

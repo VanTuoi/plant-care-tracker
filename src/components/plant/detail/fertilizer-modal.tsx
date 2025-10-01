@@ -62,7 +62,7 @@ export const FertilizerModal = ({
   useEffect(() => {
     if (fertilizer) {
       reset({
-        plantId: fertilizer.plantId,
+        plantId: fertilizer.plant.id,
         amount: fertilizer.amount,
         method: fertilizer.method,
         fertilizerType: fertilizer.fertilizerType,

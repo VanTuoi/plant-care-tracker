@@ -5,6 +5,7 @@ import {
   type FertilizerTypeEnum,
 } from '../fertilizers';
 import { type PlantImage } from '../plant-image';
+import { type Site } from '../sites';
 import { type DifficultyLevelEnum, type SunlightNeedEnum } from '../species';
 import { type WaterEnum } from '../waters';
 
@@ -42,7 +43,7 @@ export type Plant = {
   speciesId?: string;
   images?: PlantImage[];
   userId?: string;
-  siteId?: string;
+  site?: Site;
 };
 
 export type FilterPlant = {

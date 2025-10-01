@@ -1,8 +1,15 @@
+/* eslint-disable max-lines-per-function */
 import dayjs from 'dayjs';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
 
-import { TodayMission, UpcomingMission } from '@/components/home';
+import { useFertilizers, usePlants, useWaters } from '@/api';
+import { ErrorState, LoadingState } from '@/components/common';
+import {
+  getTodayTasksCount,
+  TodayMission,
+  UpcomingMission,
+} from '@/components/home';
 import {
   colors,
   FabMenu,
@@ -18,7 +25,40 @@ import { translate } from '@/lib';
 export default function Home() {
   const [activeTab, setActiveTab] = useState('today');
 
-  const task = 0;
+  const {
+    data: dataWatering,
+    isPending: loadingWatering,
+    isError: errorWatering,
+  } = useWaters();
+  const {
+    data: dataFertilizing,
+    isPending: loadingFertilizing,
+    isError: errorFertilizing,
+  } = useFertilizers();
+  const {
+    data: dataPlant,
+    isPending: loadingPlant,
+    isError: errorPlant,
+  } = usePlants();
+
+  if (loadingWatering || loadingFertilizing || loadingPlant)
+    return <LoadingState />;
+
+  if (
+    errorWatering ||
+    errorFertilizing ||
+    errorPlant ||
+    !dataPlant?.data ||
+    !dataWatering ||
+    !dataFertilizing
+  )
+    return <ErrorState />;
+
+  const tasksCount = getTodayTasksCount(
+    dataPlant?.data ?? [],
+    dataWatering ?? [],
+    dataFertilizing ?? []
+  );
 
   const hour = dayjs().hour();
   let timeKey: 'morning' | 'afternoon' | 'evening' | 'night' = 'morning';
@@ -41,7 +81,9 @@ export default function Home() {
             {translate(`home.subtitle.${timeKey}`)}
           </Text>
           <Text className="text-primary-800">
-            {translate('home.tasks.count', { count: task })}
+            {translate('home.tasks.count', {
+              count: tasksCount,
+            })}
           </Text>
         </View>
 

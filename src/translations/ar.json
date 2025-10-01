@@ -56,6 +56,7 @@
     "tasks": {
       "count": "{{count}} مهام",
       "fertilize": "تسميد",
+      "none": "لا توجد مهام اليوم",
       "prune": "تقليم",
       "repot": "إعادة زراعة",
       "water": "ري"
@@ -208,6 +209,7 @@
           "schedule": "كل {{day}} أيام",
           "title": "ري"
         },
+        "within_days": "داخل {{days}} أيام",
         "yesterday": "أمس"
       },
       "wateringModal": {

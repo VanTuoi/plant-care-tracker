@@ -4,6 +4,7 @@ import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 
 import { type Plant, type SunlightNeedEnum } from '@/api';
+import { getFileUrl } from '@/lib';
 
 import { colors, Image } from '../ui';
 import { Cloud, PartialSun, Sun } from '../ui/icons';
@@ -51,8 +52,12 @@ export const PlantItem = ({ item }: PlantsItemProps) => {
           <View className={'flex flex-row items-center justify-start gap-4'}>
             <View className="size-[75px] items-center justify-center overflow-hidden rounded-full bg-primary-200 p-2">
               <Image
-                source={require('@/assets/cactus flower-cuate.png')}
-                style={{ width: 60, height: 60 }}
+                source={
+                  item.images && item.images.length > 0
+                    ? { uri: getFileUrl(item.images[0].filePath) }
+                    : require('@/assets/cactus flower-cuate.png')
+                }
+                style={{ width: 75, height: 75, borderRadius: 999 }}
               />
             </View>
             <View className="space-y-1">

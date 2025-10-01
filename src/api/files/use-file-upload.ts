@@ -31,8 +31,6 @@ export const useFileUpload = createMutation<Response, Variables, AxiosError>({
       },
     });
 
-    console.log('res', res);
-
     return res.data;
   },
 });
